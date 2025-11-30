@@ -4,8 +4,8 @@ import torch
 ENV_NAME = "CarRacing-v3"
 
 # TRAINING SETTINGS
-TOTAL_TIMESTEPS = 10_000    # steps per iteration
-ITERATIONS = 30              # training loops
+TOTAL_TIMESTEPS = 50_000    # steps per iteration
+ITERATIONS = 50              # training loops
 EVAL_EPISODES = 3           # evaluation episodes
 
 # PATHS

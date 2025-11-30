@@ -1,33 +1,62 @@
 import json
 import os
-from utils.config import MODELS_DIR
-
-def get_counter_path(algorithm):
-    """Returns the file where the counter for this algorithm is stored."""
-    return os.path.join(MODELS_DIR, algorithm, f"training_counter_{algorithm}.json")
+from utils.config import MODELS_DIR, TOTAL_TIMESTEPS
 
 
-def load_training_count(algorithm):
-    """Loads training iteration count for this specific algorithm."""
-    path = get_counter_path(algorithm)
+def get_counter_path():
+    """Unique JSON file for all algorithms."""
+    return os.path.join(MODELS_DIR, "training_counters.json")
+
+
+def _load_all():
+    """Load the full JSON file with counters."""
+    path = get_counter_path()
 
     if not os.path.exists(path):
-        return 0  # No training done yet for this algorithm
+        return {}
 
     try:
         with open(path, "r") as f:
-            data = json.load(f)
-            return data.get("count", 0)
+            return json.load(f)
     except:
-        return 0
+        return {}  # corrupted file → reset
 
 
-def save_training_count(algorithm, count):
-    """Saves the updated counter for this algorithm."""
-    path = get_counter_path(algorithm)
-    folder = os.path.dirname(path)
-
-    os.makedirs(folder, exist_ok=True)
+def _save_all(data):
+    """Save all counters back to the JSON file."""
+    path = get_counter_path()
+    os.makedirs(os.path.dirname(path), exist_ok=True)
 
     with open(path, "w") as f:
-        json.dump({"count": count}, f, indent=2)
+        json.dump(data, f, indent=2)
+
+
+# ----- PUBLIC FUNCTIONS -----
+
+def load_training_count(algorithm):
+    """Return iteration count for this algorithm."""
+    data = _load_all()
+    return data.get(algorithm, {}).get("count", 0)
+
+
+def load_training_timesteps(algorithm):
+    """Return accumulated timesteps for this algorithm."""
+    data = _load_all()
+    return data.get(algorithm, {}).get("timesteps", 0)
+
+
+def save_training_progress(algorithm, new_count):
+    """
+    Save:
+      - iteration count
+      - total accumulated timesteps
+    """
+    data = _load_all()
+
+    if algorithm not in data:
+        data[algorithm] = {"count": 0, "timesteps": 0}
+
+    data[algorithm]["count"] = new_count
+    data[algorithm]["timesteps"] = new_count * TOTAL_TIMESTEPS
+
+    _save_all(data)

@@ -9,10 +9,14 @@ from utils.config import (
 )
 
 from utils.algorithms import ALGORITHMS, get_algorithm_list
-from utils.training_counter import load_training_count, save_training_count
+from utils.training_counter import (
+    load_training_count,
+    load_training_timesteps,
+    save_training_progress
+)
 
 
-#   Inspect environment
+# Inspect environment
 def see_space(env):
     logger.info("Inspecting environment spaces")
     logger.info(f"Action space: {env.action_space}")
@@ -21,7 +25,7 @@ def see_space(env):
     logger.info(f"Sample observation shape: {env.observation_space.sample().shape}")
 
 
-#   Prepare folders
+# Prepare folders
 def prepare_algo_folder(algorithm):
     algo_dir = os.path.join(MODELS_DIR, algorithm)
     os.makedirs(algo_dir, exist_ok=True)
@@ -29,7 +33,7 @@ def prepare_algo_folder(algorithm):
     return algo_dir
 
 
-#   Load or create model
+# Load or create model
 def load_or_create_model(env, algorithm, algo_dir):
     algo_class = ALGORITHMS[algorithm]
     model_path = os.path.join(algo_dir, LATEST_MODEL_NAME)
@@ -50,7 +54,7 @@ def load_or_create_model(env, algorithm, algo_dir):
     return model, False
 
 
-#   Train model
+# Train model
 def train_agent(env, model, algorithm, algo_dir):
     training_count = load_training_count(algorithm)
 
@@ -60,27 +64,24 @@ def train_agent(env, model, algorithm, algo_dir):
         logger.info(f"Global training iteration for {algorithm}: {training_count}")
         logger.info(f"Running local iteration {i}/{ITERATIONS} with {TOTAL_TIMESTEPS} timesteps")
 
-        iteration_start = time.time()  # start timing
-
+        iteration_start = time.time()
         model.learn(total_timesteps=TOTAL_TIMESTEPS, reset_num_timesteps=False)
+        iteration_end = time.time()
 
-        iteration_end = time.time()  # end timing
         duration = iteration_end - iteration_start
-
-        minutes = duration / 60
-        logger.info(f"Iteration time: {duration:.2f} seconds ({minutes:.2f} minutes)")
+        logger.info(f"Iteration time: {duration:.2f} seconds ({duration / 60:.2f} minutes)")
 
         latest_path = os.path.join(algo_dir, LATEST_MODEL_NAME)
         model.save(latest_path)
-
         logger.info(f"Saved updated model to: {latest_path}")
 
-    save_training_count(algorithm, training_count)
+        save_training_progress(algorithm, training_count)
+        logger.info(f"Saved training progress for {algorithm}: iteration {training_count}")
+
     return model
 
 
-
-#   Evaluate model
+# Evaluate model
 def evaluate_agent(env, model):
     logger.info("Starting evaluation")
 
@@ -103,9 +104,9 @@ def evaluate_agent(env, model):
         logger.info(f"Episode reward: {total_reward}")
 
 
-#   MAIN
+# MAIN
 if __name__ == "__main__":
-    logger.add("logs/training.log", rotation="1 MB")  # Optional: file logging
+    logger.add("logs/training.log", rotation="1 MB")
 
     print("\nDo you want to see the episodes?")
     print("1 - Yes, show the simulation")
@@ -134,8 +135,10 @@ if __name__ == "__main__":
     exists = os.path.exists(model_path)
 
     current_count = load_training_count(algorithm)
-    logger.info(f"Training iterations completed so far for {algorithm}: {current_count}")
+    current_timesteps = load_training_timesteps(algorithm)
 
+    logger.info(f"Iterations completed so far: {current_count}")
+    logger.info(f"Total timesteps trained so far: {current_timesteps}")
 
     # MODEL EXISTS
     if exists:
@@ -147,7 +150,6 @@ if __name__ == "__main__":
         print("3 - Start from zero (overwrite model)")
 
         action = input("\nYour choice: ")
-
 
         if action == "1":
             model, _ = load_or_create_model(env, algorithm, algo_dir)
@@ -161,13 +163,7 @@ if __name__ == "__main__":
         elif action == "3":
             logger.warning("Overwriting old model and starting from zero")
             AlgoClass = ALGORITHMS[algorithm]
-            model = AlgoClass(
-                "CnnPolicy",
-                env,
-                verbose=1,
-                tensorboard_log=LOGS_DIR,
-                device=DEVICE,
-            )
+            model = AlgoClass("CnnPolicy", env, verbose=1, tensorboard_log=LOGS_DIR, device=DEVICE)
             model = train_agent(env, model, algorithm, algo_dir)
             evaluate_agent(env, model)
 
@@ -177,15 +173,8 @@ if __name__ == "__main__":
     # NO MODEL EXISTS
     else:
         logger.info(f"No existing {algorithm} model found. Training new model.")
-
         AlgoClass = ALGORITHMS[algorithm]
-        model = AlgoClass(
-            "CnnPolicy",
-            env,
-            verbose=1,
-            tensorboard_log=LOGS_DIR,
-            device=DEVICE,
-        )
+        model = AlgoClass("CnnPolicy", env, verbose=1, tensorboard_log=LOGS_DIR, device=DEVICE)
         model = train_agent(env, model, algorithm, algo_dir)
         evaluate_agent(env, model)
 
