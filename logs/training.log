@@ -14,3 +14,579 @@
 2025-11-30 18:32:05.496 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 1
 2025-11-30 18:32:05.496 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 2
 2025-11-30 18:32:05.497 | INFO     | __main__:train_agent:65 - Running local iteration 2/50 with 50000 timesteps
+2025-11-30 18:36:11.232 | INFO     | __main__:see_space:21 - Inspecting environment spaces
+2025-11-30 18:36:11.232 | INFO     | __main__:see_space:22 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-11-30 18:36:11.232 | INFO     | __main__:see_space:23 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-11-30 18:36:11.232 | INFO     | __main__:see_space:24 - Sample action: [-0.03868563  0.07890829  0.30350193]
+2025-11-30 18:36:11.233 | INFO     | __main__:see_space:25 - Sample observation shape: (96, 96, 3)
+2025-11-30 18:36:12.293 | INFO     | __main__:<module>:131 - Selected algorithm: PPO
+2025-11-30 18:36:12.294 | INFO     | __main__:<module>:140 - Iterations completed so far: 1
+2025-11-30 18:36:12.294 | INFO     | __main__:<module>:141 - Total timesteps trained so far: 50000
+2025-11-30 18:36:12.294 | INFO     | __main__:<module>:145 - A saved PPO model already exists.
+2025-11-30 18:36:14.845 | INFO     | __main__:load_or_create_model:42 - Loading existing PPO model from models\PPO\latest_model.zip
+2025-11-30 18:36:15.683 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 2
+2025-11-30 18:36:15.684 | INFO     | __main__:train_agent:65 - Running local iteration 1/50 with 50000 timesteps
+2025-11-30 18:47:23.775 | INFO     | __main__:train_agent:72 - Iteration time: 668.09 seconds (11.13 minutes)
+2025-11-30 18:47:23.851 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 18:47:23.852 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 2
+2025-11-30 18:47:23.852 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 3
+2025-11-30 18:47:23.852 | INFO     | __main__:train_agent:65 - Running local iteration 2/50 with 50000 timesteps
+2025-11-30 18:58:48.327 | INFO     | __main__:train_agent:72 - Iteration time: 684.48 seconds (11.41 minutes)
+2025-11-30 18:58:48.380 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 18:58:48.381 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 3
+2025-11-30 18:58:48.383 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 4
+2025-11-30 18:58:48.383 | INFO     | __main__:train_agent:65 - Running local iteration 3/50 with 50000 timesteps
+2025-11-30 19:09:40.599 | INFO     | __main__:train_agent:72 - Iteration time: 652.22 seconds (10.87 minutes)
+2025-11-30 19:09:40.652 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 19:09:40.653 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 4
+2025-11-30 19:09:40.653 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 5
+2025-11-30 19:09:40.653 | INFO     | __main__:train_agent:65 - Running local iteration 4/50 with 50000 timesteps
+2025-11-30 19:21:33.689 | INFO     | __main__:train_agent:72 - Iteration time: 713.04 seconds (11.88 minutes)
+2025-11-30 19:21:33.748 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 19:21:33.749 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 5
+2025-11-30 19:21:33.749 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 6
+2025-11-30 19:21:33.749 | INFO     | __main__:train_agent:65 - Running local iteration 5/50 with 50000 timesteps
+2025-11-30 19:37:04.226 | INFO     | __main__:train_agent:72 - Iteration time: 930.48 seconds (15.51 minutes)
+2025-11-30 19:37:04.292 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 19:37:04.293 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 6
+2025-11-30 19:37:04.293 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 7
+2025-11-30 19:37:04.294 | INFO     | __main__:train_agent:65 - Running local iteration 6/50 with 50000 timesteps
+2025-11-30 19:52:06.339 | INFO     | __main__:train_agent:72 - Iteration time: 902.05 seconds (15.03 minutes)
+2025-11-30 19:52:06.396 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 19:52:06.398 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 7
+2025-11-30 19:52:06.398 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 8
+2025-11-30 19:52:06.398 | INFO     | __main__:train_agent:65 - Running local iteration 7/50 with 50000 timesteps
+2025-11-30 20:07:50.606 | INFO     | __main__:train_agent:72 - Iteration time: 944.21 seconds (15.74 minutes)
+2025-11-30 20:07:50.668 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 20:07:50.669 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 8
+2025-11-30 20:07:50.669 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 9
+2025-11-30 20:07:50.670 | INFO     | __main__:train_agent:65 - Running local iteration 8/50 with 50000 timesteps
+2025-11-30 20:21:53.745 | INFO     | __main__:train_agent:72 - Iteration time: 843.08 seconds (14.05 minutes)
+2025-11-30 20:21:53.806 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 20:21:53.808 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 9
+2025-11-30 20:21:53.808 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 10
+2025-11-30 20:21:53.808 | INFO     | __main__:train_agent:65 - Running local iteration 9/50 with 50000 timesteps
+2025-11-30 20:36:51.020 | INFO     | __main__:train_agent:72 - Iteration time: 897.21 seconds (14.95 minutes)
+2025-11-30 20:36:51.084 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 20:36:51.088 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 10
+2025-11-30 20:36:51.089 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 11
+2025-11-30 20:36:51.089 | INFO     | __main__:train_agent:65 - Running local iteration 10/50 with 50000 timesteps
+2025-11-30 20:52:37.804 | INFO     | __main__:train_agent:72 - Iteration time: 946.71 seconds (15.78 minutes)
+2025-11-30 20:52:37.856 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 20:52:37.857 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 11
+2025-11-30 20:52:37.857 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 12
+2025-11-30 20:52:37.857 | INFO     | __main__:train_agent:65 - Running local iteration 11/50 with 50000 timesteps
+2025-11-30 21:07:37.714 | INFO     | __main__:train_agent:72 - Iteration time: 899.86 seconds (15.00 minutes)
+2025-11-30 21:07:37.784 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 21:07:37.785 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 12
+2025-11-30 21:07:37.786 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 13
+2025-11-30 21:07:37.786 | INFO     | __main__:train_agent:65 - Running local iteration 12/50 with 50000 timesteps
+2025-11-30 21:23:37.345 | INFO     | __main__:train_agent:72 - Iteration time: 959.56 seconds (15.99 minutes)
+2025-11-30 21:23:37.400 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 21:23:37.401 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 13
+2025-11-30 21:23:37.401 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 14
+2025-11-30 21:23:37.401 | INFO     | __main__:train_agent:65 - Running local iteration 13/50 with 50000 timesteps
+2025-11-30 21:38:45.167 | INFO     | __main__:train_agent:72 - Iteration time: 907.77 seconds (15.13 minutes)
+2025-11-30 21:38:45.243 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 21:38:45.244 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 14
+2025-11-30 21:38:45.244 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 15
+2025-11-30 21:38:45.244 | INFO     | __main__:train_agent:65 - Running local iteration 14/50 with 50000 timesteps
+2025-11-30 21:54:43.312 | INFO     | __main__:train_agent:72 - Iteration time: 958.07 seconds (15.97 minutes)
+2025-11-30 21:54:43.375 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 21:54:43.377 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 15
+2025-11-30 21:54:43.377 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 16
+2025-11-30 21:54:43.377 | INFO     | __main__:train_agent:65 - Running local iteration 15/50 with 50000 timesteps
+2025-11-30 22:10:40.214 | INFO     | __main__:train_agent:72 - Iteration time: 956.84 seconds (15.95 minutes)
+2025-11-30 22:10:40.270 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 22:10:40.272 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 16
+2025-11-30 22:10:40.272 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 17
+2025-11-30 22:10:40.272 | INFO     | __main__:train_agent:65 - Running local iteration 16/50 with 50000 timesteps
+2025-11-30 22:26:34.575 | INFO     | __main__:train_agent:72 - Iteration time: 954.30 seconds (15.91 minutes)
+2025-11-30 22:26:34.633 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 22:26:34.643 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 17
+2025-11-30 22:26:34.643 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 18
+2025-11-30 22:26:34.643 | INFO     | __main__:train_agent:65 - Running local iteration 17/50 with 50000 timesteps
+2025-11-30 22:50:02.158 | INFO     | __main__:train_agent:72 - Iteration time: 1407.51 seconds (23.46 minutes)
+2025-11-30 22:50:02.221 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 22:50:02.223 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 18
+2025-11-30 22:50:02.223 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 19
+2025-11-30 22:50:02.223 | INFO     | __main__:train_agent:65 - Running local iteration 18/50 with 50000 timesteps
+2025-11-30 23:18:29.171 | INFO     | __main__:train_agent:72 - Iteration time: 1706.95 seconds (28.45 minutes)
+2025-11-30 23:18:29.237 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 23:18:29.238 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 19
+2025-11-30 23:18:29.238 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 20
+2025-11-30 23:18:29.238 | INFO     | __main__:train_agent:65 - Running local iteration 19/50 with 50000 timesteps
+2025-11-30 23:47:28.637 | INFO     | __main__:train_agent:72 - Iteration time: 1739.40 seconds (28.99 minutes)
+2025-11-30 23:47:28.695 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-11-30 23:47:28.696 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 20
+2025-11-30 23:47:28.696 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 21
+2025-11-30 23:47:28.696 | INFO     | __main__:train_agent:65 - Running local iteration 20/50 with 50000 timesteps
+2025-12-01 00:13:44.011 | INFO     | __main__:train_agent:72 - Iteration time: 1575.31 seconds (26.26 minutes)
+2025-12-01 00:13:44.072 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 00:13:44.074 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 21
+2025-12-01 00:13:44.074 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 22
+2025-12-01 00:13:44.074 | INFO     | __main__:train_agent:65 - Running local iteration 21/50 with 50000 timesteps
+2025-12-01 00:40:16.594 | INFO     | __main__:train_agent:72 - Iteration time: 1592.52 seconds (26.54 minutes)
+2025-12-01 00:40:16.646 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 00:40:16.647 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 22
+2025-12-01 00:40:16.647 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 23
+2025-12-01 00:40:16.647 | INFO     | __main__:train_agent:65 - Running local iteration 22/50 with 50000 timesteps
+2025-12-01 01:06:42.099 | INFO     | __main__:train_agent:72 - Iteration time: 1585.45 seconds (26.42 minutes)
+2025-12-01 01:06:42.159 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 01:06:42.160 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 23
+2025-12-01 01:06:42.160 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 24
+2025-12-01 01:06:42.160 | INFO     | __main__:train_agent:65 - Running local iteration 23/50 with 50000 timesteps
+2025-12-01 01:34:36.378 | INFO     | __main__:train_agent:72 - Iteration time: 1674.22 seconds (27.90 minutes)
+2025-12-01 01:34:36.445 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 01:34:36.446 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 24
+2025-12-01 01:34:36.446 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 25
+2025-12-01 01:34:36.446 | INFO     | __main__:train_agent:65 - Running local iteration 24/50 with 50000 timesteps
+2025-12-01 02:03:42.933 | INFO     | __main__:train_agent:72 - Iteration time: 1746.49 seconds (29.11 minutes)
+2025-12-01 02:03:42.998 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 02:03:43.000 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 25
+2025-12-01 02:03:43.000 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 26
+2025-12-01 02:03:43.000 | INFO     | __main__:train_agent:65 - Running local iteration 25/50 with 50000 timesteps
+2025-12-01 02:31:01.741 | INFO     | __main__:train_agent:72 - Iteration time: 1638.74 seconds (27.31 minutes)
+2025-12-01 02:31:01.801 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 02:31:01.802 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 26
+2025-12-01 02:31:01.803 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 27
+2025-12-01 02:31:01.803 | INFO     | __main__:train_agent:65 - Running local iteration 26/50 with 50000 timesteps
+2025-12-01 02:57:32.631 | INFO     | __main__:train_agent:72 - Iteration time: 1590.83 seconds (26.51 minutes)
+2025-12-01 02:57:32.693 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 02:57:32.695 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 27
+2025-12-01 02:57:32.695 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 28
+2025-12-01 02:57:32.695 | INFO     | __main__:train_agent:65 - Running local iteration 27/50 with 50000 timesteps
+2025-12-01 03:24:28.829 | INFO     | __main__:train_agent:72 - Iteration time: 1616.13 seconds (26.94 minutes)
+2025-12-01 03:24:28.899 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 03:24:28.901 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 28
+2025-12-01 03:24:28.901 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 29
+2025-12-01 03:24:28.901 | INFO     | __main__:train_agent:65 - Running local iteration 28/50 with 50000 timesteps
+2025-12-01 03:53:49.213 | INFO     | __main__:train_agent:72 - Iteration time: 1760.31 seconds (29.34 minutes)
+2025-12-01 03:53:49.278 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 03:53:49.280 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 29
+2025-12-01 03:53:49.280 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 30
+2025-12-01 03:53:49.280 | INFO     | __main__:train_agent:65 - Running local iteration 29/50 with 50000 timesteps
+2025-12-01 04:21:28.690 | INFO     | __main__:train_agent:72 - Iteration time: 1659.41 seconds (27.66 minutes)
+2025-12-01 04:21:28.758 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 04:21:28.759 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 30
+2025-12-01 04:21:28.759 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 31
+2025-12-01 04:21:28.760 | INFO     | __main__:train_agent:65 - Running local iteration 30/50 with 50000 timesteps
+2025-12-01 04:37:39.772 | INFO     | __main__:train_agent:72 - Iteration time: 971.01 seconds (16.18 minutes)
+2025-12-01 04:37:39.827 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 04:37:39.828 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 31
+2025-12-01 04:37:39.828 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 32
+2025-12-01 04:37:39.828 | INFO     | __main__:train_agent:65 - Running local iteration 31/50 with 50000 timesteps
+2025-12-01 04:51:08.823 | INFO     | __main__:train_agent:72 - Iteration time: 808.99 seconds (13.48 minutes)
+2025-12-01 04:51:08.890 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 04:51:08.892 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 32
+2025-12-01 04:51:08.892 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 33
+2025-12-01 04:51:08.893 | INFO     | __main__:train_agent:65 - Running local iteration 32/50 with 50000 timesteps
+2025-12-01 05:04:50.540 | INFO     | __main__:train_agent:72 - Iteration time: 821.65 seconds (13.69 minutes)
+2025-12-01 05:04:50.607 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 05:04:50.609 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 33
+2025-12-01 05:04:50.609 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 34
+2025-12-01 05:04:50.609 | INFO     | __main__:train_agent:65 - Running local iteration 33/50 with 50000 timesteps
+2025-12-01 05:18:34.819 | INFO     | __main__:train_agent:72 - Iteration time: 824.21 seconds (13.74 minutes)
+2025-12-01 05:18:34.886 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 05:18:34.887 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 34
+2025-12-01 05:18:34.888 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 35
+2025-12-01 05:18:34.888 | INFO     | __main__:train_agent:65 - Running local iteration 34/50 with 50000 timesteps
+2025-12-01 05:32:35.839 | INFO     | __main__:train_agent:72 - Iteration time: 840.95 seconds (14.02 minutes)
+2025-12-01 05:32:35.913 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 05:32:35.914 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 35
+2025-12-01 05:32:35.914 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 36
+2025-12-01 05:32:35.914 | INFO     | __main__:train_agent:65 - Running local iteration 35/50 with 50000 timesteps
+2025-12-01 05:46:13.909 | INFO     | __main__:train_agent:72 - Iteration time: 817.99 seconds (13.63 minutes)
+2025-12-01 05:46:13.959 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 05:46:13.960 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 36
+2025-12-01 05:46:13.960 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 37
+2025-12-01 05:46:13.960 | INFO     | __main__:train_agent:65 - Running local iteration 36/50 with 50000 timesteps
+2025-12-01 06:00:32.722 | INFO     | __main__:train_agent:72 - Iteration time: 858.76 seconds (14.31 minutes)
+2025-12-01 06:00:32.774 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 06:00:32.775 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 37
+2025-12-01 06:00:32.775 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 38
+2025-12-01 06:00:32.776 | INFO     | __main__:train_agent:65 - Running local iteration 37/50 with 50000 timesteps
+2025-12-01 06:15:06.002 | INFO     | __main__:train_agent:72 - Iteration time: 873.23 seconds (14.55 minutes)
+2025-12-01 06:15:06.073 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 06:15:06.075 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 38
+2025-12-01 06:15:06.076 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 39
+2025-12-01 06:15:06.076 | INFO     | __main__:train_agent:65 - Running local iteration 38/50 with 50000 timesteps
+2025-12-01 06:28:43.412 | INFO     | __main__:train_agent:72 - Iteration time: 817.34 seconds (13.62 minutes)
+2025-12-01 06:28:43.472 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 06:28:43.473 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 39
+2025-12-01 06:28:43.474 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 40
+2025-12-01 06:28:43.474 | INFO     | __main__:train_agent:65 - Running local iteration 39/50 with 50000 timesteps
+2025-12-01 06:42:21.849 | INFO     | __main__:train_agent:72 - Iteration time: 818.38 seconds (13.64 minutes)
+2025-12-01 06:42:21.901 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 06:42:21.903 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 40
+2025-12-01 06:42:21.903 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 41
+2025-12-01 06:42:21.903 | INFO     | __main__:train_agent:65 - Running local iteration 40/50 with 50000 timesteps
+2025-12-01 06:55:58.643 | INFO     | __main__:train_agent:72 - Iteration time: 816.74 seconds (13.61 minutes)
+2025-12-01 06:55:58.705 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 06:55:58.706 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 41
+2025-12-01 06:55:58.706 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 42
+2025-12-01 06:55:58.706 | INFO     | __main__:train_agent:65 - Running local iteration 41/50 with 50000 timesteps
+2025-12-01 07:09:35.744 | INFO     | __main__:train_agent:72 - Iteration time: 817.04 seconds (13.62 minutes)
+2025-12-01 07:09:35.799 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 07:09:35.800 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 42
+2025-12-01 07:09:35.800 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 43
+2025-12-01 07:09:35.800 | INFO     | __main__:train_agent:65 - Running local iteration 42/50 with 50000 timesteps
+2025-12-01 07:25:26.721 | INFO     | __main__:train_agent:72 - Iteration time: 950.92 seconds (15.85 minutes)
+2025-12-01 07:25:26.778 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 07:25:26.779 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 43
+2025-12-01 07:25:26.779 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 44
+2025-12-01 07:25:26.780 | INFO     | __main__:train_agent:65 - Running local iteration 43/50 with 50000 timesteps
+2025-12-01 07:41:46.561 | INFO     | __main__:train_agent:72 - Iteration time: 979.78 seconds (16.33 minutes)
+2025-12-01 07:41:46.624 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 07:41:46.625 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 44
+2025-12-01 07:41:46.625 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 45
+2025-12-01 07:41:46.626 | INFO     | __main__:train_agent:65 - Running local iteration 44/50 with 50000 timesteps
+2025-12-01 07:56:30.584 | INFO     | __main__:train_agent:72 - Iteration time: 883.96 seconds (14.73 minutes)
+2025-12-01 07:56:30.649 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 07:56:30.650 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 45
+2025-12-01 07:56:30.650 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 46
+2025-12-01 07:56:30.650 | INFO     | __main__:train_agent:65 - Running local iteration 45/50 with 50000 timesteps
+2025-12-01 08:10:36.450 | INFO     | __main__:train_agent:72 - Iteration time: 845.80 seconds (14.10 minutes)
+2025-12-01 08:10:36.502 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 08:10:36.504 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 46
+2025-12-01 08:10:36.504 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 47
+2025-12-01 08:10:36.504 | INFO     | __main__:train_agent:65 - Running local iteration 46/50 with 50000 timesteps
+2025-12-01 08:26:35.318 | INFO     | __main__:train_agent:72 - Iteration time: 958.81 seconds (15.98 minutes)
+2025-12-01 08:26:35.373 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 08:26:35.374 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 47
+2025-12-01 08:26:35.374 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 48
+2025-12-01 08:26:35.374 | INFO     | __main__:train_agent:65 - Running local iteration 47/50 with 50000 timesteps
+2025-12-01 08:40:21.291 | INFO     | __main__:train_agent:72 - Iteration time: 825.92 seconds (13.77 minutes)
+2025-12-01 08:40:21.341 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 08:40:21.342 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 48
+2025-12-01 08:40:21.342 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 49
+2025-12-01 08:40:21.342 | INFO     | __main__:train_agent:65 - Running local iteration 48/50 with 50000 timesteps
+2025-12-01 08:54:46.263 | INFO     | __main__:train_agent:72 - Iteration time: 864.92 seconds (14.42 minutes)
+2025-12-01 08:54:46.322 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 08:54:46.323 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 49
+2025-12-01 08:54:46.324 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 50
+2025-12-01 08:54:46.324 | INFO     | __main__:train_agent:65 - Running local iteration 49/50 with 50000 timesteps
+2025-12-01 09:09:51.099 | INFO     | __main__:train_agent:72 - Iteration time: 904.78 seconds (15.08 minutes)
+2025-12-01 09:09:51.155 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 09:09:51.156 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 50
+2025-12-01 09:09:51.156 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 51
+2025-12-01 09:09:51.156 | INFO     | __main__:train_agent:65 - Running local iteration 50/50 with 50000 timesteps
+2025-12-01 09:19:11.765 | INFO     | __main__:see_space:21 - Inspecting environment spaces
+2025-12-01 09:19:11.765 | INFO     | __main__:see_space:22 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-01 09:19:11.765 | INFO     | __main__:see_space:23 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-01 09:19:11.767 | INFO     | __main__:see_space:24 - Sample action: [-0.60251105  0.08125626  0.07497615]
+2025-12-01 09:19:11.768 | INFO     | __main__:see_space:25 - Sample observation shape: (96, 96, 3)
+2025-12-01 09:19:17.387 | INFO     | __main__:<module>:131 - Selected algorithm: PPO
+2025-12-01 09:19:17.388 | INFO     | __main__:<module>:140 - Iterations completed so far: 50
+2025-12-01 09:19:17.388 | INFO     | __main__:<module>:141 - Total timesteps trained so far: 2500000
+2025-12-01 09:19:17.388 | INFO     | __main__:<module>:145 - A saved PPO model already exists.
+2025-12-01 09:19:22.363 | INFO     | __main__:load_or_create_model:42 - Loading existing PPO model from models\PPO\latest_model.zip
+2025-12-01 09:19:23.751 | INFO     | __main__:evaluate_agent:86 - Starting evaluation
+2025-12-01 09:19:23.752 | INFO     | __main__:evaluate_agent:89 - Episode 1/3
+2025-12-01 09:20:09.164 | INFO     | __main__:evaluate_agent:104 - Episode reward: 72.52396166134704
+2025-12-01 09:20:09.164 | INFO     | __main__:evaluate_agent:89 - Episode 2/3
+2025-12-01 09:20:53.749 | INFO     | __main__:evaluate_agent:104 - Episode reward: 95.28619528619963
+2025-12-01 09:20:53.749 | INFO     | __main__:evaluate_agent:89 - Episode 3/3
+2025-12-01 09:21:38.718 | INFO     | __main__:evaluate_agent:104 - Episode reward: 222.78481012657844
+2025-12-01 09:23:31.441 | INFO     | __main__:see_space:21 - Inspecting environment spaces
+2025-12-01 09:23:31.441 | INFO     | __main__:see_space:22 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-01 09:23:31.441 | INFO     | __main__:see_space:23 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-01 09:23:31.442 | INFO     | __main__:see_space:24 - Sample action: [0.891643   0.02677781 0.5074975 ]
+2025-12-01 09:23:31.442 | INFO     | __main__:see_space:25 - Sample observation shape: (96, 96, 3)
+2025-12-01 09:23:34.631 | INFO     | __main__:<module>:131 - Selected algorithm: PPO
+2025-12-01 09:23:34.632 | INFO     | __main__:<module>:140 - Iterations completed so far: 50
+2025-12-01 09:23:34.633 | INFO     | __main__:<module>:141 - Total timesteps trained so far: 2500000
+2025-12-01 09:23:34.633 | INFO     | __main__:<module>:145 - A saved PPO model already exists.
+2025-12-01 09:23:39.087 | INFO     | __main__:load_or_create_model:42 - Loading existing PPO model from models\PPO\latest_model.zip
+2025-12-01 09:23:40.196 | INFO     | __main__:evaluate_agent:86 - Starting evaluation
+2025-12-01 09:23:40.197 | INFO     | __main__:evaluate_agent:89 - Episode 1/3
+2025-12-01 09:24:24.848 | INFO     | __main__:evaluate_agent:104 - Episode reward: 207.92682926829815
+2025-12-01 09:24:24.849 | INFO     | __main__:evaluate_agent:89 - Episode 2/3
+2025-12-01 09:25:09.182 | INFO     | __main__:evaluate_agent:104 - Episode reward: 170.46263345196257
+2025-12-01 09:25:09.182 | INFO     | __main__:evaluate_agent:89 - Episode 3/3
+2025-12-01 09:25:53.838 | INFO     | __main__:evaluate_agent:104 - Episode reward: 153.57142857143396
+2025-12-01 09:39:43.372 | INFO     | __main__:see_space:21 - Inspecting environment spaces
+2025-12-01 09:39:43.373 | INFO     | __main__:see_space:22 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-01 09:39:43.373 | INFO     | __main__:see_space:23 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-01 09:39:43.373 | INFO     | __main__:see_space:24 - Sample action: [-0.8259049   0.20401485  0.08827462]
+2025-12-01 09:39:43.374 | INFO     | __main__:see_space:25 - Sample observation shape: (96, 96, 3)
+2025-12-01 09:39:44.530 | INFO     | __main__:<module>:131 - Selected algorithm: PPO
+2025-12-01 09:39:44.531 | INFO     | __main__:<module>:140 - Iterations completed so far: 50
+2025-12-01 09:39:44.531 | INFO     | __main__:<module>:141 - Total timesteps trained so far: 2500000
+2025-12-01 09:39:44.531 | INFO     | __main__:<module>:145 - A saved PPO model already exists.
+2025-12-01 09:39:52.514 | INFO     | __main__:load_or_create_model:42 - Loading existing PPO model from models\PPO\latest_model.zip
+2025-12-01 09:39:53.449 | INFO     | __main__:evaluate_agent:86 - Starting evaluation
+2025-12-01 09:39:53.450 | INFO     | __main__:evaluate_agent:89 - Episode 1/3
+2025-12-01 09:40:39.542 | INFO     | __main__:evaluate_agent:104 - Episode reward: 45.214521452149
+2025-12-01 09:40:39.542 | INFO     | __main__:evaluate_agent:89 - Episode 2/3
+2025-12-01 09:41:24.273 | INFO     | __main__:evaluate_agent:104 - Episode reward: 363.6678200691904
+2025-12-01 09:41:24.274 | INFO     | __main__:evaluate_agent:89 - Episode 3/3
+2025-12-01 09:42:10.038 | INFO     | __main__:evaluate_agent:104 - Episode reward: 162.06896551724626
+2025-12-01 09:43:06.055 | INFO     | __main__:see_space:21 - Inspecting environment spaces
+2025-12-01 09:43:06.056 | INFO     | __main__:see_space:22 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-01 09:43:06.056 | INFO     | __main__:see_space:23 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-01 09:43:06.056 | INFO     | __main__:see_space:24 - Sample action: [0.45885497 0.5355501  0.11885619]
+2025-12-01 09:43:06.057 | INFO     | __main__:see_space:25 - Sample observation shape: (96, 96, 3)
+2025-12-01 09:43:07.495 | INFO     | __main__:<module>:131 - Selected algorithm: PPO
+2025-12-01 09:43:07.496 | INFO     | __main__:<module>:140 - Iterations completed so far: 50
+2025-12-01 09:43:07.496 | INFO     | __main__:<module>:141 - Total timesteps trained so far: 2500000
+2025-12-01 09:43:07.496 | INFO     | __main__:<module>:145 - A saved PPO model already exists.
+2025-12-01 09:43:13.248 | INFO     | __main__:load_or_create_model:42 - Loading existing PPO model from models\PPO\latest_model.zip
+2025-12-01 09:43:14.204 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 51
+2025-12-01 09:43:14.205 | INFO     | __main__:train_agent:65 - Running local iteration 1/50 with 50000 timesteps
+2025-12-01 09:57:43.437 | INFO     | __main__:train_agent:72 - Iteration time: 869.23 seconds (14.49 minutes)
+2025-12-01 09:57:43.505 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 09:57:43.506 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 51
+2025-12-01 09:57:43.506 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 52
+2025-12-01 09:57:43.506 | INFO     | __main__:train_agent:65 - Running local iteration 2/50 with 50000 timesteps
+2025-12-01 10:12:15.689 | INFO     | __main__:train_agent:72 - Iteration time: 872.18 seconds (14.54 minutes)
+2025-12-01 10:12:15.748 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 10:12:15.749 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 52
+2025-12-01 10:12:15.750 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 53
+2025-12-01 10:12:15.750 | INFO     | __main__:train_agent:65 - Running local iteration 3/50 with 50000 timesteps
+2025-12-01 10:26:21.458 | INFO     | __main__:train_agent:72 - Iteration time: 845.71 seconds (14.10 minutes)
+2025-12-01 10:26:21.512 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 10:26:21.513 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 53
+2025-12-01 10:26:21.514 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 54
+2025-12-01 10:26:21.514 | INFO     | __main__:train_agent:65 - Running local iteration 4/50 with 50000 timesteps
+2025-12-01 10:40:10.169 | INFO     | __main__:train_agent:72 - Iteration time: 828.65 seconds (13.81 minutes)
+2025-12-01 10:40:10.228 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 10:40:10.229 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 54
+2025-12-01 10:40:10.229 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 55
+2025-12-01 10:40:10.229 | INFO     | __main__:train_agent:65 - Running local iteration 5/50 with 50000 timesteps
+2025-12-01 10:53:48.776 | INFO     | __main__:train_agent:72 - Iteration time: 818.55 seconds (13.64 minutes)
+2025-12-01 10:53:48.829 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 10:53:48.830 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 55
+2025-12-01 10:53:48.830 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 56
+2025-12-01 10:53:48.831 | INFO     | __main__:train_agent:65 - Running local iteration 6/50 with 50000 timesteps
+2025-12-01 11:06:52.634 | INFO     | __main__:train_agent:72 - Iteration time: 783.80 seconds (13.06 minutes)
+2025-12-01 11:06:52.687 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 11:06:52.703 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 56
+2025-12-01 11:06:52.703 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 57
+2025-12-01 11:06:52.703 | INFO     | __main__:train_agent:65 - Running local iteration 7/50 with 50000 timesteps
+2025-12-01 11:19:53.179 | INFO     | __main__:train_agent:72 - Iteration time: 780.48 seconds (13.01 minutes)
+2025-12-01 11:19:53.228 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 11:19:53.230 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 57
+2025-12-01 11:19:53.230 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 58
+2025-12-01 11:19:53.230 | INFO     | __main__:train_agent:65 - Running local iteration 8/50 with 50000 timesteps
+2025-12-01 11:33:35.607 | INFO     | __main__:train_agent:72 - Iteration time: 822.38 seconds (13.71 minutes)
+2025-12-01 11:33:35.672 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 11:33:35.673 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 58
+2025-12-01 11:33:35.673 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 59
+2025-12-01 11:33:35.674 | INFO     | __main__:train_agent:65 - Running local iteration 9/50 with 50000 timesteps
+2025-12-01 11:48:26.415 | INFO     | __main__:train_agent:72 - Iteration time: 890.74 seconds (14.85 minutes)
+2025-12-01 11:48:26.476 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 11:48:26.478 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 59
+2025-12-01 11:48:26.478 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 60
+2025-12-01 11:48:26.478 | INFO     | __main__:train_agent:65 - Running local iteration 10/50 with 50000 timesteps
+2025-12-01 12:03:53.073 | INFO     | __main__:train_agent:72 - Iteration time: 926.59 seconds (15.44 minutes)
+2025-12-01 12:03:53.132 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 12:03:53.134 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 60
+2025-12-01 12:03:53.134 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 61
+2025-12-01 12:03:53.134 | INFO     | __main__:train_agent:65 - Running local iteration 11/50 with 50000 timesteps
+2025-12-01 12:19:07.203 | INFO     | __main__:train_agent:72 - Iteration time: 914.07 seconds (15.23 minutes)
+2025-12-01 12:19:07.261 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 12:19:07.262 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 61
+2025-12-01 12:19:07.262 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 62
+2025-12-01 12:19:07.262 | INFO     | __main__:train_agent:65 - Running local iteration 12/50 with 50000 timesteps
+2025-12-01 12:39:56.576 | INFO     | __main__:train_agent:72 - Iteration time: 1249.31 seconds (20.82 minutes)
+2025-12-01 12:39:56.636 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 12:39:56.637 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 62
+2025-12-01 12:39:56.638 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 63
+2025-12-01 12:39:56.638 | INFO     | __main__:train_agent:65 - Running local iteration 13/50 with 50000 timesteps
+2025-12-01 13:02:37.144 | INFO     | __main__:see_space:21 - Inspecting environment spaces
+2025-12-01 13:02:37.145 | INFO     | __main__:see_space:22 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-01 13:02:37.145 | INFO     | __main__:see_space:23 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-01 13:02:37.145 | INFO     | __main__:see_space:24 - Sample action: [0.57702863 0.25482205 0.7607775 ]
+2025-12-01 13:02:37.146 | INFO     | __main__:see_space:25 - Sample observation shape: (96, 96, 3)
+2025-12-01 13:02:38.180 | INFO     | __main__:<module>:131 - Selected algorithm: PPO
+2025-12-01 13:02:38.181 | INFO     | __main__:<module>:140 - Iterations completed so far: 62
+2025-12-01 13:02:38.181 | INFO     | __main__:<module>:141 - Total timesteps trained so far: 3100000
+2025-12-01 13:02:38.181 | INFO     | __main__:<module>:145 - A saved PPO model already exists.
+2025-12-01 13:02:42.483 | INFO     | __main__:load_or_create_model:42 - Loading existing PPO model from models\PPO\latest_model.zip
+2025-12-01 13:02:43.732 | INFO     | __main__:evaluate_agent:86 - Starting evaluation
+2025-12-01 13:02:43.733 | INFO     | __main__:evaluate_agent:89 - Episode 1/3
+2025-12-01 13:03:27.092 | INFO     | __main__:evaluate_agent:104 - Episode reward: 224.04181184669477
+2025-12-01 13:03:27.092 | INFO     | __main__:evaluate_agent:89 - Episode 2/3
+2025-12-01 13:04:10.077 | INFO     | __main__:evaluate_agent:104 - Episode reward: 204.20711974110515
+2025-12-01 13:04:10.077 | INFO     | __main__:evaluate_agent:89 - Episode 3/3
+2025-12-01 13:04:53.020 | INFO     | __main__:evaluate_agent:104 - Episode reward: 234.45945945946474
+2025-12-01 13:05:03.541 | INFO     | __main__:see_space:21 - Inspecting environment spaces
+2025-12-01 13:05:03.541 | INFO     | __main__:see_space:22 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-01 13:05:03.541 | INFO     | __main__:see_space:23 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-01 13:05:03.542 | INFO     | __main__:see_space:24 - Sample action: [0.40376177 0.07213084 0.619429  ]
+2025-12-01 13:05:03.543 | INFO     | __main__:see_space:25 - Sample observation shape: (96, 96, 3)
+2025-12-01 13:05:04.489 | INFO     | __main__:<module>:131 - Selected algorithm: PPO
+2025-12-01 13:05:04.490 | INFO     | __main__:<module>:140 - Iterations completed so far: 62
+2025-12-01 13:05:04.491 | INFO     | __main__:<module>:141 - Total timesteps trained so far: 3100000
+2025-12-01 13:05:04.491 | INFO     | __main__:<module>:145 - A saved PPO model already exists.
+2025-12-01 13:05:06.042 | INFO     | __main__:load_or_create_model:42 - Loading existing PPO model from models\PPO\latest_model.zip
+2025-12-01 13:05:06.934 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 63
+2025-12-01 13:05:06.934 | INFO     | __main__:train_agent:65 - Running local iteration 1/50 with 50000 timesteps
+2025-12-01 13:23:54.199 | INFO     | __main__:train_agent:72 - Iteration time: 1127.26 seconds (18.79 minutes)
+2025-12-01 13:23:54.279 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 13:23:54.280 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 63
+2025-12-01 13:23:54.280 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 64
+2025-12-01 13:23:54.280 | INFO     | __main__:train_agent:65 - Running local iteration 2/50 with 50000 timesteps
+2025-12-01 13:43:16.400 | INFO     | __main__:train_agent:72 - Iteration time: 1162.12 seconds (19.37 minutes)
+2025-12-01 13:43:16.495 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 13:43:16.497 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 64
+2025-12-01 13:43:16.497 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 65
+2025-12-01 13:43:16.497 | INFO     | __main__:train_agent:65 - Running local iteration 3/50 with 50000 timesteps
+2025-12-01 14:03:39.688 | INFO     | __main__:train_agent:72 - Iteration time: 1223.19 seconds (20.39 minutes)
+2025-12-01 14:03:39.746 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 14:03:39.747 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 65
+2025-12-01 14:03:39.748 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 66
+2025-12-01 14:03:39.748 | INFO     | __main__:train_agent:65 - Running local iteration 4/50 with 50000 timesteps
+2025-12-01 14:04:55.519 | INFO     | __main__:see_space:21 - Inspecting environment spaces
+2025-12-01 14:04:55.520 | INFO     | __main__:see_space:22 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-01 14:04:55.520 | INFO     | __main__:see_space:23 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-01 14:04:55.520 | INFO     | __main__:see_space:24 - Sample action: [-0.57519555  0.9304114   0.6546364 ]
+2025-12-01 14:04:55.521 | INFO     | __main__:see_space:25 - Sample observation shape: (96, 96, 3)
+2025-12-01 14:04:57.177 | INFO     | __main__:<module>:131 - Selected algorithm: PPO
+2025-12-01 14:04:57.178 | INFO     | __main__:<module>:140 - Iterations completed so far: 65
+2025-12-01 14:04:57.178 | INFO     | __main__:<module>:141 - Total timesteps trained so far: 3250000
+2025-12-01 14:04:57.178 | INFO     | __main__:<module>:145 - A saved PPO model already exists.
+2025-12-01 14:05:00.225 | INFO     | __main__:load_or_create_model:42 - Loading existing PPO model from models\PPO\latest_model.zip
+2025-12-01 14:05:01.440 | INFO     | __main__:evaluate_agent:86 - Starting evaluation
+2025-12-01 14:05:01.440 | INFO     | __main__:evaluate_agent:89 - Episode 1/3
+2025-12-01 14:06:30.790 | INFO     | __main__:see_space:21 - Inspecting environment spaces
+2025-12-01 14:06:30.790 | INFO     | __main__:see_space:22 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-01 14:06:30.791 | INFO     | __main__:see_space:23 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-01 14:06:30.791 | INFO     | __main__:see_space:24 - Sample action: [0.6310203  0.11542682 0.15905747]
+2025-12-01 14:06:30.792 | INFO     | __main__:see_space:25 - Sample observation shape: (96, 96, 3)
+2025-12-01 14:06:35.767 | INFO     | __main__:<module>:131 - Selected algorithm: PPO
+2025-12-01 14:06:35.767 | INFO     | __main__:<module>:140 - Iterations completed so far: 65
+2025-12-01 14:06:35.769 | INFO     | __main__:<module>:141 - Total timesteps trained so far: 3250000
+2025-12-01 14:06:35.769 | INFO     | __main__:<module>:145 - A saved PPO model already exists.
+2025-12-01 14:06:46.144 | INFO     | __main__:load_or_create_model:42 - Loading existing PPO model from models\PPO\latest_model.zip
+2025-12-01 14:06:47.323 | INFO     | __main__:evaluate_agent:86 - Starting evaluation
+2025-12-01 14:06:47.323 | INFO     | __main__:evaluate_agent:89 - Episode 1/3
+2025-12-01 14:07:32.583 | INFO     | __main__:evaluate_agent:104 - Episode reward: 662.0817843866032
+2025-12-01 14:07:32.584 | INFO     | __main__:evaluate_agent:89 - Episode 2/3
+2025-12-01 14:08:18.687 | INFO     | __main__:evaluate_agent:104 - Episode reward: 164.21404682274786
+2025-12-01 14:08:18.687 | INFO     | __main__:evaluate_agent:89 - Episode 3/3
+2025-12-01 14:09:03.909 | INFO     | __main__:evaluate_agent:104 - Episode reward: 671.1267605633655
+2025-12-01 14:25:22.377 | INFO     | __main__:train_agent:72 - Iteration time: 1302.63 seconds (21.71 minutes)
+2025-12-01 14:25:22.434 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 14:25:22.435 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 66
+2025-12-01 14:25:22.436 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 67
+2025-12-01 14:25:22.436 | INFO     | __main__:train_agent:65 - Running local iteration 5/50 with 50000 timesteps
+2025-12-01 14:37:19.629 | INFO     | __main__:train_agent:72 - Iteration time: 717.19 seconds (11.95 minutes)
+2025-12-01 14:37:19.681 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 14:37:19.681 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 67
+2025-12-01 14:37:19.681 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 68
+2025-12-01 14:37:19.682 | INFO     | __main__:train_agent:65 - Running local iteration 6/50 with 50000 timesteps
+2025-12-01 14:50:55.139 | INFO     | __main__:train_agent:72 - Iteration time: 815.46 seconds (13.59 minutes)
+2025-12-01 14:50:55.202 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 14:50:55.203 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 68
+2025-12-01 14:50:55.204 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 69
+2025-12-01 14:50:55.204 | INFO     | __main__:train_agent:65 - Running local iteration 7/50 with 50000 timesteps
+2025-12-01 15:07:41.241 | INFO     | __main__:train_agent:72 - Iteration time: 1006.04 seconds (16.77 minutes)
+2025-12-01 15:07:41.354 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 15:07:41.355 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 69
+2025-12-01 15:07:41.358 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 70
+2025-12-01 15:07:41.362 | INFO     | __main__:train_agent:65 - Running local iteration 8/50 with 50000 timesteps
+2025-12-01 15:26:50.025 | INFO     | __main__:train_agent:72 - Iteration time: 1148.66 seconds (19.14 minutes)
+2025-12-01 15:26:50.085 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 15:26:50.086 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 70
+2025-12-01 15:26:50.086 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 71
+2025-12-01 15:26:50.086 | INFO     | __main__:train_agent:65 - Running local iteration 9/50 with 50000 timesteps
+2025-12-01 15:36:58.031 | INFO     | __main__:see_space:21 - Inspecting environment spaces
+2025-12-01 15:36:58.031 | INFO     | __main__:see_space:22 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-01 15:36:58.031 | INFO     | __main__:see_space:23 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-01 15:36:58.032 | INFO     | __main__:see_space:24 - Sample action: [0.540832  0.8332286 0.54975  ]
+2025-12-01 15:36:58.033 | INFO     | __main__:see_space:25 - Sample observation shape: (96, 96, 3)
+2025-12-01 15:36:59.662 | INFO     | __main__:<module>:131 - Selected algorithm: PPO
+2025-12-01 15:36:59.663 | INFO     | __main__:<module>:140 - Iterations completed so far: 70
+2025-12-01 15:36:59.663 | INFO     | __main__:<module>:141 - Total timesteps trained so far: 3500000
+2025-12-01 15:36:59.663 | INFO     | __main__:<module>:145 - A saved PPO model already exists.
+2025-12-01 15:37:00.702 | INFO     | __main__:load_or_create_model:42 - Loading existing PPO model from models\PPO\latest_model.zip
+2025-12-01 15:37:02.174 | INFO     | __main__:evaluate_agent:86 - Starting evaluation
+2025-12-01 15:37:02.175 | INFO     | __main__:evaluate_agent:89 - Episode 1/3
+2025-12-01 15:37:49.191 | INFO     | __main__:evaluate_agent:104 - Episode reward: 653.7313432835648
+2025-12-01 15:37:49.191 | INFO     | __main__:evaluate_agent:89 - Episode 2/3
+2025-12-01 15:37:59.425 | INFO     | __main__:see_space:21 - Inspecting environment spaces
+2025-12-01 15:37:59.425 | INFO     | __main__:see_space:22 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-01 15:37:59.425 | INFO     | __main__:see_space:23 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-01 15:37:59.426 | INFO     | __main__:see_space:24 - Sample action: [-0.90345913  0.925161    0.0880231 ]
+2025-12-01 15:37:59.427 | INFO     | __main__:see_space:25 - Sample observation shape: (96, 96, 3)
+2025-12-01 15:38:00.910 | INFO     | __main__:<module>:131 - Selected algorithm: PPO
+2025-12-01 15:38:00.915 | INFO     | __main__:<module>:140 - Iterations completed so far: 70
+2025-12-01 15:38:00.917 | INFO     | __main__:<module>:141 - Total timesteps trained so far: 3500000
+2025-12-01 15:38:00.919 | INFO     | __main__:<module>:145 - A saved PPO model already exists.
+2025-12-01 15:38:01.933 | INFO     | __main__:load_or_create_model:42 - Loading existing PPO model from models\PPO\latest_model.zip
+2025-12-01 15:38:03.254 | INFO     | __main__:evaluate_agent:86 - Starting evaluation
+2025-12-01 15:38:03.255 | INFO     | __main__:evaluate_agent:89 - Episode 1/3
+2025-12-01 15:38:49.315 | INFO     | __main__:evaluate_agent:104 - Episode reward: 351.95729537365077
+2025-12-01 15:38:49.315 | INFO     | __main__:evaluate_agent:89 - Episode 2/3
+2025-12-01 15:39:34.175 | INFO     | __main__:evaluate_agent:104 - Episode reward: 874.3589743589613
+2025-12-01 15:39:34.176 | INFO     | __main__:evaluate_agent:89 - Episode 3/3
+2025-12-01 15:40:19.367 | INFO     | __main__:evaluate_agent:104 - Episode reward: 893.006993006976
+2025-12-01 15:44:07.003 | INFO     | __main__:train_agent:72 - Iteration time: 1036.92 seconds (17.28 minutes)
+2025-12-01 15:44:07.066 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 15:44:07.068 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 71
+2025-12-01 15:44:07.068 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 72
+2025-12-01 15:44:07.068 | INFO     | __main__:train_agent:65 - Running local iteration 10/50 with 50000 timesteps
+2025-12-01 16:06:04.936 | INFO     | __main__:train_agent:72 - Iteration time: 1317.87 seconds (21.96 minutes)
+2025-12-01 16:06:05.085 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 16:06:05.090 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 72
+2025-12-01 16:06:05.093 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 73
+2025-12-01 16:06:05.093 | INFO     | __main__:train_agent:65 - Running local iteration 11/50 with 50000 timesteps
+2025-12-01 16:23:18.428 | INFO     | __main__:train_agent:72 - Iteration time: 1033.33 seconds (17.22 minutes)
+2025-12-01 16:23:18.487 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 16:23:18.488 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 73
+2025-12-01 16:23:18.488 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 74
+2025-12-01 16:23:18.488 | INFO     | __main__:train_agent:65 - Running local iteration 12/50 with 50000 timesteps
+2025-12-01 16:40:06.314 | INFO     | __main__:train_agent:72 - Iteration time: 1007.83 seconds (16.80 minutes)
+2025-12-01 16:40:06.388 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 16:40:06.389 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 74
+2025-12-01 16:40:06.390 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 75
+2025-12-01 16:40:06.390 | INFO     | __main__:train_agent:65 - Running local iteration 13/50 with 50000 timesteps
+2025-12-01 17:05:36.214 | INFO     | __main__:train_agent:72 - Iteration time: 1529.82 seconds (25.50 minutes)
+2025-12-01 17:05:36.268 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 17:05:36.277 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 75
+2025-12-01 17:05:36.277 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 76
+2025-12-01 17:05:36.277 | INFO     | __main__:train_agent:65 - Running local iteration 14/50 with 50000 timesteps
+2025-12-01 17:22:15.474 | INFO     | __main__:train_agent:72 - Iteration time: 999.20 seconds (16.65 minutes)
+2025-12-01 17:22:15.531 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 17:22:15.565 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 76
+2025-12-01 17:22:15.565 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 77
+2025-12-01 17:22:15.566 | INFO     | __main__:train_agent:65 - Running local iteration 15/50 with 50000 timesteps
+2025-12-01 17:38:14.790 | INFO     | __main__:train_agent:72 - Iteration time: 959.22 seconds (15.99 minutes)
+2025-12-01 17:38:14.877 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 17:38:14.878 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 77
+2025-12-01 17:38:14.879 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 78
+2025-12-01 17:38:14.879 | INFO     | __main__:train_agent:65 - Running local iteration 16/50 with 50000 timesteps
+2025-12-01 18:00:00.246 | INFO     | __main__:train_agent:72 - Iteration time: 1305.37 seconds (21.76 minutes)
+2025-12-01 18:00:00.374 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 18:00:00.385 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 78
+2025-12-01 18:00:00.392 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 79
+2025-12-01 18:00:00.400 | INFO     | __main__:train_agent:65 - Running local iteration 17/50 with 50000 timesteps
+2025-12-01 18:19:48.777 | INFO     | __main__:train_agent:72 - Iteration time: 1188.38 seconds (19.81 minutes)
+2025-12-01 18:19:48.841 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 18:19:48.843 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 79
+2025-12-01 18:19:48.843 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 80
+2025-12-01 18:19:48.843 | INFO     | __main__:train_agent:65 - Running local iteration 18/50 with 50000 timesteps
+2025-12-01 18:36:21.616 | INFO     | __main__:train_agent:72 - Iteration time: 992.77 seconds (16.55 minutes)
+2025-12-01 18:36:21.673 | INFO     | __main__:train_agent:76 - Saved updated model to: models\PPO\latest_model.zip
+2025-12-01 18:36:21.674 | INFO     | __main__:train_agent:79 - Saved training progress for PPO: iteration 80
+2025-12-01 18:36:21.675 | INFO     | __main__:train_agent:64 - Global training iteration for PPO: 81
+2025-12-01 18:36:21.675 | INFO     | __main__:train_agent:65 - Running local iteration 19/50 with 50000 timesteps
+2025-12-01 18:42:10.105 | INFO     | __main__:see_space:21 - Inspecting environment spaces
+2025-12-01 18:42:10.105 | INFO     | __main__:see_space:22 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-01 18:42:10.105 | INFO     | __main__:see_space:23 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-01 18:42:10.106 | INFO     | __main__:see_space:24 - Sample action: [-0.8628328   0.88552976  0.12766749]
+2025-12-01 18:42:10.107 | INFO     | __main__:see_space:25 - Sample observation shape: (96, 96, 3)
+2025-12-01 18:42:10.710 | INFO     | __main__:<module>:131 - Selected algorithm: PPO
+2025-12-01 18:42:10.711 | INFO     | __main__:<module>:140 - Iterations completed so far: 80
+2025-12-01 18:42:10.712 | INFO     | __main__:<module>:141 - Total timesteps trained so far: 4000000
+2025-12-01 18:42:10.712 | INFO     | __main__:<module>:145 - A saved PPO model already exists.
+2025-12-01 18:42:11.806 | INFO     | __main__:load_or_create_model:42 - Loading existing PPO model from models\PPO\latest_model.zip
+2025-12-01 18:42:13.365 | INFO     | __main__:evaluate_agent:86 - Starting evaluation
+2025-12-01 18:42:13.366 | INFO     | __main__:evaluate_agent:89 - Episode 1/3
+2025-12-01 18:42:59.998 | INFO     | __main__:evaluate_agent:104 - Episode reward: -12.621359223300857
+2025-12-01 18:42:59.998 | INFO     | __main__:evaluate_agent:89 - Episode 2/3
+2025-12-01 18:43:45.720 | INFO     | __main__:evaluate_agent:104 - Episode reward: 309.89399293284623
+2025-12-01 18:43:45.721 | INFO     | __main__:evaluate_agent:89 - Episode 3/3
+2025-12-01 18:44:31.917 | INFO     | __main__:evaluate_agent:104 - Episode reward: 394.7368421052561

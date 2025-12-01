@@ -1,6 +1,6 @@
 {
   "PPO": {
-    "count": 1,
-    "timesteps": 50000
+    "count": 80,
+    "timesteps": 4000000
   }
 }
