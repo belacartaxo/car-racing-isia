@@ -1,18 +1,26 @@
-import os
+import time
+import sys
+from pathlib import Path
+
 import gymnasium as gym
 from loguru import logger
-import time
 
-from utils.config import (
-    ENV_NAME, TOTAL_TIMESTEPS, ITERATIONS, EVAL_EPISODES,
-    MODELS_DIR, LOGS_DIR, LATEST_MODEL_NAME, DEVICE
-)
-
+from environment.custom_car_racing_env import CustomCarRacingEnv
+from environment.coins_car_racing_env import CoinsCarRacingEnv
 from utils.algorithms import ALGORITHMS, get_algorithm_list
+from utils.config import (
+    ITERATIONS,
+    TOTAL_TIMESTEPS,
+    EVAL_EPISODES,
+    MODELS_DIR,
+    LOGS_DIR,
+    LATEST_MODEL_NAME,
+    DEVICE,
+)
 from utils.training_counter import (
-    load_training_count,
-    load_training_timesteps,
-    save_training_progress
+    list_runs,
+    load_training_stats,
+    save_training_stats,
 )
 
 
@@ -27,42 +35,73 @@ def see_space(env):
 
 # Prepare folders
 def prepare_algo_folder(algorithm):
-    algo_dir = os.path.join(MODELS_DIR, algorithm)
-    os.makedirs(algo_dir, exist_ok=True)
-    os.makedirs(LOGS_DIR, exist_ok=True)
+    algo_dir = Path(MODELS_DIR) / algorithm
+    algo_dir.mkdir(parents=True, exist_ok=True)
+    Path(LOGS_DIR).mkdir(parents=True, exist_ok=True)
     return algo_dir
 
 
-# Load or create model
-def load_or_create_model(env, algorithm, algo_dir):
-    algo_class = ALGORITHMS[algorithm]
-    model_path = os.path.join(algo_dir, LATEST_MODEL_NAME)
+def select_environment(render_mode: str):
+    print("\nSelect environment type:")
+    print("1 - Original CarRacing (no custom reward, no coins)")
+    print("2 - Custom CarRacing (off-track penalty only)")
+    print("3 - Custom CarRacing with coins (off-track penalty + coin reward)")
 
-    if os.path.exists(model_path):
-        logger.info(f"Loading existing {algorithm} model from {model_path}")
-        model = algo_class.load(model_path, env=env, device=DEVICE)
-        return model, True
+    choice = input("\nYour choice: ").strip()
 
-    logger.info(f"No saved model found for {algorithm}. Creating new model")
-    model = algo_class(
-        "CnnPolicy",
-        env,
-        verbose=1,
-        tensorboard_log=LOGS_DIR,
-        device=DEVICE,
-    )
-    return model, False
+    if choice == "1":
+        env = gym.make("CarRacing-v3", render_mode=render_mode)
+    elif choice == "2":
+        env = CustomCarRacingEnv(render_mode=render_mode)
+    elif choice == "3":
+        env = CoinsCarRacingEnv(render_mode=render_mode)
+    else:
+        print("Invalid choice, defaulting to Original CarRacing.")
+        env = gym.make("CarRacing-v3", render_mode=render_mode)
+
+    return env
+
+
+def select_action_for_run(algorithm: str):
+    print("\nChoose action:")
+    print("1 - New training run")
+    print("2 - Continue training (select existing run)")
+    print("3 - Evaluate model (select existing run)")
+    print("4 - Override existing run (reset model and counters)")
+
+    choice = input("\nYour choice: ").strip()
+    return choice
+
+
+def select_run_name(algorithm: str):
+    runs = list_runs(algorithm)
+    if not runs:
+        print(f"\nNo existing runs for algorithm {algorithm}.")
+        return None
+    print("\nAvailable runs:")
+    for i, name in enumerate(runs, start=1):
+        print(f"{i} - {name}")
+    sel = input("\nSelect run number: ").strip()
+    try:
+        idx = int(sel) - 1
+        if 0 <= idx < len(runs):
+            return runs[idx]
+    except ValueError:
+        pass
+    print("Invalid selection.")
+    return None
 
 
 # Train model
-def train_agent(env, model, algorithm, algo_dir):
-    training_count = load_training_count(algorithm)
+def train_agent(env, model, algorithm, run_dir, run_name, start_iterations=0, start_total_timesteps=0):
+    iterations = start_iterations
+    total_timesteps = start_total_timesteps
 
     for i in range(1, ITERATIONS + 1):
-        training_count += 1
+        iterations += 1
 
-        logger.info(f"Global training iteration for {algorithm}: {training_count}")
-        logger.info(f"Running local iteration {i}/{ITERATIONS} with {TOTAL_TIMESTEPS} timesteps")
+        logger.info(f"Training run '{run_name}' for {algorithm}: global iteration {iterations}")
+        logger.info(f"Local iteration {i}/{ITERATIONS} with {TOTAL_TIMESTEPS} timesteps")
 
         iteration_start = time.time()
         model.learn(total_timesteps=TOTAL_TIMESTEPS, reset_num_timesteps=False)
@@ -71,14 +110,15 @@ def train_agent(env, model, algorithm, algo_dir):
         duration = iteration_end - iteration_start
         logger.info(f"Iteration time: {duration:.2f} seconds ({duration / 60:.2f} minutes)")
 
-        latest_path = os.path.join(algo_dir, LATEST_MODEL_NAME)
-        model.save(latest_path)
+        latest_path = Path(run_dir) / LATEST_MODEL_NAME
+        model.save(str(latest_path))
         logger.info(f"Saved updated model to: {latest_path}")
 
-        save_training_progress(algorithm, training_count)
-        logger.info(f"Saved training progress for {algorithm}: iteration {training_count}")
+        total_timesteps += TOTAL_TIMESTEPS
+        save_training_stats(algorithm, run_name, iterations, total_timesteps)
+        logger.info(f"Saved training progress for {algorithm} run '{run_name}': iteration {iterations}")
 
-    return model
+    return model, iterations, total_timesteps
 
 
 # Evaluate model
@@ -112,10 +152,10 @@ if __name__ == "__main__":
     print("1 - Yes, show the simulation")
     print("2 - No, run without rendering (faster)")
 
-    view_choice = input("\nYour choice: ")
+    view_choice = input("\nYour choice: ").strip()
     render_mode = "human" if view_choice == "1" else None
 
-    env = gym.make(ENV_NAME, render_mode=render_mode)
+    env = select_environment(render_mode)
     see_space(env)
 
     # SELECT ALGORITHM
@@ -131,51 +171,78 @@ if __name__ == "__main__":
     logger.info(f"Selected algorithm: {algorithm}")
 
     algo_dir = prepare_algo_folder(algorithm)
-    model_path = os.path.join(algo_dir, LATEST_MODEL_NAME)
-    exists = os.path.exists(model_path)
+    action = select_action_for_run(algorithm)
+    AlgoClass = ALGORITHMS[algorithm]
 
-    current_count = load_training_count(algorithm)
-    current_timesteps = load_training_timesteps(algorithm)
+    model = None
+    run_name = None
+    iterations = 0
+    total_timesteps = 0
 
-    logger.info(f"Iterations completed so far: {current_count}")
-    logger.info(f"Total timesteps trained so far: {current_timesteps}")
+    if action == "1":
+        run_name = input("\nEnter a name for this run: ").strip()
+        run_dir = Path(algo_dir) / run_name
+        run_dir.mkdir(parents=True, exist_ok=True)
 
-    # MODEL EXISTS
-    if exists:
-        logger.info(f"A saved {algorithm} model already exists.")
+        model = AlgoClass(
+            "CnnPolicy",
+            env,
+            verbose=1,
+            tensorboard_log=str(Path(LOGS_DIR) / f"{algorithm}_{run_name}"),
+            device=DEVICE,
+        )
 
-        print("\nChoose action:")
-        print("1 - Continue training")
-        print("2 - Evaluate model")
-        print("3 - Start from zero (overwrite model)")
+    elif action in {"2", "3", "4"}:
+        run_name = select_run_name(algorithm)
+        if run_name is None:
+            print("No valid run selected. Exiting.")
+            sys.exit(0)
 
-        action = input("\nYour choice: ")
+        run_dir = Path(algo_dir) / run_name
+        run_dir.mkdir(parents=True, exist_ok=True)
+        model_path = run_dir / LATEST_MODEL_NAME
 
-        if action == "1":
-            model, _ = load_or_create_model(env, algorithm, algo_dir)
-            model = train_agent(env, model, algorithm, algo_dir)
-            evaluate_agent(env, model)
+        if action != "4" and not model_path.exists():
+            print(f"No saved model found for run '{run_name}' at {model_path}.")
+            print("You may need to start a new training run first.")
+            sys.exit(0)
 
-        elif action == "2":
-            model, _ = load_or_create_model(env, algorithm, algo_dir)
-            evaluate_agent(env, model)
-
-        elif action == "3":
-            logger.warning("Overwriting old model and starting from zero")
-            AlgoClass = ALGORITHMS[algorithm]
-            model = AlgoClass("CnnPolicy", env, verbose=1, tensorboard_log=LOGS_DIR, device=DEVICE)
-            model = train_agent(env, model, algorithm, algo_dir)
-            evaluate_agent(env, model)
-
+        if action == "4":
+            confirm = input(f"Type YES to override run '{run_name}': ").strip()
+            if confirm != "YES":
+                print("Override cancelled. Exiting.")
+                sys.exit(0)
+            logger.warning(f"Overriding existing run '{run_name}' for {algorithm}. Resetting model and counters.")
+            model = AlgoClass(
+                "CnnPolicy",
+                env,
+                verbose=1,
+                tensorboard_log=str(Path(LOGS_DIR) / f"{algorithm}_{run_name}"),
+                device=DEVICE,
+            )
+            iterations = 0
+            total_timesteps = 0
         else:
-            logger.error("Invalid option. Exiting.")
-
-    # NO MODEL EXISTS
+            logger.info(f"Loading existing {algorithm} model from {model_path}")
+            model = AlgoClass.load(str(model_path), env=env, device=DEVICE)
+            iterations, total_timesteps = load_training_stats(algorithm, run_name)
+            logger.info(f"Loaded training progress: iterations={iterations}, total_timesteps={total_timesteps}")
     else:
-        logger.info(f"No existing {algorithm} model found. Training new model.")
-        AlgoClass = ALGORITHMS[algorithm]
-        model = AlgoClass("CnnPolicy", env, verbose=1, tensorboard_log=LOGS_DIR, device=DEVICE)
-        model = train_agent(env, model, algorithm, algo_dir)
+        print("Invalid action. Exiting.")
+        sys.exit(0)
+
+    if action in {"1", "2", "4"}:
+        model, iterations, total_timesteps = train_agent(
+            env,
+            model,
+            algorithm,
+            run_dir,
+            run_name,
+            start_iterations=iterations,
+            start_total_timesteps=total_timesteps,
+        )
+        evaluate_agent(env, model)
+    elif action == "3":
         evaluate_agent(env, model)
 
     env.close()

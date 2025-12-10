@@ -1,62 +1,61 @@
 import json
-import os
-from utils.config import MODELS_DIR, TOTAL_TIMESTEPS
+from pathlib import Path
 
-
-def get_counter_path():
-    """Unique JSON file for all algorithms."""
-    return os.path.join(MODELS_DIR, "training_counters.json")
+COUNTERS_PATH = Path("models") / "training_counters.json"
 
 
 def _load_all():
-    """Load the full JSON file with counters."""
-    path = get_counter_path()
+    if COUNTERS_PATH.exists():
+        with open(COUNTERS_PATH, "r") as f:
+            try:
+                data = json.load(f)
+            except json.JSONDecodeError:
+                return {}
 
-    if not os.path.exists(path):
-        return {}
+        if not isinstance(data, dict):
+            return {}
 
-    try:
-        with open(path, "r") as f:
-            return json.load(f)
-    except:
-        return {}  # corrupted file → reset
+        legacy_like = False
+        for _, v in data.items():
+            if isinstance(v, (int, float)):
+                legacy_like = True
+                break
+        if legacy_like:
+            return {}
+
+        return data
+    return {}
 
 
 def _save_all(data):
-    """Save all counters back to the JSON file."""
-    path = get_counter_path()
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-
-    with open(path, "w") as f:
+    COUNTERS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(COUNTERS_PATH, "w") as f:
         json.dump(data, f, indent=2)
 
 
-# ----- PUBLIC FUNCTIONS -----
-
-def load_training_count(algorithm):
-    """Return iteration count for this algorithm."""
+def list_runs(algorithm: str):
     data = _load_all()
-    return data.get(algorithm, {}).get("count", 0)
+    algo_data = data.get(algorithm, {})
+    if not isinstance(algo_data, dict):
+        return []
+    return list(algo_data.keys())
 
 
-def load_training_timesteps(algorithm):
-    """Return accumulated timesteps for this algorithm."""
+def load_training_stats(algorithm: str, run_name: str):
     data = _load_all()
-    return data.get(algorithm, {}).get("timesteps", 0)
+    algo_data = data.get(algorithm, {})
+    run_data = algo_data.get(run_name, {})
+    iterations = run_data.get("iterations", 0)
+    total_timesteps = run_data.get("total_timesteps", 0)
+    return iterations, total_timesteps
 
 
-def save_training_progress(algorithm, new_count):
-    """
-    Save:
-      - iteration count
-      - total accumulated timesteps
-    """
+def save_training_stats(algorithm: str, run_name: str, iterations: int, total_timesteps: int):
     data = _load_all()
-
-    if algorithm not in data:
-        data[algorithm] = {"count": 0, "timesteps": 0}
-
-    data[algorithm]["count"] = new_count
-    data[algorithm]["timesteps"] = new_count * TOTAL_TIMESTEPS
-
+    if algorithm not in data or not isinstance(data[algorithm], dict):
+        data[algorithm] = {}
+    data[algorithm][run_name] = {
+        "iterations": int(iterations),
+        "total_timesteps": int(total_timesteps),
+    }
     _save_all(data)

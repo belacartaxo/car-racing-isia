@@ -1,6 +1,8 @@
 {
   "PPO": {
-    "count": 91,
-    "timesteps": 4550000
+    "pretrained_old": {
+      "iterations": 0,
+      "total_timesteps": 0
+    }
   }
 }
