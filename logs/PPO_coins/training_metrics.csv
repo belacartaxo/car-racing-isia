@@ -1,0 +1,2 @@
+timestamp,run_id,algo,env_type,iteration,type,episode,reward,len,coins_ep,steps_total,ep_time_sec
+2025-12-10T18:20:20.402547,20251210T181958,PPO,PPO_coins,1,rollout,100,486.28597164000007,984.98,,4098048,
