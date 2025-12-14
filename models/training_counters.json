@@ -23,6 +23,16 @@
     "orig_ppo_base": {
       "iterations": 6,
       "total_timesteps": 300000
+    },
+    "gui": {
+      "iterations": 4,
+      "total_timesteps": 200000,
+      "best_score": 240.0
+    },
+    "teste": {
+      "iterations": 2,
+      "total_timesteps": 100000,
+      "best_score": 254.0
     }
   }
 }

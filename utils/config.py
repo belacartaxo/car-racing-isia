@@ -15,7 +15,8 @@ EVAL_EPISODES = 10           # evaluation episodes
 # PATHS
 MODELS_DIR = "models"
 LOGS_DIR = "logs"
-LATEST_MODEL_NAME = "latest_model.zip"
+LAST_MODEL_NAME = "last_model.zip"
+BEST_MODEL_NAME = "best_model.zip"
 
 #  DEVICE
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"

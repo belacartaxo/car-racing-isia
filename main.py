@@ -7,21 +7,25 @@ from loguru import logger
 
 from environment.custom_car_racing_env import CustomCarRacingEnv
 from environment.coins_car_racing_env import CoinsCarRacingEnv
-from utils.algorithms import ALGORITHMS, get_algorithm_list
+from environment.wrappers import CoinVisionChannelWrapper
+from utils.algorithms import ALGORITHMS, HUMAN_ALGO_NAME, get_algorithm_list
 from utils.config import (
     EVAL_EPISODES,
     TRAIN_BUDGET_TIMESTEPS,
     CHECKPOINT_TIMESTEPS,
     MODELS_DIR,
     LOGS_DIR,
-    LATEST_MODEL_NAME,
+    LAST_MODEL_NAME,
+    BEST_MODEL_NAME,
     DEVICE,
 )
+from utils.csv_logger import attach_csv_logger, read_last_metric
 from utils.training_counter import (
     list_runs,
     load_training_stats,
     save_training_stats,
 )
+from utils.human_control import run_human_control
 
 
 # Inspect environment
@@ -39,6 +43,13 @@ def prepare_algo_folder(algorithm):
     algo_dir.mkdir(parents=True, exist_ok=True)
     Path(LOGS_DIR).mkdir(parents=True, exist_ok=True)
     return algo_dir
+
+
+def build_csv_log_path(algorithm: str, run_name: str, env):
+    env_label = env.unwrapped.__class__.__name__
+    safe_run = run_name.replace(" ", "_")
+    filename = f"{algorithm}_{safe_run}_{env_label}_metrics.csv"
+    return Path(LOGS_DIR) / filename, env_label
 
 
 def select_environment(render_mode: str):
@@ -60,6 +71,27 @@ def select_environment(render_mode: str):
         env = gym.make("CarRacing-v3", render_mode=render_mode)
 
     return env
+
+
+def ensure_human_render_env(env):
+    """
+    Recreate the environment with render_mode='human' if needed so we can capture keyboard input.
+    """
+    base_env = env.unwrapped
+    if getattr(base_env, "render_mode", None) == "human":
+        return env
+
+    logger.info("Render was disabled; recreating environment with render_mode='human' for manual control.")
+    env.close()
+
+    if isinstance(base_env, CoinsCarRacingEnv):
+        new_env = CoinsCarRacingEnv(render_mode="human")
+    elif isinstance(base_env, CustomCarRacingEnv):
+        new_env = CustomCarRacingEnv(render_mode="human")
+    else:
+        new_env = gym.make("CarRacing-v3", render_mode="human")
+
+    return gym.wrappers.TimeLimit(new_env, max_episode_steps=1000)
 
 
 def select_action_for_run(algorithm: str):
@@ -93,9 +125,20 @@ def select_run_name(algorithm: str):
 
 
 # Train model
-def train_agent(env, model, algorithm, run_dir, run_name, start_iterations=0, start_total_timesteps=0):
+def train_agent(
+    env,
+    model,
+    algorithm,
+    run_dir,
+    run_name,
+    csv_path,
+    best_score=None,
+    start_iterations=0,
+    start_total_timesteps=0,
+):
     iterations = start_iterations  # counts chunks
     total_timesteps = start_total_timesteps
+    best_path = Path(run_dir) / BEST_MODEL_NAME
 
     remainder = total_timesteps % TRAIN_BUDGET_TIMESTEPS
     remaining_budget = TRAIN_BUDGET_TIMESTEPS if remainder == 0 else TRAIN_BUDGET_TIMESTEPS - remainder
@@ -103,6 +146,10 @@ def train_agent(env, model, algorithm, run_dir, run_name, start_iterations=0, st
         f"Starting budgeted training: {remaining_budget} remaining out of {TRAIN_BUDGET_TIMESTEPS} for this cycle "
         f"({algorithm} / {run_name})"
     )
+
+    if not best_path.exists():
+        model.save(str(best_path))
+        logger.info("Initialized best model at start (no existing best).")
 
     chunk_idx = 0
     while remaining_budget > 0:
@@ -122,21 +169,32 @@ def train_agent(env, model, algorithm, run_dir, run_name, start_iterations=0, st
         duration = iteration_end - iteration_start
         logger.info(f"Chunk time: {duration:.2f} seconds ({duration / 60:.2f} minutes)")
 
-        latest_path = Path(run_dir) / LATEST_MODEL_NAME
-        model.save(str(latest_path))
+        last_path = Path(run_dir) / LAST_MODEL_NAME
+        model.save(str(last_path))
         checkpoint_path = Path(run_dir) / f"checkpoint_{total_timesteps + chunk_steps}.zip"
         model.save(str(checkpoint_path))
-        logger.info(f"Saved models to: latest={latest_path.name}, checkpoint={checkpoint_path.name}")
+        logger.info(f"Saved models to: last={last_path.name}, checkpoint={checkpoint_path.name}")
+
+        # Get latest ep_rew_mean from CSV log (if available)
+        latest_score = read_last_metric(csv_path, "rollout/ep_rew_mean")
+
+        # If no best exists yet, initialize best from last immediately
+        # Promote best if improved
+        if latest_score is not None:
+            if best_score is None or latest_score > best_score:
+                best_score = latest_score
+                model.save(str(best_path))
+                logger.info(f"New best model (ep_rew_mean={latest_score:.3f}) saved to: {best_path.name}")
 
         total_timesteps += chunk_steps
-        save_training_stats(algorithm, run_name, iterations, total_timesteps)
+        save_training_stats(algorithm, run_name, iterations, total_timesteps, best_score)
         logger.info(
-            f"Saved training progress for {algorithm} run '{run_name}': chunks={iterations}, total_timesteps={total_timesteps}"
+            f"Saved training progress for {algorithm} run '{run_name}': chunks={iterations}, total_timesteps={total_timesteps}, best_score={best_score}"
         )
 
         remaining_budget -= chunk_steps
 
-    return model, iterations, total_timesteps
+    return model, iterations, total_timesteps, best_score
 
 
 # Evaluate model
@@ -196,6 +254,8 @@ if __name__ == "__main__":
 
     env = select_environment(render_mode)
     env = gym.wrappers.TimeLimit(env, max_episode_steps=1000)
+    if isinstance(env.unwrapped, CoinsCarRacingEnv):
+        env = CoinVisionChannelWrapper(env)
     see_space(env)
 
     print(
@@ -203,7 +263,7 @@ if __name__ == "__main__":
     )
 
     # SELECT ALGORITHM
-    algo_list = get_algorithm_list()
+    algo_list = get_algorithm_list(include_human=True)
 
     print("\nSelect training algorithm:")
     for i, name in enumerate(algo_list, start=1):
@@ -214,6 +274,12 @@ if __name__ == "__main__":
 
     logger.info(f"Selected algorithm: {algorithm}")
 
+    if algorithm == HUMAN_ALGO_NAME:
+        env = ensure_human_render_env(env)
+        run_human_control(env)
+        env.close()
+        sys.exit(0)
+
     algo_dir = prepare_algo_folder(algorithm)
     action = select_action_for_run(algorithm)
     AlgoClass = ALGORITHMS[algorithm]
@@ -222,6 +288,7 @@ if __name__ == "__main__":
     run_name = None
     iterations = 0
     total_timesteps = 0
+    best_score = None
 
     if action == "1":
         run_name = input("\nEnter a name for this run: ").strip()
@@ -235,6 +302,7 @@ if __name__ == "__main__":
             tensorboard_log=str(Path(LOGS_DIR) / f"{algorithm}_{run_name}"),
             device=DEVICE,
         )
+        best_score = None
 
     elif action in {"2", "3", "4"}:
         run_name = select_run_name(algorithm)
@@ -244,12 +312,10 @@ if __name__ == "__main__":
 
         run_dir = Path(algo_dir) / run_name
         run_dir.mkdir(parents=True, exist_ok=True)
-        model_path = run_dir / LATEST_MODEL_NAME
-
-        if action != "4" and not model_path.exists():
-            print(f"No saved model found for run '{run_name}' at {model_path}.")
-            print("You may need to start a new training run first.")
-            sys.exit(0)
+        best_path = run_dir / BEST_MODEL_NAME
+        last_path = run_dir / LAST_MODEL_NAME
+        legacy_path = run_dir / "latest_model.zip"
+        load_path = None
 
         if action == "4":
             confirm = input(f"Type YES to override run '{run_name}': ").strip()
@@ -266,22 +332,51 @@ if __name__ == "__main__":
             )
             iterations = 0
             total_timesteps = 0
+            best_score = None
         else:
-            logger.info(f"Loading existing {algorithm} model from {model_path}")
-            model = AlgoClass.load(str(model_path), env=env, device=DEVICE)
-            iterations, total_timesteps = load_training_stats(algorithm, run_name)
-            logger.info(f"Loaded training progress: iterations={iterations}, total_timesteps={total_timesteps}")
+            if best_path.exists():
+                load_path = best_path
+            elif last_path.exists():
+                load_path = last_path
+            elif legacy_path.exists():
+                load_path = legacy_path
+
+            if load_path is None:
+                print(f"No saved model found for run '{run_name}'.")
+                print("You may need to start a new training run first.")
+                sys.exit(0)
+
+            logger.info(f"Loading existing {algorithm} model from {load_path}")
+            model = AlgoClass.load(str(load_path), env=env, device=DEVICE)
+            iterations, total_timesteps, best_score = load_training_stats(algorithm, run_name)
+            logger.info(
+                f"Loaded training progress: iterations={iterations}, total_timesteps={total_timesteps}, best_score={best_score}"
+            )
     else:
         print("Invalid action. Exiting.")
         sys.exit(0)
 
     if action in {"1", "2", "4"}:
-        model, iterations, total_timesteps = train_agent(
+        csv_path, env_label = build_csv_log_path(algorithm, run_name, env)
+        attach_csv_logger(
+            model,
+            csv_path,
+            meta={
+                "meta/algorithm": algorithm,
+                "meta/run": run_name,
+                "meta/env": env_label,
+            },
+        )
+        logger.info(f"Metrics CSV (append mode): {csv_path}")
+
+        model, iterations, total_timesteps, best_score = train_agent(
             env,
             model,
             algorithm,
             run_dir,
             run_name,
+            csv_path,
+            best_score=best_score,
             start_iterations=iterations,
             start_total_timesteps=total_timesteps,
         )

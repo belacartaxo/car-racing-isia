@@ -47,15 +47,17 @@ def load_training_stats(algorithm: str, run_name: str):
     run_data = algo_data.get(run_name, {})
     iterations = run_data.get("iterations", 0)
     total_timesteps = run_data.get("total_timesteps", 0)
-    return iterations, total_timesteps
+    best_score = run_data.get("best_score")
+    return iterations, total_timesteps, best_score
 
 
-def save_training_stats(algorithm: str, run_name: str, iterations: int, total_timesteps: int):
+def save_training_stats(algorithm: str, run_name: str, iterations: int, total_timesteps: int, best_score=None):
     data = _load_all()
     if algorithm not in data or not isinstance(data[algorithm], dict):
         data[algorithm] = {}
     data[algorithm][run_name] = {
         "iterations": int(iterations),
         "total_timesteps": int(total_timesteps),
+        "best_score": best_score,
     }
     _save_all(data)

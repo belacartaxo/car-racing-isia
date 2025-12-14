@@ -2021,3 +2021,328 @@
 2025-12-14 13:38:33.436 | INFO     | __main__:evaluate_agent:180 - Episode reward: 781.29 | base(no coins): 781.29 | coin_bonus: 0.00 | coins_episode: 0 | steps: 1000
 2025-12-14 13:38:33.437 | INFO     | __main__:evaluate_agent:153 - Episode 10/10
 2025-12-14 13:38:45.336 | INFO     | __main__:evaluate_agent:180 - Episode reward: 207.44 | base(no coins): 207.44 | coin_bonus: 0.00 | coins_episode: 0 | steps: 1000
+2025-12-14 14:08:57.171 | INFO     | __main__:see_space:29 - Inspecting environment spaces
+2025-12-14 14:08:57.188 | INFO     | __main__:see_space:30 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 14:08:57.188 | INFO     | __main__:see_space:31 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 14:08:57.213 | INFO     | __main__:see_space:32 - Sample action: [0.89977217 0.4154916  0.5668823 ]
+2025-12-14 14:08:57.217 | INFO     | __main__:see_space:33 - Sample observation shape: (96, 96, 3)
+2025-12-14 14:08:57.852 | INFO     | __main__:<module>:215 - Selected algorithm: PPO
+2025-12-14 14:09:02.284 | INFO     | __main__:<module>:270 - Loading existing PPO model from models\PPO\coins_v1\latest_model.zip
+2025-12-14 14:09:06.109 | INFO     | __main__:<module>:273 - Loaded training progress: iterations=8, total_timesteps=400000
+2025-12-14 14:09:06.110 | INFO     | __main__:train_agent:102 - Starting budgeted training: 200000 remaining out of 300000 for this cycle (PPO / coins_v1)
+2025-12-14 14:09:06.110 | INFO     | __main__:train_agent:113 - Training chunk 1: 50000 timesteps (global chunk 9, target total 450000)
+2025-12-14 14:09:39.641 | INFO     | __main__:see_space:29 - Inspecting environment spaces
+2025-12-14 14:09:39.641 | INFO     | __main__:see_space:30 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 14:09:39.653 | INFO     | __main__:see_space:31 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 14:09:39.658 | INFO     | __main__:see_space:32 - Sample action: [-0.88986826  0.9410361   0.96461666]
+2025-12-14 14:09:39.658 | INFO     | __main__:see_space:33 - Sample observation shape: (96, 96, 3)
+2025-12-14 14:09:40.384 | INFO     | __main__:<module>:215 - Selected algorithm: PPO
+2025-12-14 14:09:42.432 | INFO     | __main__:<module>:270 - Loading existing PPO model from models\PPO\pretrained_old\latest_model.zip
+2025-12-14 14:09:43.919 | INFO     | __main__:<module>:273 - Loaded training progress: iterations=0, total_timesteps=0
+2025-12-14 14:09:43.920 | INFO     | __main__:train_agent:102 - Starting budgeted training: 300000 remaining out of 300000 for this cycle (PPO / pretrained_old)
+2025-12-14 14:09:43.920 | INFO     | __main__:train_agent:113 - Training chunk 1: 50000 timesteps (global chunk 1, target total 50000)
+2025-12-14 14:18:06.766 | INFO     | __main__:see_space:29 - Inspecting environment spaces
+2025-12-14 14:18:06.766 | INFO     | __main__:see_space:30 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 14:18:06.766 | INFO     | __main__:see_space:31 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 14:18:06.777 | INFO     | __main__:see_space:32 - Sample action: [0.5838581  0.9847338  0.68110675]
+2025-12-14 14:18:06.779 | INFO     | __main__:see_space:33 - Sample observation shape: (96, 96, 3)
+2025-12-14 14:18:07.607 | INFO     | __main__:<module>:215 - Selected algorithm: PPO
+2025-12-14 14:18:10.380 | INFO     | __main__:<module>:270 - Loading existing PPO model from models\PPO\pretrained_old\latest_model.zip
+2025-12-14 14:18:12.264 | INFO     | __main__:<module>:273 - Loaded training progress: iterations=0, total_timesteps=0
+2025-12-14 14:18:12.264 | INFO     | __main__:train_agent:102 - Starting budgeted training: 300000 remaining out of 300000 for this cycle (PPO / pretrained_old)
+2025-12-14 14:18:12.264 | INFO     | __main__:train_agent:113 - Training chunk 1: 50000 timesteps (global chunk 1, target total 50000)
+2025-12-14 14:21:11.210 | INFO     | __main__:see_space:29 - Inspecting environment spaces
+2025-12-14 14:21:11.210 | INFO     | __main__:see_space:30 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 14:21:11.210 | INFO     | __main__:see_space:31 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 14:21:11.226 | INFO     | __main__:see_space:32 - Sample action: [-0.8418167   0.03480646  0.8832979 ]
+2025-12-14 14:21:11.228 | INFO     | __main__:see_space:33 - Sample observation shape: (96, 96, 3)
+2025-12-14 14:21:12.370 | INFO     | __main__:<module>:215 - Selected algorithm: PPO
+2025-12-14 14:21:22.914 | INFO     | __main__:<module>:270 - Loading existing PPO model from models\PPO\orig_ppo_base\latest_model.zip
+2025-12-14 14:21:24.484 | INFO     | __main__:<module>:273 - Loaded training progress: iterations=6, total_timesteps=300000
+2025-12-14 14:21:24.484 | INFO     | __main__:train_agent:102 - Starting budgeted training: 300000 remaining out of 300000 for this cycle (PPO / orig_ppo_base)
+2025-12-14 14:21:24.484 | INFO     | __main__:train_agent:113 - Training chunk 1: 50000 timesteps (global chunk 7, target total 350000)
+2025-12-14 14:22:56.663 | INFO     | __main__:see_space:29 - Inspecting environment spaces
+2025-12-14 14:22:56.663 | INFO     | __main__:see_space:30 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 14:22:56.663 | INFO     | __main__:see_space:31 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 14:22:56.663 | INFO     | __main__:see_space:32 - Sample action: [-0.85317594  0.978964    0.12560888]
+2025-12-14 14:22:56.669 | INFO     | __main__:see_space:33 - Sample observation shape: (96, 96, 3)
+2025-12-14 14:22:57.288 | INFO     | __main__:<module>:215 - Selected algorithm: PPO
+2025-12-14 14:23:00.680 | INFO     | __main__:<module>:270 - Loading existing PPO model from models\PPO\orig_ppo_base\latest_model.zip
+2025-12-14 14:23:02.041 | INFO     | __main__:<module>:273 - Loaded training progress: iterations=6, total_timesteps=300000
+2025-12-14 14:23:02.041 | INFO     | __main__:train_agent:102 - Starting budgeted training: 300000 remaining out of 300000 for this cycle (PPO / orig_ppo_base)
+2025-12-14 14:23:02.041 | INFO     | __main__:train_agent:113 - Training chunk 1: 50000 timesteps (global chunk 7, target total 350000)
+2025-12-14 14:31:20.903 | INFO     | __main__:see_space:30 - Inspecting environment spaces
+2025-12-14 14:31:20.903 | INFO     | __main__:see_space:31 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 14:31:20.903 | INFO     | __main__:see_space:32 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 14:31:20.921 | INFO     | __main__:see_space:33 - Sample action: [0.0615341  0.506941   0.06253069]
+2025-12-14 14:31:20.924 | INFO     | __main__:see_space:34 - Sample observation shape: (96, 96, 3)
+2025-12-14 14:31:21.597 | INFO     | __main__:<module>:223 - Selected algorithm: PPO
+2025-12-14 14:31:33.478 | INFO     | __main__:see_space:30 - Inspecting environment spaces
+2025-12-14 14:31:33.478 | INFO     | __main__:see_space:31 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 14:31:33.478 | INFO     | __main__:see_space:32 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 14:31:33.478 | INFO     | __main__:see_space:33 - Sample action: [-0.37084845  0.09358151  0.47735816]
+2025-12-14 14:31:33.478 | INFO     | __main__:see_space:34 - Sample observation shape: (96, 96, 3)
+2025-12-14 14:31:34.548 | INFO     | __main__:<module>:223 - Selected algorithm: PPO
+2025-12-14 14:31:36.812 | INFO     | __main__:<module>:278 - Loading existing PPO model from models\PPO\offtrack_v2_soft\latest_model.zip
+2025-12-14 14:31:38.615 | INFO     | __main__:<module>:281 - Loaded training progress: iterations=47, total_timesteps=2350000
+2025-12-14 14:32:06.819 | INFO     | __main__:see_space:30 - Inspecting environment spaces
+2025-12-14 14:32:06.819 | INFO     | __main__:see_space:31 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 14:32:06.819 | INFO     | __main__:see_space:32 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 14:32:06.834 | INFO     | __main__:see_space:33 - Sample action: [-0.65958047  0.17489842  0.9248074 ]
+2025-12-14 14:32:06.835 | INFO     | __main__:see_space:34 - Sample observation shape: (96, 96, 3)
+2025-12-14 14:32:07.619 | INFO     | __main__:<module>:223 - Selected algorithm: PPO
+2025-12-14 14:32:09.725 | INFO     | __main__:<module>:278 - Loading existing PPO model from models\PPO\off_track_run\latest_model.zip
+2025-12-14 14:32:11.213 | INFO     | __main__:<module>:281 - Loaded training progress: iterations=2, total_timesteps=100000
+2025-12-14 14:32:48.275 | INFO     | __main__:see_space:30 - Inspecting environment spaces
+2025-12-14 14:32:48.275 | INFO     | __main__:see_space:31 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 14:32:48.276 | INFO     | __main__:see_space:32 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 14:32:48.277 | INFO     | __main__:see_space:33 - Sample action: [0.2287312 0.8784138 0.8448972]
+2025-12-14 14:32:48.277 | INFO     | __main__:see_space:34 - Sample observation shape: (96, 96, 3)
+2025-12-14 14:32:49.057 | INFO     | __main__:<module>:223 - Selected algorithm: PPO
+2025-12-14 14:32:51.504 | INFO     | __main__:<module>:278 - Loading existing PPO model from models\PPO\off_track_run\latest_model.zip
+2025-12-14 14:32:52.539 | INFO     | __main__:<module>:281 - Loaded training progress: iterations=2, total_timesteps=100000
+2025-12-14 14:32:52.555 | INFO     | __main__:<module>:297 - Metrics CSV (append mode): logs\PPO_off_track_run_CoinsCarRacingEnv_metrics.csv
+2025-12-14 14:32:52.555 | INFO     | __main__:train_agent:110 - Starting budgeted training: 200000 remaining out of 300000 for this cycle (PPO / off_track_run)
+2025-12-14 14:32:52.555 | INFO     | __main__:train_agent:121 - Training chunk 1: 50000 timesteps (global chunk 3, target total 150000)
+2025-12-14 14:37:08.636 | INFO     | __main__:see_space:30 - Inspecting environment spaces
+2025-12-14 14:37:08.636 | INFO     | __main__:see_space:31 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 14:37:08.636 | INFO     | __main__:see_space:32 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 14:37:08.653 | INFO     | __main__:see_space:33 - Sample action: [-0.02500737  0.6742774   0.33615786]
+2025-12-14 14:37:08.655 | INFO     | __main__:see_space:34 - Sample observation shape: (96, 96, 3)
+2025-12-14 14:37:09.341 | INFO     | __main__:<module>:223 - Selected algorithm: PPO
+2025-12-14 14:37:11.547 | INFO     | __main__:<module>:278 - Loading existing PPO model from models\PPO\pretrained_old\latest_model.zip
+2025-12-14 14:37:13.038 | INFO     | __main__:<module>:281 - Loaded training progress: iterations=0, total_timesteps=0
+2025-12-14 14:37:13.041 | INFO     | __main__:<module>:297 - Metrics CSV (append mode): logs\PPO_pretrained_old_CoinsCarRacingEnv_metrics.csv
+2025-12-14 14:37:13.041 | INFO     | __main__:train_agent:110 - Starting budgeted training: 300000 remaining out of 300000 for this cycle (PPO / pretrained_old)
+2025-12-14 14:37:13.041 | INFO     | __main__:train_agent:121 - Training chunk 1: 50000 timesteps (global chunk 1, target total 50000)
+2025-12-14 14:44:28.893 | INFO     | __main__:see_space:31 - Inspecting environment spaces
+2025-12-14 14:44:28.893 | INFO     | __main__:see_space:32 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 14:44:28.893 | INFO     | __main__:see_space:33 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 14:44:28.901 | INFO     | __main__:see_space:34 - Sample action: [0.33174998 0.77114797 0.09250949]
+2025-12-14 14:44:28.903 | INFO     | __main__:see_space:35 - Sample observation shape: (96, 96, 3)
+2025-12-14 14:44:29.516 | INFO     | __main__:<module>:250 - Selected algorithm: PPO
+2025-12-14 14:44:31.111 | INFO     | __main__:<module>:318 - Loading existing PPO model from models\PPO\pretrained_old\latest_model.zip
+2025-12-14 14:44:32.871 | INFO     | __main__:<module>:321 - Loaded training progress: iterations=0, total_timesteps=0, best_score=None
+2025-12-14 14:45:18.887 | INFO     | __main__:see_space:31 - Inspecting environment spaces
+2025-12-14 14:45:18.887 | INFO     | __main__:see_space:32 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 14:45:18.887 | INFO     | __main__:see_space:33 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 14:45:18.896 | INFO     | __main__:see_space:34 - Sample action: [-0.9958764   0.518678    0.31217498]
+2025-12-14 14:45:18.898 | INFO     | __main__:see_space:35 - Sample observation shape: (96, 96, 3)
+2025-12-14 14:45:19.455 | INFO     | __main__:<module>:250 - Selected algorithm: PPO
+2025-12-14 14:45:21.165 | INFO     | __main__:<module>:318 - Loading existing PPO model from models\PPO\pretrained_old\latest_model.zip
+2025-12-14 14:45:22.566 | INFO     | __main__:<module>:321 - Loaded training progress: iterations=0, total_timesteps=0, best_score=None
+2025-12-14 14:45:22.566 | INFO     | __main__:<module>:339 - Metrics CSV (append mode): logs\PPO_pretrained_old_CoinsCarRacingEnv_metrics.csv
+2025-12-14 14:45:22.566 | INFO     | __main__:train_agent:121 - Starting budgeted training: 300000 remaining out of 300000 for this cycle (PPO / pretrained_old)
+2025-12-14 14:45:22.566 | INFO     | __main__:train_agent:132 - Training chunk 1: 50000 timesteps (global chunk 1, target total 50000)
+2025-12-14 14:50:19.185 | INFO     | __main__:see_space:31 - Inspecting environment spaces
+2025-12-14 14:50:19.185 | INFO     | __main__:see_space:32 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 14:50:19.185 | INFO     | __main__:see_space:33 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 14:50:19.191 | INFO     | __main__:see_space:34 - Sample action: [0.85752964 0.45023125 0.43522027]
+2025-12-14 14:50:19.191 | INFO     | __main__:see_space:35 - Sample observation shape: (96, 96, 3)
+2025-12-14 14:50:19.834 | INFO     | __main__:<module>:250 - Selected algorithm: PPO
+2025-12-14 14:50:21.403 | INFO     | __main__:<module>:318 - Loading existing PPO model from models\PPO\pretrained_old\latest_model.zip
+2025-12-14 14:50:23.087 | INFO     | __main__:<module>:321 - Loaded training progress: iterations=0, total_timesteps=0, best_score=None
+2025-12-14 14:50:23.109 | INFO     | __main__:<module>:339 - Metrics CSV (append mode): logs\PPO_pretrained_old_CoinsCarRacingEnv_metrics.csv
+2025-12-14 14:50:23.109 | INFO     | __main__:train_agent:121 - Starting budgeted training: 300000 remaining out of 300000 for this cycle (PPO / pretrained_old)
+2025-12-14 14:50:23.109 | INFO     | __main__:train_agent:132 - Training chunk 1: 50000 timesteps (global chunk 1, target total 50000)
+2025-12-14 14:54:01.510 | INFO     | __main__:see_space:31 - Inspecting environment spaces
+2025-12-14 14:54:01.510 | INFO     | __main__:see_space:32 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 14:54:01.510 | INFO     | __main__:see_space:33 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 14:54:01.521 | INFO     | __main__:see_space:34 - Sample action: [0.44846246 0.93546474 0.57806957]
+2025-12-14 14:54:01.521 | INFO     | __main__:see_space:35 - Sample observation shape: (96, 96, 3)
+2025-12-14 14:54:02.218 | INFO     | __main__:<module>:250 - Selected algorithm: PPO
+2025-12-14 14:54:03.748 | INFO     | __main__:<module>:318 - Loading existing PPO model from models\PPO\pretrained_old\latest_model.zip
+2025-12-14 14:54:05.471 | INFO     | __main__:<module>:321 - Loaded training progress: iterations=0, total_timesteps=0, best_score=None
+2025-12-14 14:54:05.471 | INFO     | __main__:<module>:339 - Metrics CSV (append mode): logs\PPO_pretrained_old_CoinsCarRacingEnv_metrics.csv
+2025-12-14 14:54:05.471 | INFO     | __main__:train_agent:122 - Starting budgeted training: 300000 remaining out of 300000 for this cycle (PPO / pretrained_old)
+2025-12-14 14:54:05.657 | INFO     | __main__:train_agent:129 - Initialized best model at start (no existing best).
+2025-12-14 14:54:05.657 | INFO     | __main__:train_agent:137 - Training chunk 1: 50000 timesteps (global chunk 1, target total 50000)
+2025-12-14 14:59:18.724 | INFO     | __main__:see_space:31 - Inspecting environment spaces
+2025-12-14 14:59:18.725 | INFO     | __main__:see_space:32 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 14:59:18.726 | INFO     | __main__:see_space:33 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 14:59:18.730 | INFO     | __main__:see_space:34 - Sample action: [-0.06338392  0.05365347  0.98980635]
+2025-12-14 14:59:18.732 | INFO     | __main__:see_space:35 - Sample observation shape: (96, 96, 3)
+2025-12-14 14:59:19.463 | INFO     | __main__:<module>:250 - Selected algorithm: PPO
+2025-12-14 14:59:21.027 | INFO     | __main__:<module>:318 - Loading existing PPO model from models\PPO\pretrained_old\best_model.zip
+2025-12-14 14:59:22.652 | INFO     | __main__:<module>:321 - Loaded training progress: iterations=0, total_timesteps=0, best_score=None
+2025-12-14 14:59:22.668 | INFO     | __main__:<module>:339 - Metrics CSV (append mode): logs\PPO_pretrained_old_CoinsCarRacingEnv_metrics.csv
+2025-12-14 14:59:22.670 | INFO     | __main__:train_agent:122 - Starting budgeted training: 300000 remaining out of 300000 for this cycle (PPO / pretrained_old)
+2025-12-14 14:59:22.670 | INFO     | __main__:train_agent:137 - Training chunk 1: 50000 timesteps (global chunk 1, target total 50000)
+2025-12-14 15:08:33.206 | INFO     | __main__:see_space:31 - Inspecting environment spaces
+2025-12-14 15:08:33.206 | INFO     | __main__:see_space:32 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 15:08:33.206 | INFO     | __main__:see_space:33 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 15:08:33.219 | INFO     | __main__:see_space:34 - Sample action: [0.6168896 0.2764958 0.2742697]
+2025-12-14 15:08:33.221 | INFO     | __main__:see_space:35 - Sample observation shape: (96, 96, 3)
+2025-12-14 15:08:33.865 | INFO     | __main__:<module>:250 - Selected algorithm: PPO
+2025-12-14 15:08:36.420 | INFO     | __main__:<module>:318 - Loading existing PPO model from models\PPO\off_track_run\latest_model.zip
+2025-12-14 15:08:38.245 | INFO     | __main__:<module>:321 - Loaded training progress: iterations=2, total_timesteps=100000, best_score=None
+2025-12-14 15:08:38.245 | INFO     | __main__:<module>:339 - Metrics CSV (append mode): logs\PPO_off_track_run_CoinsCarRacingEnv_metrics.csv
+2025-12-14 15:08:38.245 | INFO     | __main__:train_agent:122 - Starting budgeted training: 200000 remaining out of 300000 for this cycle (PPO / off_track_run)
+2025-12-14 15:08:38.764 | INFO     | __main__:train_agent:129 - Initialized best model at start (no existing best).
+2025-12-14 15:08:38.764 | INFO     | __main__:train_agent:137 - Training chunk 1: 50000 timesteps (global chunk 3, target total 150000)
+2025-12-14 15:16:31.873 | INFO     | __main__:see_space:31 - Inspecting environment spaces
+2025-12-14 15:16:31.873 | INFO     | __main__:see_space:32 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 15:16:31.873 | INFO     | __main__:see_space:33 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 15:16:31.887 | INFO     | __main__:see_space:34 - Sample action: [0.4100654  0.52965397 0.51382226]
+2025-12-14 15:16:31.891 | INFO     | __main__:see_space:35 - Sample observation shape: (96, 96, 3)
+2025-12-14 15:16:32.561 | INFO     | __main__:<module>:250 - Selected algorithm: PPO
+2025-12-14 15:16:37.992 | INFO     | __main__:<module>:318 - Loading existing PPO model from models\PPO\orig_ppo_base\latest_model.zip
+2025-12-14 15:16:39.922 | INFO     | __main__:<module>:321 - Loaded training progress: iterations=6, total_timesteps=300000, best_score=None
+2025-12-14 15:16:39.939 | INFO     | __main__:<module>:339 - Metrics CSV (append mode): logs\PPO_orig_ppo_base_CoinsCarRacingEnv_metrics.csv
+2025-12-14 15:16:39.939 | INFO     | __main__:train_agent:122 - Starting budgeted training: 300000 remaining out of 300000 for this cycle (PPO / orig_ppo_base)
+2025-12-14 15:16:40.076 | INFO     | __main__:train_agent:129 - Initialized best model at start (no existing best).
+2025-12-14 15:16:40.076 | INFO     | __main__:train_agent:137 - Training chunk 1: 50000 timesteps (global chunk 7, target total 350000)
+2025-12-14 15:23:44.263 | INFO     | __main__:see_space:31 - Inspecting environment spaces
+2025-12-14 15:23:44.263 | INFO     | __main__:see_space:32 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 15:23:44.263 | INFO     | __main__:see_space:33 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 15:23:44.263 | INFO     | __main__:see_space:34 - Sample action: [-0.96071446  0.12446366  0.10801888]
+2025-12-14 15:23:44.263 | INFO     | __main__:see_space:35 - Sample observation shape: (96, 96, 3)
+2025-12-14 15:23:45.233 | INFO     | __main__:<module>:250 - Selected algorithm: PPO
+2025-12-14 15:23:52.908 | INFO     | __main__:<module>:339 - Metrics CSV (append mode): logs\PPO_gui_CoinsCarRacingEnv_metrics.csv
+2025-12-14 15:23:52.908 | INFO     | __main__:train_agent:122 - Starting budgeted training: 300000 remaining out of 300000 for this cycle (PPO / gui)
+2025-12-14 15:23:53.071 | INFO     | __main__:train_agent:129 - Initialized best model at start (no existing best).
+2025-12-14 15:23:53.071 | INFO     | __main__:train_agent:137 - Training chunk 1: 50000 timesteps (global chunk 1, target total 50000)
+2025-12-14 15:32:37.837 | INFO     | __main__:see_space:31 - Inspecting environment spaces
+2025-12-14 15:32:37.838 | INFO     | __main__:see_space:32 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 15:32:37.838 | INFO     | __main__:see_space:33 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 15:32:37.843 | INFO     | __main__:see_space:34 - Sample action: [0.93773425 0.5762196  0.338965  ]
+2025-12-14 15:32:37.845 | INFO     | __main__:see_space:35 - Sample observation shape: (96, 96, 3)
+2025-12-14 15:32:38.587 | INFO     | __main__:<module>:250 - Selected algorithm: PPO
+2025-12-14 15:33:39.392 | INFO     | __main__:see_space:31 - Inspecting environment spaces
+2025-12-14 15:33:39.392 | INFO     | __main__:see_space:32 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 15:33:39.392 | INFO     | __main__:see_space:33 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 15:33:39.407 | INFO     | __main__:see_space:34 - Sample action: [-0.00488956  0.34416363  0.28527105]
+2025-12-14 15:33:39.407 | INFO     | __main__:see_space:35 - Sample observation shape: (96, 96, 3)
+2025-12-14 15:33:40.177 | INFO     | __main__:<module>:250 - Selected algorithm: PPO
+2025-12-14 15:33:45.107 | INFO     | __main__:<module>:339 - Metrics CSV (append mode): logs\PPO_gui_CoinsCarRacingEnv_metrics.csv
+2025-12-14 15:33:45.123 | INFO     | __main__:train_agent:122 - Starting budgeted training: 300000 remaining out of 300000 for this cycle (PPO / gui)
+2025-12-14 15:33:45.185 | INFO     | __main__:train_agent:129 - Initialized best model at start (no existing best).
+2025-12-14 15:33:45.185 | INFO     | __main__:train_agent:137 - Training chunk 1: 50000 timesteps (global chunk 1, target total 50000)
+2025-12-14 15:46:49.060 | INFO     | __main__:train_agent:147 - Chunk time: 783.87 seconds (13.06 minutes)
+2025-12-14 15:46:49.180 | INFO     | __main__:train_agent:153 - Saved models to: last=last_model.zip, checkpoint=checkpoint_50000.zip
+2025-12-14 15:46:49.250 | INFO     | __main__:train_agent:164 - New best model (ep_rew_mean=-25.700) saved to: best_model.zip
+2025-12-14 15:46:49.254 | INFO     | __main__:train_agent:168 - Saved training progress for PPO run 'gui': chunks=1, total_timesteps=50000, best_score=-25.7
+2025-12-14 15:46:49.255 | INFO     | __main__:train_agent:137 - Training chunk 2: 50000 timesteps (global chunk 2, target total 100000)
+2025-12-14 16:00:49.646 | INFO     | __main__:train_agent:147 - Chunk time: 840.39 seconds (14.01 minutes)
+2025-12-14 16:00:49.737 | INFO     | __main__:train_agent:153 - Saved models to: last=last_model.zip, checkpoint=checkpoint_100000.zip
+2025-12-14 16:00:49.783 | INFO     | __main__:train_agent:164 - New best model (ep_rew_mean=240.000) saved to: best_model.zip
+2025-12-14 16:00:49.785 | INFO     | __main__:train_agent:168 - Saved training progress for PPO run 'gui': chunks=2, total_timesteps=100000, best_score=240.0
+2025-12-14 16:00:49.785 | INFO     | __main__:train_agent:137 - Training chunk 3: 50000 timesteps (global chunk 3, target total 150000)
+2025-12-14 16:15:34.800 | INFO     | __main__:train_agent:147 - Chunk time: 885.01 seconds (14.75 minutes)
+2025-12-14 16:15:35.005 | INFO     | __main__:train_agent:153 - Saved models to: last=last_model.zip, checkpoint=checkpoint_150000.zip
+2025-12-14 16:15:35.058 | INFO     | __main__:train_agent:168 - Saved training progress for PPO run 'gui': chunks=3, total_timesteps=150000, best_score=240.0
+2025-12-14 16:15:35.058 | INFO     | __main__:train_agent:137 - Training chunk 4: 50000 timesteps (global chunk 4, target total 200000)
+2025-12-14 16:33:01.474 | INFO     | __main__:train_agent:147 - Chunk time: 1046.41 seconds (17.44 minutes)
+2025-12-14 16:33:01.699 | INFO     | __main__:train_agent:153 - Saved models to: last=last_model.zip, checkpoint=checkpoint_200000.zip
+2025-12-14 16:33:01.718 | INFO     | __main__:train_agent:168 - Saved training progress for PPO run 'gui': chunks=4, total_timesteps=200000, best_score=240.0
+2025-12-14 16:33:01.718 | INFO     | __main__:train_agent:137 - Training chunk 5: 50000 timesteps (global chunk 5, target total 250000)
+2025-12-14 16:44:54.170 | INFO     | __main__:see_space:31 - Inspecting environment spaces
+2025-12-14 16:44:54.170 | INFO     | __main__:see_space:32 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 16:44:54.170 | INFO     | __main__:see_space:33 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 16:44:54.187 | INFO     | __main__:see_space:34 - Sample action: [-0.77016497  0.81280965  0.42941374]
+2025-12-14 16:44:54.191 | INFO     | __main__:see_space:35 - Sample observation shape: (96, 96, 3)
+2025-12-14 16:44:55.457 | INFO     | __main__:<module>:250 - Selected algorithm: PPO
+2025-12-14 16:45:01.274 | INFO     | __main__:<module>:318 - Loading existing PPO model from models\PPO\pretrained_old\best_model.zip
+2025-12-14 16:45:03.192 | INFO     | __main__:<module>:321 - Loaded training progress: iterations=0, total_timesteps=0, best_score=None
+2025-12-14 16:45:03.192 | INFO     | __main__:<module>:339 - Metrics CSV (append mode): logs\PPO_pretrained_old_CarRacing_metrics.csv
+2025-12-14 16:45:03.192 | INFO     | __main__:train_agent:122 - Starting budgeted training: 300000 remaining out of 300000 for this cycle (PPO / pretrained_old)
+2025-12-14 16:45:03.192 | INFO     | __main__:train_agent:137 - Training chunk 1: 50000 timesteps (global chunk 1, target total 50000)
+2025-12-14 16:52:51.809 | INFO     | __main__:see_space:32 - Inspecting environment spaces
+2025-12-14 16:52:51.809 | INFO     | __main__:see_space:33 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 16:52:51.809 | INFO     | __main__:see_space:34 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 16:52:51.809 | INFO     | __main__:see_space:35 - Sample action: [0.87326485 0.8765265  0.85368854]
+2025-12-14 16:52:51.825 | INFO     | __main__:see_space:36 - Sample observation shape: (96, 96, 3)
+2025-12-14 16:52:53.186 | INFO     | __main__:<module>:272 - Selected algorithm: Human
+2025-12-14 16:52:53.186 | INFO     | __main__:ensure_human_render_env:83 - Render was disabled; recreating environment with render_mode='human' for manual control.
+2025-12-14 16:52:53.187 | INFO     | utils.human_control:_control_with_pygame:45 - Modo humano (pygame): setas para controlar, R reseta, ESC fecha.
+2025-12-14 16:53:50.209 | INFO     | __main__:see_space:32 - Inspecting environment spaces
+2025-12-14 16:53:50.209 | INFO     | __main__:see_space:33 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 16:53:50.209 | INFO     | __main__:see_space:34 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 16:53:50.226 | INFO     | __main__:see_space:35 - Sample action: [-0.8853951   0.44759855  0.44114676]
+2025-12-14 16:53:50.228 | INFO     | __main__:see_space:36 - Sample observation shape: (96, 96, 3)
+2025-12-14 16:53:51.370 | INFO     | __main__:<module>:272 - Selected algorithm: PPO
+2025-12-14 16:53:57.696 | INFO     | __main__:see_space:32 - Inspecting environment spaces
+2025-12-14 16:53:57.696 | INFO     | __main__:see_space:33 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 16:53:57.696 | INFO     | __main__:see_space:34 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 16:53:57.696 | INFO     | __main__:see_space:35 - Sample action: [-0.70474994  0.5112733   0.6715075 ]
+2025-12-14 16:53:57.696 | INFO     | __main__:see_space:36 - Sample observation shape: (96, 96, 3)
+2025-12-14 16:54:00.234 | INFO     | __main__:<module>:272 - Selected algorithm: Human
+2025-12-14 16:54:00.234 | ERROR    | utils.human_control:_control_with_pyglet:81 - pyglet não está disponível para capturar o teclado.
+2025-12-14 16:54:20.169 | INFO     | __main__:see_space:32 - Inspecting environment spaces
+2025-12-14 16:54:20.169 | INFO     | __main__:see_space:33 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 16:54:20.169 | INFO     | __main__:see_space:34 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 16:54:20.177 | INFO     | __main__:see_space:35 - Sample action: [0.7282983 0.8099314 0.3178804]
+2025-12-14 16:54:20.179 | INFO     | __main__:see_space:36 - Sample observation shape: (96, 96, 3)
+2025-12-14 16:54:21.510 | INFO     | __main__:<module>:272 - Selected algorithm: Human
+2025-12-14 16:54:21.510 | INFO     | __main__:ensure_human_render_env:83 - Render was disabled; recreating environment with render_mode='human' for manual control.
+2025-12-14 16:54:21.510 | ERROR    | utils.human_control:_control_with_pyglet:81 - pyglet não está disponível para capturar o teclado.
+2025-12-14 16:54:28.669 | INFO     | __main__:see_space:32 - Inspecting environment spaces
+2025-12-14 16:54:28.671 | INFO     | __main__:see_space:33 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 16:54:28.671 | INFO     | __main__:see_space:34 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 16:54:28.674 | INFO     | __main__:see_space:35 - Sample action: [-0.89221716  0.38510782  0.27072778]
+2025-12-14 16:54:28.675 | INFO     | __main__:see_space:36 - Sample observation shape: (96, 96, 3)
+2025-12-14 16:54:29.902 | INFO     | __main__:<module>:272 - Selected algorithm: Human
+2025-12-14 16:54:29.902 | INFO     | __main__:ensure_human_render_env:83 - Render was disabled; recreating environment with render_mode='human' for manual control.
+2025-12-14 16:54:29.907 | INFO     | utils.human_control:_control_with_pygame:45 - Modo humano (pygame): setas para controlar, R reseta, ESC fecha.
+2025-12-14 16:56:27.685 | INFO     | utils.human_control:_control_with_pygame:76 - Encerrando controle humano (pygame).
+2025-12-14 17:00:30.857 | INFO     | __main__:see_space:32 - Inspecting environment spaces
+2025-12-14 17:00:30.857 | INFO     | __main__:see_space:33 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 17:00:30.857 | INFO     | __main__:see_space:34 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 17:00:30.869 | INFO     | __main__:see_space:35 - Sample action: [0.4927747  0.60182416 0.39056933]
+2025-12-14 17:00:30.870 | INFO     | __main__:see_space:36 - Sample observation shape: (96, 96, 3)
+2025-12-14 17:00:32.029 | INFO     | __main__:<module>:272 - Selected algorithm: Human
+2025-12-14 17:00:32.029 | INFO     | __main__:ensure_human_render_env:83 - Render was disabled; recreating environment with render_mode='human' for manual control.
+2025-12-14 17:00:32.030 | INFO     | utils.human_control:_control_with_pygame:45 - Modo humano (pygame): setas para controlar, R reseta, ESC fecha.
+2025-12-14 17:00:46.141 | INFO     | __main__:see_space:32 - Inspecting environment spaces
+2025-12-14 17:00:46.141 | INFO     | __main__:see_space:33 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 17:00:46.141 | INFO     | __main__:see_space:34 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 17:00:46.159 | INFO     | __main__:see_space:35 - Sample action: [0.81710505 0.15633497 0.61005366]
+2025-12-14 17:00:46.162 | INFO     | __main__:see_space:36 - Sample observation shape: (96, 96, 3)
+2025-12-14 17:00:47.307 | INFO     | __main__:<module>:272 - Selected algorithm: Human
+2025-12-14 17:00:47.307 | INFO     | __main__:ensure_human_render_env:83 - Render was disabled; recreating environment with render_mode='human' for manual control.
+2025-12-14 17:00:47.307 | INFO     | utils.human_control:_control_with_pyglet:84 - Modo humano (pyglet): setas para controlar, R reseta, ESC fecha.
+2025-12-14 17:00:47.791 | ERROR    | utils.human_control:_control_with_pyglet:129 - Não foi possível inicializar a janela do ambiente para controle humano.
+2025-12-14 17:01:05.396 | INFO     | __main__:see_space:32 - Inspecting environment spaces
+2025-12-14 17:01:05.397 | INFO     | __main__:see_space:33 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 17:01:05.397 | INFO     | __main__:see_space:34 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 17:01:05.398 | INFO     | __main__:see_space:35 - Sample action: [-0.24068937  0.7684315   0.23183404]
+2025-12-14 17:01:05.399 | INFO     | __main__:see_space:36 - Sample observation shape: (96, 96, 3)
+2025-12-14 17:01:06.717 | INFO     | __main__:<module>:272 - Selected algorithm: Human
+2025-12-14 17:01:06.717 | INFO     | utils.human_control:_control_with_pyglet:84 - Modo humano (pyglet): setas para controlar, R reseta, ESC fecha.
+2025-12-14 17:01:07.522 | ERROR    | utils.human_control:_control_with_pyglet:129 - Não foi possível inicializar a janela do ambiente para controle humano.
+2025-12-14 17:02:34.718 | INFO     | __main__:see_space:32 - Inspecting environment spaces
+2025-12-14 17:02:34.718 | INFO     | __main__:see_space:33 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 17:02:34.718 | INFO     | __main__:see_space:34 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 17:02:34.723 | INFO     | __main__:see_space:35 - Sample action: [0.5157455  0.8856651  0.43962446]
+2025-12-14 17:02:34.726 | INFO     | __main__:see_space:36 - Sample observation shape: (96, 96, 3)
+2025-12-14 17:02:36.096 | INFO     | __main__:<module>:272 - Selected algorithm: Human
+2025-12-14 17:02:36.096 | INFO     | __main__:ensure_human_render_env:83 - Render was disabled; recreating environment with render_mode='human' for manual control.
+2025-12-14 17:02:36.096 | INFO     | utils.human_control:_control_with_pygame:45 - Modo humano (pygame): setas para controlar, R reseta, ESC fecha.
+2025-12-14 17:04:01.714 | INFO     | __main__:see_space:32 - Inspecting environment spaces
+2025-12-14 17:04:01.714 | INFO     | __main__:see_space:33 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 17:04:01.715 | INFO     | __main__:see_space:34 - Observation space: Box(0, 255, (96, 96, 3), uint8)
+2025-12-14 17:04:01.720 | INFO     | __main__:see_space:35 - Sample action: [0.3823383  0.81604224 0.46097073]
+2025-12-14 17:04:01.721 | INFO     | __main__:see_space:36 - Sample observation shape: (96, 96, 3)
+2025-12-14 17:04:02.882 | INFO     | __main__:<module>:272 - Selected algorithm: Human
+2025-12-14 17:04:02.882 | INFO     | __main__:ensure_human_render_env:83 - Render was disabled; recreating environment with render_mode='human' for manual control.
+2025-12-14 17:04:02.882 | INFO     | utils.human_control:_control_with_pygame:45 - Modo humano (pygame): setas para controlar, R reseta, ESC fecha.
+2025-12-14 17:20:59.805 | INFO     | __main__:see_space:33 - Inspecting environment spaces
+2025-12-14 17:20:59.806 | INFO     | __main__:see_space:34 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-14 17:20:59.807 | INFO     | __main__:see_space:35 - Observation space: Box(0, 255, (96, 96, 4), uint8)
+2025-12-14 17:20:59.811 | INFO     | __main__:see_space:36 - Sample action: [0.8237727  0.01952788 0.15477854]
+2025-12-14 17:20:59.813 | INFO     | __main__:see_space:37 - Sample observation shape: (96, 96, 4)
+2025-12-14 17:21:01.821 | INFO     | __main__:<module>:275 - Selected algorithm: PPO
+2025-12-14 17:21:10.265 | INFO     | __main__:<module>:370 - Metrics CSV (append mode): logs\PPO_teste_CoinsCarRacingEnv_metrics.csv
+2025-12-14 17:21:10.267 | INFO     | __main__:train_agent:145 - Starting budgeted training: 300000 remaining out of 300000 for this cycle (PPO / teste)
+2025-12-14 17:21:10.383 | INFO     | __main__:train_agent:152 - Initialized best model at start (no existing best).
+2025-12-14 17:21:10.384 | INFO     | __main__:train_agent:160 - Training chunk 1: 50000 timesteps (global chunk 1, target total 50000)
+2025-12-14 17:39:16.284 | INFO     | __main__:train_agent:170 - Chunk time: 1085.89 seconds (18.10 minutes)
+2025-12-14 17:39:16.542 | INFO     | __main__:train_agent:176 - Saved models to: last=last_model.zip, checkpoint=checkpoint_50000.zip
+2025-12-14 17:39:16.713 | INFO     | __main__:train_agent:187 - New best model (ep_rew_mean=-5.180) saved to: best_model.zip
+2025-12-14 17:39:16.724 | INFO     | __main__:train_agent:191 - Saved training progress for PPO run 'teste': chunks=1, total_timesteps=50000, best_score=-5.18
+2025-12-14 17:39:16.724 | INFO     | __main__:train_agent:160 - Training chunk 2: 50000 timesteps (global chunk 2, target total 100000)
+2025-12-14 17:56:13.217 | INFO     | __main__:train_agent:170 - Chunk time: 1016.49 seconds (16.94 minutes)
+2025-12-14 17:56:13.378 | INFO     | __main__:train_agent:176 - Saved models to: last=last_model.zip, checkpoint=checkpoint_100000.zip
+2025-12-14 17:56:13.560 | INFO     | __main__:train_agent:187 - New best model (ep_rew_mean=254.000) saved to: best_model.zip
+2025-12-14 17:56:13.575 | INFO     | __main__:train_agent:191 - Saved training progress for PPO run 'teste': chunks=2, total_timesteps=100000, best_score=254.0
+2025-12-14 17:56:13.578 | INFO     | __main__:train_agent:160 - Training chunk 3: 50000 timesteps (global chunk 3, target total 150000)

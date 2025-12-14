@@ -3,7 +3,16 @@ import numpy as np
 import pygame
 import pygame.gfxdraw
 
-from gymnasium.envs.box2d.car_racing import SCALE, WINDOW_W, WINDOW_H, ZOOM
+from gymnasium.envs.box2d.car_racing import (
+    SCALE,
+    STATE_H,
+    STATE_W,
+    VIDEO_H,
+    VIDEO_W,
+    WINDOW_H,
+    WINDOW_W,
+    ZOOM,
+)
 from environment.custom_car_racing_env import CustomCarRacingEnv
 
 
@@ -13,6 +22,9 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
 
         self.n_coins = n_coins
         self.coin_reward = coin_reward
+        # Structured vision params (grid around the car marking coins)
+        self.coin_vision_grid_size = 32
+        self.coin_vision_range = 80.0  # world units around the car
 
         self.coins = []
         self.coin_track_indices = []
@@ -137,6 +149,7 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         info["coins_collected_total"] = self.coins_collected_total
         info["coins_collected_episode"] = self.coins_collected_episode
         info["coins_removed"] = sum(self.coins_removed)
+        info["coin_vision"] = self._structured_coin_vision(car_x, car_y, self.car.hull.angle)
 
         return obs, reward, terminated, truncated, info
 
@@ -241,15 +254,13 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         self.surf.blit(sub_surf, sub_pos)
 
     # -------------------------------
-    # RENDER CORRETO (ESTE É O PONTO-CHAVE)
+    # RENDER COM OVERLAY DE MOEDAS
     # -------------------------------
     def _render(self, mode):
-        if mode != "human":
-            return super()._render(mode)
+        assert mode in self.metadata["render_modes"]
 
-        # Replicando o _render base para inserir moedas/HUD antes do flip
         pygame.font.init()
-        if self.screen is None:
+        if self.screen is None and mode == "human":
             pygame.init()
             pygame.display.init()
             self.screen = pygame.display.set_mode((WINDOW_W, WINDOW_H))
@@ -278,9 +289,10 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
             mode not in ["state_pixels_list", "state_pixels"],
         )
 
+        # base flip before HUD/overlays
         self.surf = pygame.transform.flip(self.surf, False, True)
 
-        # HUD base do jogo
+        # HUD base
         self._render_indicators(WINDOW_W, WINDOW_H)
         font = pygame.font.Font(pygame.font.get_default_font(), 42)
         text = font.render("%04i" % self.reward, True, (255, 255, 255), (0, 0, 0))
@@ -292,11 +304,58 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         self._render_coins(zoom, translation, angle)
         self._render_coin_counter()
 
-        # Flip final (único) para evitar piscadas
-        pygame.event.pump()
-        self.clock.tick(self.metadata["render_fps"])
-        self.screen.fill(0)
-        self.screen.blit(self.surf, (0, 0))
-        pygame.display.flip()
+        if mode == "human":
+            pygame.event.pump()
+            self.clock.tick(self.metadata["render_fps"])
+            self.screen.fill(0)
+            self.screen.blit(self.surf, (0, 0))
+            pygame.display.flip()
+        elif mode == "rgb_array":
+            return self._create_image_array(self.surf, (VIDEO_W, VIDEO_H))
+        elif mode == "state_pixels":
+            return self._create_image_array(self.surf, (STATE_W, STATE_H))
+        else:
+            return self.isopen
 
-        return self.isopen
+    # -------------------------------
+    # VISÃO ESTRUTURADA (GRADE) PARA MOEDAS
+    # -------------------------------
+    def _structured_coin_vision(self, car_x: float, car_y: float, car_angle: float):
+        """
+        Gera uma grade 2D centrada no carro marcando posições de moedas visíveis.
+        Não altera a observação original; é retornada via info["coin_vision"].
+        """
+        size = self.coin_vision_grid_size
+        rng = self.coin_vision_range
+        grid = np.zeros((size, size), dtype=np.float32)
+
+        if not self.coins:
+            return grid
+
+        half = rng / 2.0
+        scale = size / rng  # world units -> grid cells
+
+        cos_a = math.cos(car_angle)
+        sin_a = math.sin(car_angle)
+
+        for i, (cx, cy) in enumerate(self.coins):
+            if self.coins_collected[i] or self.coins_removed[i]:
+                continue
+
+            dx = cx - car_x
+            dy = cy - car_y
+
+            # transforma para o referencial do carro (frente = +x local)
+            local_x = dx * cos_a + dy * sin_a
+            local_y = -dx * sin_a + dy * cos_a
+
+            if abs(local_x) > half or abs(local_y) > half:
+                continue
+
+            gx = int((local_x + half) * scale)
+            gy = int((local_y + half) * scale)
+
+            if 0 <= gx < size and 0 <= gy < size:
+                grid[gx, gy] = 1.0
+
+        return grid

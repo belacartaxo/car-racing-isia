@@ -9,6 +9,12 @@ ALGORITHMS = {
     "DDPG": DDPG
 }
 
-def get_algorithm_list():
+HUMAN_ALGO_NAME = "Human"
+
+
+def get_algorithm_list(include_human: bool = False):
     """Return list of algorithm names."""
-    return list(ALGORITHMS.keys())
+    algos = list(ALGORITHMS.keys())
+    if include_human:
+        algos.append(HUMAN_ALGO_NAME)
+    return algos
