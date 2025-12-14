@@ -8,26 +8,27 @@ from environment.custom_car_racing_env import CustomCarRacingEnv
 
 
 class CoinsCarRacingEnv(CustomCarRacingEnv):
-    def __init__(self, n_coins=10, coin_reward=50.0, **kwargs):
+    def __init__(self, n_coins=10, coin_reward=10.0, **kwargs):
         super().__init__(**kwargs)
 
         self.n_coins = n_coins
         self.coin_reward = coin_reward
 
         self.coins = []
+        self.coin_track_indices = []
         self.coins_collected = []
-        self.coins_removed = []  # usadas para esconder quando já passaram
-        self.coins_collected_total = 0  # acumulado ao longo da sessão/laps
-        self.coins_collected_episode = 0  # reseta a cada episódio
+        self.coins_removed = []  # used to hide after being passed
+        self.coins_collected_total = 0  # accumulated across the session/laps
+        self.coins_collected_episode = 0  # resets each episode
 
         self.track_points = []
         self.max_track_progress = 0
-        self.progress_buffer = 2          # margem para remoção de moedas já ultrapassadas
-        self.progress_activation_dist = 10.0  # só atualiza progresso se perto do traçado
+        self.progress_buffer = 2          # margin to remove coins already passed
+        self.progress_activation_dist = 10.0  # only update progress when near the track
         self.prev_track_idx = 0
 
-        self.coin_radius = 1.2          # tamanho visual da moeda
-        self.coin_pickup_radius = 3.5   # raio de coleta ao passar por cima (mais tolerante)
+        self.coin_radius = 1.2          # visual size of the coin
+        self.coin_pickup_radius = 3.5   # pickup radius (more lenient)
 
     # -------------------------------
     # RESET DO AMBIENTE
@@ -42,6 +43,7 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
     # -------------------------------
     def _reset_coins(self):
         self.coins = []
+        self.coin_track_indices = []
         self.coins_collected = []
         self.coins_removed = []
         self.coins_collected_episode = 0
@@ -51,12 +53,21 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         self.prev_track_idx = 0
 
         if hasattr(self, "track") and self.track is not None and len(self.track) > 0:
-            # muitas moedas, bem próximas: uma moeda por tile do traçado
-            for _, _, x, y in self.track:
+            # keep full track for progress estimation
+            self.track_points = [(x, y) for _, _, x, y in self.track]
+
+            track_len = len(self.track_points)
+            num_coins = max(1, min(self.n_coins, track_len))
+
+            # spread limited coins across the track
+            coin_indices = np.linspace(0, track_len - 1, num_coins, dtype=int)
+
+            for idx in coin_indices:
+                x, y = self.track_points[idx]
                 self.coins.append((x, y))
+                self.coin_track_indices.append(idx)
                 self.coins_collected.append(False)
                 self.coins_removed.append(False)
-                self.track_points.append((x, y))
 
     def _update_progress(self, car_x, car_y):
         if not self.track_points:
@@ -66,11 +77,11 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         dists = np.hypot(pts[:, 0] - car_x, pts[:, 1] - car_y)
         idx = int(np.argmin(dists))
 
-        # Só considera progresso se o carro está próximo do traçado
+        # Only count progress when the car is close to the track
         if dists[idx] > self.progress_activation_dist:
             return
 
-        # Detecta nova volta: se voltamos para o início depois de avançar bastante, respawna todas
+        # Detect lap completion: if we were far along and jump back to the start, respawn coins
         track_len = len(self.track_points)
         crossed_lap = (
             track_len > 0
@@ -115,8 +126,8 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
                 self.coins_collected_total += 1
                 self.coins_collected_episode += 1
             else:
-                # Se já passamos desse índice no traçado, remova sem bônus
-                if i < self.max_track_progress - self.progress_buffer:
+                coin_track_idx = self.coin_track_indices[i]
+                if coin_track_idx < self.max_track_progress - self.progress_buffer:
                     self.coins_removed[i] = True
 
         reward += bonus
@@ -142,7 +153,7 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
             px = pos[0] * zoom + translation[0]
             py = pos[1] * zoom + translation[1]
 
-            # A superfície já foi flipada no render base; ajusta o eixo Y para fixar na pista
+            # The surface was already flipped in the base render; adjust Y to anchor to the track
             py = WINDOW_H - py
 
             pulse = 1.0 + 0.05 * math.sin(self.t * 4.0)
@@ -151,12 +162,12 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
             if px < -50 or px > WINDOW_W + 50 or py < -50 or py > WINDOW_H + 50:
                 continue
 
-            hud_height = (5 * WINDOW_H) / 40.0  # mesma faixa preta do HUD
+            hud_height = (5 * WINDOW_H) / 40.0  # same HUD band as base game
             hud_y = WINDOW_H - hud_height
             if py >= hud_y:
                 continue
 
-            # Paleta de dourado e camadas
+            # Gold palette and layers
             shadow_color = (40, 40, 40)
             outer_color = (200, 160, 20)
             mid_color = (238, 196, 60)
@@ -166,10 +177,10 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
             px_i = int(px)
             py_i = int(py)
 
-            # Sombra leve (sem alpha para manter compatibilidade da surface)
+            # Light shadow (no alpha to keep surface compatible)
             pygame.gfxdraw.filled_circle(self.surf, px_i + 2, py_i + 3, radius_px + 2, shadow_color)
 
-            # Corpo com degradê simples (círculos concêntricos)
+            # Body with simple gradient (concentric circles)
             pygame.gfxdraw.filled_circle(self.surf, px_i, py_i, radius_px, outer_color)
             pygame.gfxdraw.aacircle(self.surf, px_i, py_i, radius_px, outer_color)
 
@@ -179,7 +190,7 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
             inner_r = max(1, int(radius_px * 0.45))
             pygame.gfxdraw.filled_circle(self.surf, px_i, py_i, inner_r, inner_color)
 
-            # Highlight no canto superior esquerdo
+            # Highlight on upper-left corner
             hl_r = max(1, int(radius_px * 0.3))
             pygame.gfxdraw.filled_circle(self.surf, px_i - radius_px // 3, py_i - radius_px // 3, hl_r, highlight_color)
 
@@ -211,11 +222,11 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         bg_rect.bottom = WINDOW_H - padding
         bg_rect.right = WINDOW_W - padding
 
-        # caixa com borda e leve brilho
+        # box with border and slight glow
         pygame.draw.rect(self.surf, (25, 25, 25), bg_rect, border_radius=10)
         pygame.draw.rect(self.surf, (90, 90, 90), bg_rect, width=1, border_radius=10)
 
-        # ícone de moeda simples ao lado do título
+        # simple coin icon next to the title
         icon_r = 8
         icon_x = bg_rect.left + padding
         icon_y = bg_rect.top + padding + title_surf.get_height() // 2
@@ -230,7 +241,7 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         self.surf.blit(sub_surf, sub_pos)
 
     # -------------------------------
-    # ✅ RENDER CORRETO (ESTE É O PONTO-CHAVE)
+    # RENDER CORRETO (ESTE É O PONTO-CHAVE)
     # -------------------------------
     def _render(self, mode):
         if mode != "human":

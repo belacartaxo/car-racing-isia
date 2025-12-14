@@ -5,9 +5,9 @@ import numpy as np
 class CustomCarRacingEnv(CarRacing):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.off_track_border = 0.2
-        self.off_track_penalty = 5.0
-        self.max_off_track_steps = 50
+        self.off_track_border = 0.05
+        self.off_track_penalty = 1.0
+        self.max_off_track_steps = 30
         self._off_track_steps = 0
 
     def reset(self, *, seed=None, options=None):

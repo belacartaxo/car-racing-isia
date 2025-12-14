@@ -9,9 +9,9 @@ from environment.custom_car_racing_env import CustomCarRacingEnv
 from environment.coins_car_racing_env import CoinsCarRacingEnv
 from utils.algorithms import ALGORITHMS, get_algorithm_list
 from utils.config import (
-    ITERATIONS,
-    TOTAL_TIMESTEPS,
     EVAL_EPISODES,
+    TRAIN_BUDGET_TIMESTEPS,
+    CHECKPOINT_TIMESTEPS,
     MODELS_DIR,
     LOGS_DIR,
     LATEST_MODEL_NAME,
@@ -94,29 +94,47 @@ def select_run_name(algorithm: str):
 
 # Train model
 def train_agent(env, model, algorithm, run_dir, run_name, start_iterations=0, start_total_timesteps=0):
-    iterations = start_iterations
+    iterations = start_iterations  # counts chunks
     total_timesteps = start_total_timesteps
 
-    for i in range(1, ITERATIONS + 1):
+    remainder = total_timesteps % TRAIN_BUDGET_TIMESTEPS
+    remaining_budget = TRAIN_BUDGET_TIMESTEPS if remainder == 0 else TRAIN_BUDGET_TIMESTEPS - remainder
+    logger.info(
+        f"Starting budgeted training: {remaining_budget} remaining out of {TRAIN_BUDGET_TIMESTEPS} for this cycle "
+        f"({algorithm} / {run_name})"
+    )
+
+    chunk_idx = 0
+    while remaining_budget > 0:
+        chunk_idx += 1
+        chunk_steps = min(CHECKPOINT_TIMESTEPS, remaining_budget)
         iterations += 1
 
-        logger.info(f"Training run '{run_name}' for {algorithm}: global iteration {iterations}")
-        logger.info(f"Local iteration {i}/{ITERATIONS} with {TOTAL_TIMESTEPS} timesteps")
+        logger.info(
+            f"Training chunk {chunk_idx}: {chunk_steps} timesteps "
+            f"(global chunk {iterations}, target total {total_timesteps + chunk_steps})"
+        )
 
         iteration_start = time.time()
-        model.learn(total_timesteps=TOTAL_TIMESTEPS, reset_num_timesteps=False)
+        model.learn(total_timesteps=chunk_steps, reset_num_timesteps=False)
         iteration_end = time.time()
 
         duration = iteration_end - iteration_start
-        logger.info(f"Iteration time: {duration:.2f} seconds ({duration / 60:.2f} minutes)")
+        logger.info(f"Chunk time: {duration:.2f} seconds ({duration / 60:.2f} minutes)")
 
         latest_path = Path(run_dir) / LATEST_MODEL_NAME
         model.save(str(latest_path))
-        logger.info(f"Saved updated model to: {latest_path}")
+        checkpoint_path = Path(run_dir) / f"checkpoint_{total_timesteps + chunk_steps}.zip"
+        model.save(str(checkpoint_path))
+        logger.info(f"Saved models to: latest={latest_path.name}, checkpoint={checkpoint_path.name}")
 
-        total_timesteps += TOTAL_TIMESTEPS
+        total_timesteps += chunk_steps
         save_training_stats(algorithm, run_name, iterations, total_timesteps)
-        logger.info(f"Saved training progress for {algorithm} run '{run_name}': iteration {iterations}")
+        logger.info(
+            f"Saved training progress for {algorithm} run '{run_name}': chunks={iterations}, total_timesteps={total_timesteps}"
+        )
+
+        remaining_budget -= chunk_steps
 
     return model, iterations, total_timesteps
 
@@ -125,24 +143,45 @@ def train_agent(env, model, algorithm, run_dir, run_name, start_iterations=0, st
 def evaluate_agent(env, model):
     logger.info("Starting evaluation")
 
+    render_is_human = getattr(env.unwrapped, "render_mode", None) == "human"
+    if render_is_human:
+        logger.warning("Render enabled during evaluation: timing will differ. Use headless for consistent metrics.")
+    else:
+        logger.info("Evaluation running headless for consistent timing.")
+
     for ep in range(EVAL_EPISODES):
         logger.info(f"Episode {ep + 1}/{EVAL_EPISODES}")
 
         obs, info = env.reset()
         done = False
-        total_reward = 0
+        total_reward = 0.0
+        total_coin_bonus = 0.0
+        steps = 0
 
-        while not done:
+        while not done and steps < 2000:
             action, _ = model.predict(obs, deterministic=True)
+            if steps % 100 == 0:
+                print("step", steps, "| off_track:", info.get("off_track"), "| total_reward:", total_reward)
+                print("action:", action)  # action = [steer, gas, brake]
+
+
             obs, reward, terminated, truncated, info = env.step(action)
 
-            total_reward += reward
+            total_reward += float(reward)
+            total_coin_bonus += float(info.get("coin_bonus", 0.0))
             done = terminated or truncated
 
-            env.render()
+            if render_is_human:
+                env.render()
 
-        logger.info(f"Episode reward: {total_reward}")
+            steps += 1
 
+        base_reward = total_reward - total_coin_bonus
+        logger.info(
+            f"Episode reward: {total_reward:.2f} | base(no coins): {base_reward:.2f} "
+            f"| coin_bonus: {total_coin_bonus:.2f} | coins_episode: {info.get('coins_collected_episode', 0)} "
+            f"| steps: {steps}"
+        )
 
 # MAIN
 if __name__ == "__main__":
@@ -156,7 +195,12 @@ if __name__ == "__main__":
     render_mode = "human" if view_choice == "1" else None
 
     env = select_environment(render_mode)
+    env = gym.wrappers.TimeLimit(env, max_episode_steps=1000)
     see_space(env)
+
+    print(
+        f"\nThis run will train for {TRAIN_BUDGET_TIMESTEPS} timesteps in chunks of {CHECKPOINT_TIMESTEPS}."
+    )
 
     # SELECT ALGORITHM
     algo_list = get_algorithm_list()

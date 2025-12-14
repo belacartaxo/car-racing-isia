@@ -3,6 +3,26 @@
     "pretrained_old": {
       "iterations": 0,
       "total_timesteps": 0
+    },
+    "off_track_run": {
+      "iterations": 2,
+      "total_timesteps": 100000
+    },
+    "offtrack_v2_soft": {
+      "iterations": 47,
+      "total_timesteps": 2350000
+    },
+    "coins_v1": {
+      "iterations": 8,
+      "total_timesteps": 400000
+    },
+    "smoke_test_budget": {
+      "iterations": 1,
+      "total_timesteps": 50000
+    },
+    "orig_ppo_base": {
+      "iterations": 6,
+      "total_timesteps": 300000
     }
   }
 }
