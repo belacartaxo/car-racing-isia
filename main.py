@@ -1,3 +1,5 @@
+"""CLI to train, evaluate, resume and play CarRacing agents with custom environments."""
+
 import time
 import sys
 from pathlib import Path
@@ -7,6 +9,7 @@ from numbers import Real
 
 import gymnasium as gym
 from gymnasium import spaces
+import numpy as np
 from loguru import logger
 from stable_baselines3.common.logger import (
     Logger,
@@ -19,6 +22,7 @@ from stable_baselines3.common.logger import (
     Image,
     HParam,
 )
+from stable_baselines3.common.save_util import load_from_zip_file
 
 from environment.custom_car_racing_env import CustomCarRacingEnv
 from environment.coins_car_racing_env import CoinsCarRacingEnv
@@ -32,6 +36,7 @@ from utils.config import (
     LATEST_MODEL_NAME,
     BEST_MODEL_NAME,
     DEVICE,
+    HYPERPARAMS,
 )
 from utils.training_counter import (
     list_runs,
@@ -45,6 +50,7 @@ from utils.training_counter import (
 
 # Inspect environment
 def see_space(env):
+    """Log the action/observation spaces and a sample observation for debugging."""
     logger.info("Inspecting environment spaces")
     logger.info(f"Action space: {env.action_space}")
     logger.info(f"Observation space: {env.observation_space}")
@@ -62,6 +68,7 @@ def see_space(env):
 
 # Prepare folders
 def prepare_algo_folder(algorithm):
+    """Create base folders for models/logs of the chosen algorithm."""
     algo_dir = Path(MODELS_DIR) / algorithm
     algo_dir.mkdir(parents=True, exist_ok=True)
     Path(LOGS_DIR).mkdir(parents=True, exist_ok=True)
@@ -144,6 +151,7 @@ class SemicolonCSVOutputFormat(KVWriter):
 
 
 def _set_sb3_logger(model, algorithm, run_name, env_label=None):
+    """Attach Human, TensorBoard and semicolon-separated CSV loggers to the model."""
     if not algorithm or not run_name:
         return model
     log_dir = Path(LOGS_DIR) / f"{algorithm}_{run_name}"
@@ -160,6 +168,7 @@ def _set_sb3_logger(model, algorithm, run_name, env_label=None):
 
 
 def _log_eval_metrics(model, iteration, total_timesteps, episode, reward):
+    """Log evaluation metrics to the model logger if available."""
     if not getattr(model, "logger", None):
         return
     if iteration is not None:
@@ -172,6 +181,7 @@ def _log_eval_metrics(model, iteration, total_timesteps, episode, reward):
 
 
 def _log_run_config(model, env, algorithm, run_name, policy, env_label):
+    """Record config values (algo, env, hyperparams) into the logger for traceability."""
     if not getattr(model, "logger", None):
         return
 
@@ -185,6 +195,10 @@ def _log_run_config(model, env, algorithm, run_name, policy, env_label):
     _rec("config/policy", policy)
     _rec("config/env_label", env_label)
     _rec("config/env_class", env.__class__.__name__)
+    if hasattr(env, "observation_mode"):
+        _rec("config/env_observation_mode", getattr(env, "observation_mode"))
+    if hasattr(env, "include_mask"):
+        _rec("config/env_include_mask", getattr(env, "include_mask"))
 
     lr = getattr(model, "learning_rate", None)
     _rec("config/learning_rate", lr if isinstance(lr, Real) else str(lr))
@@ -196,7 +210,7 @@ def _log_run_config(model, env, algorithm, run_name, policy, env_label):
             else:
                 _rec(f"config/{key}", str(val))
 
-    # Config especÇ¦fica do ambiente
+    # Environment-specific settings
     for key in [
         "off_track_penalty",
         "off_track_border",
@@ -215,39 +229,190 @@ def _log_run_config(model, env, algorithm, run_name, policy, env_label):
     model.logger.dump(0)
 
 
-def select_environment(render_mode: str):
+def select_environment_choice():
+    """Prompt user for base environment selection (original/custom/coins)."""
     print("\nSelect environment type:")
     print("1 - Original CarRacing (no custom reward, no coins)")
     print("2 - Custom CarRacing (off-track penalty only)")
-    print("3 - Custom CarRacing with coins (off-track penalty + coin reward)")
+    print("3 - Custom CarRacing with coins")
+    return input("\nYour choice: ").strip()
 
+
+COINS_VARIANTS = {
+    "cnn": {
+        "observation_mode": "image_only",
+        "include_mask": False,
+        "policy": "CnnPolicy",
+        "label": "coins-cnn",
+        "desc": "Coins CNN (image only)",
+    },
+    "multi_coins": {
+        "observation_mode": "coins_only",
+        "include_mask": False,
+        "policy": "MultiInputPolicy",
+        "label": "coins-coins",
+        "desc": "MultiInput (coins only)",
+    },
+    "multi_full": {
+        "observation_mode": "image_and_coins",
+        "include_mask": True,
+        "policy": "MultiInputPolicy",
+        "label": "coins-full",
+        "desc": "MultiInput (coins + track)",
+    },
+}
+
+
+def select_coins_variant_for_new():
+    """Prompt for coins observation/policy variant when starting a new run."""
+    print("\nSelect coins observation/policy type:")
+    options = [
+        ("1", COINS_VARIANTS["cnn"]["desc"]),
+        ("2", COINS_VARIANTS["multi_coins"]["desc"]),
+        ("3", COINS_VARIANTS["multi_full"]["desc"]),
+    ]
+    for k, label in options:
+        print(f"{k} - {label}")
     choice = input("\nYour choice: ").strip()
-
     if choice == "1":
-        env = gym.make("CarRacing-v3", render_mode=render_mode)
-        env_label = "original"
-    elif choice == "2":
-        env = CustomCarRacingEnv(render_mode=render_mode)
-        env_label = "custom"
-    elif choice == "3":
-        env = CoinsCarRacingEnv(render_mode=render_mode)
-        env_label = "coins"
+        return "cnn"
+    if choice == "2":
+        return "multi_coins"
+    return "multi_full"
+
+
+def infer_coins_variant_from_model(model_path):
+    """Inspect a saved model to guess which coins observation variant it expects."""
+    try:
+        loaded = load_from_zip_file(model_path)
+    except Exception as e:
+        logger.warning(f"Could not inspect model at {model_path}: {e}. Falling back to coins-full with mask.")
+        return "multi_full", True
+
+    if isinstance(loaded, tuple):
+        data = loaded[0]
     else:
-        print("Invalid choice, defaulting to Original CarRacing.")
-        env = gym.make("CarRacing-v3", render_mode=render_mode)
-        env_label = "original"
-
-    return env, env_label
-
-
-def select_policy(env):
-    obs_space = env.observation_space
+        data = loaded
+    obs_space = data.get("observation_space")
     if isinstance(obs_space, spaces.Dict):
-        return "MultiInputPolicy"
-    shape = getattr(obs_space, "shape", ())
-    if len(shape) == 3:
-        return "CnnPolicy"
-    return "MlpPolicy"
+        keys = set(obs_space.spaces.keys())
+        if keys == {"coins"}:
+            return "multi_coins", False
+        if "image" in keys:
+            img_space = obs_space.spaces["image"]
+            shape = getattr(img_space, "shape", ())
+            channels = shape[0] if len(shape) == 3 else shape[-1] if len(shape) >= 1 else 3
+            include_mask = channels >= 4
+            return "multi_full", include_mask
+    if isinstance(obs_space, spaces.Box):
+        shape = getattr(obs_space, "shape", ())
+        if len(shape) == 3:
+            channels = shape[0]
+            include_mask = channels >= 4
+            return "cnn", include_mask
+        if len(shape) == 1:
+            return "multi_coins", False
+    return "multi_full", True
+
+
+def build_environment(env_choice, render_mode, coins_variant=None, include_mask_override=None):
+    """Instantiate the selected environment and return it along with label and policy hint."""
+    if env_choice == "1":
+        env = gym.make("CarRacing-v3", render_mode=render_mode)
+        return env, "original", "CnnPolicy"
+    if env_choice == "2":
+        env = CustomCarRacingEnv(render_mode=render_mode, include_mask=True)
+        return env, "custom", "CnnPolicy"
+    if env_choice == "3":
+        variant_key = coins_variant or "multi_full"
+        variant = COINS_VARIANTS[variant_key]
+        include_mask = variant["include_mask"] if include_mask_override is None else include_mask_override
+        env = CoinsCarRacingEnv(
+            render_mode=render_mode,
+            observation_mode=variant["observation_mode"],
+            include_mask=include_mask,
+        )
+        label = variant["label"]
+        # Ajusta label se usamos mask desligada
+        if variant["observation_mode"] == "image_and_coins" and not include_mask:
+            label = "coins-full-3c"
+        if variant["observation_mode"] == "image_only" and include_mask:
+            label = "coins-cnn-4c"
+        return env, label, variant["policy"]
+    # fallback
+    env = gym.make("CarRacing-v3", render_mode=render_mode)
+    return env, "original", "CnnPolicy"
+
+
+def play_human(env):
+    """Play the environment with keyboard arrows, supporting pyglet (original) and pygame renders."""
+    # Detect backend: pyglet (original) vs pygame (coins/custom render override)
+    viewer = getattr(env.unwrapped, "viewer", None)
+    use_pyglet = viewer is not None and getattr(viewer, "window", None) is not None
+    keys = None
+    pygame = None
+
+    if use_pyglet:
+        try:
+            from pyglet.window import key
+            keys = key.KeyStateHandler()
+            viewer.window.push_handlers(keys)
+        except Exception as e:
+            print(f"Cannot start human play (pyglet unavailable): {e}")
+            return
+    else:
+        try:
+            import pygame as _pg
+            pygame = _pg
+        except Exception as e:
+            print(f"Cannot start human play (pygame unavailable): {e}")
+            return
+
+    obs, info = env.reset()
+    print("Playing as human. Use arrow keys to drive, ESC to quit.")
+
+    while True:
+        env.render()
+
+        steer = 0.0
+        gas = 0.0
+        brake = 0.0
+
+        if use_pyglet:
+            if keys[key.LEFT]:
+                steer = -1.0
+            if keys[key.RIGHT]:
+                steer = 1.0
+            if keys[key.UP]:
+                gas = 1.0
+            if keys[key.DOWN]:
+                brake = 1.0
+            if keys[key.ESCAPE]:
+                break
+        else:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    env.close()
+                    return
+            pressed = pygame.key.get_pressed()
+            if pressed[pygame.K_LEFT]:
+                steer = -1.0
+            if pressed[pygame.K_RIGHT]:
+                steer = 1.0
+            if pressed[pygame.K_UP]:
+                gas = 1.0
+            if pressed[pygame.K_DOWN]:
+                brake = 1.0
+            if pressed[pygame.K_ESCAPE]:
+                break
+
+        action = np.array([steer, gas, brake], dtype=np.float32)
+        obs, reward, terminated, truncated, info = env.step(action)
+
+        if terminated or truncated:
+            obs, info = env.reset()
+
+    env.close()
 
 
 def select_action_for_run(algorithm: str):
@@ -292,6 +457,7 @@ def train_agent(
     best_model_path=None,
     best_reward=None,
 ):
+    """Run the training loop for ITERATIONS, saving checkpoints and updating best model."""
     iterations = start_iterations
     total_timesteps = start_total_timesteps
 
@@ -316,7 +482,7 @@ def train_agent(
         save_training_stats(algorithm, run_name, iterations, total_timesteps)
         logger.info(f"Saved training progress for {algorithm} run '{run_name}': iteration {iterations}")
 
-        # Avalia a cada iteraÇõÇœ e atualiza best se melhorar
+        # Evaluate after each iteration and update best if improved
         avg_reward = evaluate_agent(env, model, algorithm, run_name, iterations, total_timesteps)
         if avg_reward is not None and best_model_path is not None:
             current_best = best_reward
@@ -333,6 +499,7 @@ def train_agent(
 
 # Evaluate model
 def evaluate_agent(env, model, algorithm=None, run_name=None, iteration=None, total_timesteps=None):
+    """Run deterministic evaluation episodes and log rewards."""
     logger.info("Starting evaluation")
 
     rewards = []
@@ -375,13 +542,11 @@ if __name__ == "__main__":
     view_choice = input("\nYour choice: ").strip()
     render_mode = "human" if view_choice == "1" else None
 
-    env, env_label = select_environment(render_mode)
-    see_space(env)
-    policy = select_policy(env)
-    logger.info(f"Selected policy: {policy}")
+    env_choice = select_environment_choice()
 
     # SELECT ALGORITHM
     algo_list = get_algorithm_list()
+    algo_list.append("Human")
 
     print("\nSelect training algorithm:")
     for i, name in enumerate(algo_list, start=1):
@@ -391,8 +556,17 @@ if __name__ == "__main__":
     algorithm = algo_list[algo_choice - 1]
 
     logger.info(f"Selected algorithm: {algorithm}")
+    algo_kwargs = HYPERPARAMS.get(algorithm, {})
 
     algo_dir = prepare_algo_folder(algorithm)
+    # Human mode: play with arrows, no training
+    if algorithm == "Human":
+        # Force human render mode
+        render_mode = "human"
+        env, env_label, policy = build_environment(env_choice, render_mode)
+        play_human(env)
+        sys.exit(0)
+
     action = select_action_for_run(algorithm)
     prune_missing_dirs()
     AlgoClass = ALGORITHMS[algorithm]
@@ -402,6 +576,46 @@ if __name__ == "__main__":
     iterations = 0
     total_timesteps = 0
     best_reward = None
+    run_dir = None
+    best_model_path = None
+    latest_model_path = None
+    coins_variant = None
+    include_mask_override = None
+
+    # If we already know the run (continue/evaluate/override), discover model and adjust env/policy
+    if action in {"2", "3", "4"}:
+        run_name = select_run_name(algorithm)
+        if run_name is None:
+            print("No valid run selected. Exiting.")
+            sys.exit(0)
+        run_dir = Path(algo_dir) / run_name
+        run_dir.mkdir(parents=True, exist_ok=True)
+        latest_model_path = run_dir / LATEST_MODEL_NAME
+        best_model_path = run_dir / BEST_MODEL_NAME
+        has_model = latest_model_path.exists() or best_model_path.exists()
+        best_reward = load_best_reward(algorithm, run_name)
+        chosen_model_path = best_model_path if best_model_path and best_model_path.exists() else latest_model_path
+        if env_choice == "3":
+            if has_model and chosen_model_path and chosen_model_path.exists():
+                coins_variant, include_mask_override = infer_coins_variant_from_model(str(chosen_model_path))
+            else:
+                coins_variant = select_coins_variant_for_new()
+        elif not has_model and action == "3":
+            print("No saved model found for evaluation. Exiting.")
+            sys.exit(0)
+    else:
+        has_model = False
+
+    # Build environment and select policy based on choices
+    if env_choice == "3":
+        if coins_variant is None:
+            coins_variant = select_coins_variant_for_new()
+        env, env_label, policy = build_environment(env_choice, render_mode, coins_variant, include_mask_override)
+    else:
+        env, env_label, policy = build_environment(env_choice, render_mode)
+
+    see_space(env)
+    logger.info(f"Selected policy: {policy}")
 
     if action == "1":
         run_name = input("\nEnter a name for this run: ").strip()
@@ -417,23 +631,12 @@ if __name__ == "__main__":
             verbose=1,
             tensorboard_log=str(Path(LOGS_DIR) / f"{algorithm}_{run_name}"),
             device=DEVICE,
+            **algo_kwargs,
         )
         _set_sb3_logger(model, algorithm, run_name, env_label)
         _log_run_config(model, env, algorithm, run_name, policy, env_label)
 
     elif action in {"2", "3", "4"}:
-        run_name = select_run_name(algorithm)
-        if run_name is None:
-            print("No valid run selected. Exiting.")
-            sys.exit(0)
-
-        run_dir = Path(algo_dir) / run_name
-        run_dir.mkdir(parents=True, exist_ok=True)
-        latest_model_path = run_dir / LATEST_MODEL_NAME
-        best_model_path = run_dir / BEST_MODEL_NAME
-        has_model = latest_model_path.exists() or best_model_path.exists()
-        best_reward = load_best_reward(algorithm, run_name)
-
         if action == "4":
             confirm = input(f"Type YES to override run '{run_name}': ").strip()
             if confirm != "YES":
@@ -447,6 +650,7 @@ if __name__ == "__main__":
                 verbose=1,
                 tensorboard_log=str(Path(LOGS_DIR) / f"{algorithm}_{run_name}"),
                 device=DEVICE,
+                **algo_kwargs,
             )
             _set_sb3_logger(model, algorithm, run_name, env_label)
             _log_run_config(model, env, algorithm, run_name, policy, env_label)
@@ -464,10 +668,11 @@ if __name__ == "__main__":
                 verbose=1,
                 tensorboard_log=str(Path(LOGS_DIR) / f"{algorithm}_{run_name}"),
                 device=DEVICE,
+                **algo_kwargs,
             )
             _set_sb3_logger(model, algorithm, run_name, env_label)
             _log_run_config(model, env, algorithm, run_name, policy, env_label)
-            # se aÇ¦o era apenas avaliar, cairÇ­ no fluxo de treino
+            # if action was evaluate-only, fall into training flow
             if action == "3":
                 action = "2"
         else:

@@ -1,0 +1,8 @@
+config/env_class;config/algorithm;config/env_idle_min_speed;config/gamma;config/clip_range;config/batch_size;config/env_max_off_track_steps;config/max_grad_norm;config/env_idle_penalty;config/n_steps;config/env_include_mask;config/env_coin_reward;config/env_speed_reward_scale;config/ent_coef;config/n_epochs;config/env_off_track_penalty;config/env_idle_patience_steps;config/env_n_coins;config/env_observation_mode;config/env_off_track_border;config/env_label;config/policy;config/learning_rate;config/gae_lambda;config/run_name;config/vf_coef;eval/iteration;eval/episode_reward;eval/total_timesteps;eval/episode
+"CoinsCarRacingEnv";"PPO";1.2;0.99;"FloatSchedule(ConstantSchedule(val=0.2))";64;20;0.5;70;2048;True;100;0.15;0;10;60;20;10;"image_and_coins";0.2;"coins-full";"MultiInputPolicy";0.0003;0.95;"aquiles";0.5;;;;
+"CoinsCarRacingEnv";"PPO";1.2;0.99;"FloatSchedule(ConstantSchedule(val=0.2))";64;20;0.5;70;2048;True;100;0.15;0;10;60;20;10;"image_and_coins";0.2;"coins-full";"MultiInputPolicy";0.0003;0.95;"aquiles";0.5;;;;
+"CoinsCarRacingEnv";"PPO";1.2;0.99;"FloatSchedule(ConstantSchedule(val=0.2))";64;20;0.5;70;2048;True;100;0.15;0;10;60;20;10;"image_and_coins";0.2;"coins-full";"MultiInputPolicy";0.0003;0.95;"aquiles";0.5;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;44;2.94e+04;2200000;1
+"CoinsCarRacingEnv";"PPO";1.2;0.99;"FloatSchedule(ConstantSchedule(val=0.2))";64;20;0.5;70;2048;True;100;0.3;0;10;60;20;10;"image_and_coins";0.2;"coins-full";"MultiInputPolicy";0.0003;0.95;"aquiles";0.5;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;44;3.74e+04;2200000;1
+;;;;;;;;;;;;;;;;;;;;;;;;;;44;3.28e+04;2200000;2

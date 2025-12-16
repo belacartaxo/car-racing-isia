@@ -1,3 +1,5 @@
+"""Utilities to track training progress and best rewards across runs/models."""
+
 import json
 from pathlib import Path
 
@@ -5,6 +7,7 @@ COUNTERS_PATH = Path("models") / "training_counters.json"
 
 
 def _load_all():
+    """Load counters file into memory, handling legacy/invalid formats."""
     if COUNTERS_PATH.exists():
         with open(COUNTERS_PATH, "r") as f:
             try:
@@ -28,12 +31,14 @@ def _load_all():
 
 
 def _save_all(data):
+    """Persist counters to disk, ensuring parent directory exists."""
     COUNTERS_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(COUNTERS_PATH, "w") as f:
         json.dump(data, f, indent=2)
 
 
 def _list_run_dirs(algorithm: str):
+    """Return existing run directories for a given algorithm."""
     algo_dir = COUNTERS_PATH.parent / algorithm
     if not algo_dir.exists():
         return []
@@ -41,6 +46,7 @@ def _list_run_dirs(algorithm: str):
 
 
 def list_runs(algorithm: str):
+    """List known runs combining counters file and actual directories."""
     data = _load_all()
     algo_data = data.get(algorithm, {})
     counter_runs = list(algo_data.keys()) if isinstance(algo_data, dict) else []
@@ -58,6 +64,7 @@ def list_runs(algorithm: str):
 
 
 def load_training_stats(algorithm: str, run_name: str):
+    """Load iteration and timestep counters for a run."""
     data = _load_all()
     algo_data = data.get(algorithm, {})
     run_data = algo_data.get(run_name, {})
@@ -67,6 +74,7 @@ def load_training_stats(algorithm: str, run_name: str):
 
 
 def load_best_reward(algorithm: str, run_name: str):
+    """Return best_reward stored for a run, or None."""
     data = _load_all()
     algo_data = data.get(algorithm, {})
     run_data = algo_data.get(run_name, {})
@@ -74,6 +82,7 @@ def load_best_reward(algorithm: str, run_name: str):
 
 
 def save_training_stats(algorithm: str, run_name: str, iterations: int, total_timesteps: int):
+    """Persist iteration and timestep counters, keeping existing best_reward if present."""
     data = _load_all()
     if algorithm not in data or not isinstance(data[algorithm], dict):
         data[algorithm] = {}
@@ -87,6 +96,7 @@ def save_training_stats(algorithm: str, run_name: str, iterations: int, total_ti
 
 
 def save_best_reward(algorithm: str, run_name: str, best_reward):
+    """Persist best_reward for a run, creating the entry if needed."""
     data = _load_all()
     if algorithm not in data or not isinstance(data[algorithm], dict):
         data[algorithm] = {}
@@ -97,6 +107,7 @@ def save_best_reward(algorithm: str, run_name: str, best_reward):
 
 
 def prune_missing_dirs():
+    """Remove counter entries whose run directories no longer exist."""
     data = _load_all()
     changed = False
     for algo, runs in list(data.items()):

@@ -6,12 +6,37 @@
     },
     "oficial": {
       "iterations": 5,
-      "total_timesteps": 250000
+      "total_timesteps": 250000,
+      "best_reward": 378.4338284688991
     },
     "hope": {
       "iterations": 68,
       "total_timesteps": 3400000,
       "best_reward": 215426.43511970295
+    },
+    "aquiles": {
+      "iterations": 44,
+      "total_timesteps": 2200000,
+      "best_reward": 93796.27697671253
+    }
+  },
+  "A2C": {
+    "final_a2c": {
+      "iterations": 6,
+      "total_timesteps": 300000,
+      "best_score": -11.3
+    },
+    "a2c_value_50": {
+      "iterations": 6,
+      "total_timesteps": 300000,
+      "best_score": 30.0
+    }
+  },
+  "DDPG": {
+    "value_10": {
+      "iterations": 2,
+      "total_timesteps": 100000,
+      "best_score": -83.0
     }
   }
 }

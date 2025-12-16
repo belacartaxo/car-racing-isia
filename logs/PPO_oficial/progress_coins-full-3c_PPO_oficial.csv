@@ -1,0 +1,6 @@
+config/n_steps;config/clip_range;config/ent_coef;config/run_name;config/env_off_track_border;config/gamma;config/env_speed_reward_scale;config/max_grad_norm;config/env_n_coins;config/env_idle_patience_steps;config/env_idle_penalty;config/env_include_mask;config/env_coin_reward;config/vf_coef;config/learning_rate;config/batch_size;config/algorithm;config/policy;config/env_class;config/env_observation_mode;config/n_epochs;config/env_off_track_penalty;config/gae_lambda;config/env_label;config/env_idle_min_speed;config/env_max_off_track_steps;eval/episode;eval/iteration;eval/total_timesteps;eval/episode_reward
+2048;"FloatSchedule(ConstantSchedule(val=0.2))";0;"oficial";0.2;0.99;0.3;0.5;10;20;70;False;100;0.5;0.0003;64;"PPO";"MultiInputPolicy";"CoinsCarRacingEnv";"image_and_coins";10;60;0.95;"coins-full-3c";1.2;20;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;1;5;250000;381
+;;;;;;;;;;;;;;;;;;;;;;;;;;2;5;250000;371
+;;;;;;;;;;;;;;;;;;;;;;;;;;3;5;250000;384
+2048;"FloatSchedule(ConstantSchedule(val=0.2))";0;"oficial";0.2;0.99;0.3;0.5;10;20;70;False;100;0.5;0.0003;64;"PPO";"MultiInputPolicy";"CoinsCarRacingEnv";"image_and_coins";10;60;0.95;"coins-full-3c";1.2;20;;;;

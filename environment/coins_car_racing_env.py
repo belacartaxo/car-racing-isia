@@ -1,3 +1,5 @@
+"""CarRacing variant with collectible coins and optional observation modes."""
+
 import math
 import numpy as np
 import pygame
@@ -9,56 +11,74 @@ from environment.custom_car_racing_env import CustomCarRacingEnv
 
 
 class CoinsCarRacingEnv(CustomCarRacingEnv):
-    def __init__(self, n_coins=10, coin_reward=100.0, **kwargs):
-        super().__init__(**kwargs)
+    """CustomCarRacingEnv with coin placement, rewards and multi-modal observations."""
+
+    def __init__(self, n_coins=10, coin_reward=100.0, observation_mode: str = "image_and_coins", include_mask: bool = True, **kwargs):
+        """
+        observation_mode:
+            - "image_only": image only (CNN)
+            - "coins_only": coins feature vector only (Dict with key 'coins')
+            - "image_and_coins": Dict with image + coins vector (default)
+        """
+        super().__init__(include_mask=include_mask, **kwargs)
 
         self.n_coins = n_coins
         self.coin_reward = coin_reward
+        self.observation_mode = observation_mode
 
         self.coins = []
         self.coins_collected = []
-        self.coins_removed = []  # usadas para esconder quando já passaram
-        self.coins_collected_total = 0  # acumulado ao longo da sessão/laps
-        self.coins_collected_episode = 0  # reseta a cada episódio
+        self.coins_removed = []  # hide coins already passed
+        self.coins_collected_total = 0  # accumulated across laps
+        self.coins_collected_episode = 0  # reset each episode
 
         self.track_points = []
         self.max_track_progress = 0
-        self.progress_buffer = 2          # margem para remoção de moedas já ultrapassadas
-        self.progress_activation_dist = 10.0  # só atualiza progresso se perto do traçado
+        self.progress_buffer = 2          # margin before removing coins already passed
+        self.progress_activation_dist = 10.0  # only update progress when near the track
         self.prev_track_idx = 0
 
-        self.coin_radius = 1.2          # tamanho visual da moeda
-        self.coin_pickup_radius = 3.0   # raio de coleta ao passar por cima (mais tolerante)
+        self.coin_radius = 1.2          # visual size of the coin
+        self.coin_pickup_radius = 3.0   # pickup radius (tolerant)
 
-        # Features estruturadas para moedas (k mais prÇüximas + contagens)
+        # Structured coin features (k nearest + counts)
         self.coin_feature_k = 5
         self.coin_feature_dim = self.coin_feature_k * 3 + 3
         base_image_space = self.observation_space
-        self.observation_space = spaces.Dict(
-            {
-                "image": base_image_space,
-                "coins": spaces.Box(
-                    low=-np.inf,
-                    high=np.inf,
-                    shape=(self.coin_feature_dim,),
-                    dtype=np.float32,
-                ),
-            }
+        coin_space = spaces.Box(
+            low=-np.inf,
+            high=np.inf,
+            shape=(self.coin_feature_dim,),
+            dtype=np.float32,
         )
+        if self.observation_mode == "image_only":
+            self.observation_space = base_image_space
+        elif self.observation_mode == "coins_only":
+            self.observation_space = spaces.Dict({"coins": coin_space})
+        else:  # "image_and_coins"
+            self.observation_mode = "image_and_coins"
+            self.observation_space = spaces.Dict(
+                {
+                    "image": base_image_space,
+                    "coins": coin_space,
+                }
+            )
         self._track_norm = TRACK_RAD
 
     # -------------------------------
-    # RESET DO AMBIENTE
+    # ENV RESET
     # -------------------------------
     def reset(self, **kwargs):
+        """Reset environment state and compose initial observation with coins features."""
         obs, info = super().reset(**kwargs)
         self._reset_coins()
         return self._compose_obs(obs), info
 
     # -------------------------------
-    # POSICIONAMENTO DAS MOEDAS
+    # COIN PLACEMENT
     # -------------------------------
     def _reset_coins(self):
+        """Place coins along the track and reset counters."""
         self.coins = []
         self.coins_collected = []
         self.coins_removed = []
@@ -69,7 +89,7 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         self.prev_track_idx = 0
 
         if hasattr(self, "track") and self.track is not None and len(self.track) > 0:
-            # muitas moedas, bem próximas: uma moeda por tile do traçado
+            # dense placement: one coin per track tile
             for _, _, x, y in self.track:
                 self.coins.append((x, y))
                 self.coins_collected.append(False)
@@ -77,6 +97,7 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
                 self.track_points.append((x, y))
 
     def _update_progress(self, car_x, car_y):
+        """Track how far along the track the car is to respawn or remove coins."""
         if not self.track_points:
             return
 
@@ -84,11 +105,11 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         dists = np.hypot(pts[:, 0] - car_x, pts[:, 1] - car_y)
         idx = int(np.argmin(dists))
 
-        # Só considera progresso se o carro está próximo do traçado
+        # Only update progress if car is close to the track
         if dists[idx] > self.progress_activation_dist:
             return
 
-        # Detecta nova volta: se voltamos para o início depois de avançar bastante, respawna todas
+        # Detect lap: if we wrapped after sufficient progress, respawn all coins
         track_len = len(self.track_points)
         crossed_lap = (
             track_len > 0
@@ -107,7 +128,7 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         self.current_track_idx = idx
 
     def _build_coin_features(self, car_x, car_y):
-        """Retorna vetor fixo com k moedas mais prÇüximas + contagens normalizadas."""
+        """Return fixed-size feature vector with nearest k coins and normalized counts."""
         entries = []
         for i, (cx, cy) in enumerate(self.coins):
             if self.coins_collected[i] or self.coins_removed[i]:
@@ -142,19 +163,25 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         return np.array(features, dtype=np.float32)
 
     def _compose_obs(self, image_obs):
+        """Compose observation according to observation_mode."""
         if self.car is None:
             coin_features = np.zeros(self.coin_feature_dim, dtype=np.float32)
         else:
             car_x, car_y = self.car.hull.position
             coin_features = self._build_coin_features(car_x, car_y)
 
+        if self.observation_mode == "image_only":
+            return image_obs
+        if self.observation_mode == "coins_only":
+            return {"coins": coin_features}
         return {"image": image_obs, "coins": coin_features}
 
     # -------------------------------
-    # STEP COM RECOMPENSA EXTRA
+    # STEP WITH EXTRA COIN REWARD
     # -------------------------------
     def step(self, action):
-        # Durante reset, CarRacing chama step(None); evitamos compor obs duas vezes
+        """Apply coin bonuses and return composed observation with info diagnostics."""
+        # During reset CarRacing calls step(None); avoid composing obs twice
         if action is None:
             return super().step(action)
 
@@ -181,13 +208,13 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
                 self.coins_collected_total += 1
                 self.coins_collected_episode += 1
             else:
-                # Se já passamos desse índice no traçado, remova sem bônus
+                # If we've passed this track index already, remove without bonus
                 if i < self.max_track_progress - self.progress_buffer:
                     self.coins_removed[i] = True
 
         reward += bonus
         if bonus != 0.0:
-            # Mantém self.reward alinhado com o HUD e evita salto no prÇ=ximo step_reward
+            # Keep self.reward aligned with HUD to avoid jump on next step_reward
             self.reward += bonus
             self.prev_reward = self.reward
 
@@ -212,7 +239,7 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
             px = pos[0] * zoom + translation[0]
             py = pos[1] * zoom + translation[1]
 
-            # A superfície já foi flipada no render base; ajusta o eixo Y para fixar na pista
+            # Surface already flipped in base render; adjust Y to stick to track
             py = WINDOW_H - py
 
             pulse = 1.0 + 0.05 * math.sin(self.t * 4.0)
@@ -221,12 +248,12 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
             if px < -50 or px > WINDOW_W + 50 or py < -50 or py > WINDOW_H + 50:
                 continue
 
-            hud_height = (5 * WINDOW_H) / 40.0  # mesma faixa preta do HUD
+            hud_height = (5 * WINDOW_H) / 40.0  # same black HUD band as base
             hud_y = WINDOW_H - hud_height
             if py >= hud_y:
                 continue
 
-            # Paleta de dourado e camadas
+            # Gold palette and layers
             shadow_color = (40, 40, 40)
             outer_color = (200, 160, 20)
             mid_color = (238, 196, 60)
@@ -236,10 +263,10 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
             px_i = int(px)
             py_i = int(py)
 
-            # Sombra leve (sem alpha para manter compatibilidade da surface)
+            # Soft shadow (no alpha to keep surface compatibility)
             pygame.gfxdraw.filled_circle(self.surf, px_i + 2, py_i + 3, radius_px + 2, shadow_color)
 
-            # Corpo com degradê simples (círculos concêntricos)
+            # Simple gradient using concentric circles
             pygame.gfxdraw.filled_circle(self.surf, px_i, py_i, radius_px, outer_color)
             pygame.gfxdraw.aacircle(self.surf, px_i, py_i, radius_px, outer_color)
 
@@ -249,7 +276,7 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
             inner_r = max(1, int(radius_px * 0.45))
             pygame.gfxdraw.filled_circle(self.surf, px_i, py_i, inner_r, inner_color)
 
-            # Highlight no canto superior esquerdo
+            # Highlight on top-left
             hl_r = max(1, int(radius_px * 0.3))
             pygame.gfxdraw.filled_circle(self.surf, px_i - radius_px // 3, py_i - radius_px // 3, hl_r, highlight_color)
 
@@ -281,11 +308,11 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         bg_rect.bottom = WINDOW_H - padding
         bg_rect.right = WINDOW_W - padding
 
-        # caixa com borda e leve brilho
+        # Small box with border and soft glow
         pygame.draw.rect(self.surf, (25, 25, 25), bg_rect, border_radius=10)
         pygame.draw.rect(self.surf, (90, 90, 90), bg_rect, width=1, border_radius=10)
 
-        # ícone de moeda simples ao lado do título
+        # Simple coin icon next to the title
         icon_r = 8
         icon_x = bg_rect.left + padding
         icon_y = bg_rect.top + padding + title_surf.get_height() // 2
@@ -300,13 +327,13 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         self.surf.blit(sub_surf, sub_pos)
 
     # -------------------------------
-    # ✅ RENDER CORRETO (ESTE É O PONTO-CHAVE)
+    # Render path used to inject coins/HUD before flipping
     # -------------------------------
     def _render(self, mode):
         if mode != "human":
             return super()._render(mode)
 
-        # Replicando o _render base para inserir moedas/HUD antes do flip
+        # Mirror base _render to insert coins/HUD before the flip
         pygame.font.init()
         if self.screen is None:
             pygame.init()
@@ -339,7 +366,7 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
 
         self.surf = pygame.transform.flip(self.surf, False, True)
 
-        # HUD base do jogo
+        # Base game HUD
         self._render_indicators(WINDOW_W, WINDOW_H)
         font = pygame.font.Font(pygame.font.get_default_font(), 42)
         text = font.render("%04i" % self.reward, True, (255, 255, 255), (0, 0, 0))
@@ -347,11 +374,11 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         text_rect.center = (60, WINDOW_H - WINDOW_H * 2.5 / 40.0)
         self.surf.blit(text, text_rect)
 
-        # Overlay de moedas
+        # Coins overlay
         self._render_coins(zoom, translation, angle)
         self._render_coin_counter()
 
-        # Flip final (único) para evitar piscadas
+        # Final flip to avoid flicker
         pygame.event.pump()
         self.clock.tick(self.metadata["render_fps"])
         self.screen.fill(0)
