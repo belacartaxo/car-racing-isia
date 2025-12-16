@@ -3,6 +3,15 @@
     "pretrained_old": {
       "iterations": 0,
       "total_timesteps": 0
+    },
+    "oficial": {
+      "iterations": 5,
+      "total_timesteps": 250000
+    },
+    "hope": {
+      "iterations": 68,
+      "total_timesteps": 3400000,
+      "best_reward": 215426.43511970295
     }
   }
 }

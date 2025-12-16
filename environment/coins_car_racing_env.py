@@ -3,12 +3,13 @@ import numpy as np
 import pygame
 import pygame.gfxdraw
 
-from gymnasium.envs.box2d.car_racing import SCALE, WINDOW_W, WINDOW_H, ZOOM
+from gymnasium import spaces
+from gymnasium.envs.box2d.car_racing import SCALE, WINDOW_W, WINDOW_H, ZOOM, TRACK_RAD
 from environment.custom_car_racing_env import CustomCarRacingEnv
 
 
 class CoinsCarRacingEnv(CustomCarRacingEnv):
-    def __init__(self, n_coins=10, coin_reward=50.0, **kwargs):
+    def __init__(self, n_coins=10, coin_reward=100.0, **kwargs):
         super().__init__(**kwargs)
 
         self.n_coins = n_coins
@@ -27,7 +28,24 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         self.prev_track_idx = 0
 
         self.coin_radius = 1.2          # tamanho visual da moeda
-        self.coin_pickup_radius = 3.5   # raio de coleta ao passar por cima (mais tolerante)
+        self.coin_pickup_radius = 3.0   # raio de coleta ao passar por cima (mais tolerante)
+
+        # Features estruturadas para moedas (k mais prÇüximas + contagens)
+        self.coin_feature_k = 5
+        self.coin_feature_dim = self.coin_feature_k * 3 + 3
+        base_image_space = self.observation_space
+        self.observation_space = spaces.Dict(
+            {
+                "image": base_image_space,
+                "coins": spaces.Box(
+                    low=-np.inf,
+                    high=np.inf,
+                    shape=(self.coin_feature_dim,),
+                    dtype=np.float32,
+                ),
+            }
+        )
+        self._track_norm = TRACK_RAD
 
     # -------------------------------
     # RESET DO AMBIENTE
@@ -35,7 +53,7 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
     def reset(self, **kwargs):
         obs, info = super().reset(**kwargs)
         self._reset_coins()
-        return obs, info
+        return self._compose_obs(obs), info
 
     # -------------------------------
     # POSICIONAMENTO DAS MOEDAS
@@ -88,14 +106,62 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         self.prev_track_idx = idx
         self.current_track_idx = idx
 
+    def _build_coin_features(self, car_x, car_y):
+        """Retorna vetor fixo com k moedas mais prÇüximas + contagens normalizadas."""
+        entries = []
+        for i, (cx, cy) in enumerate(self.coins):
+            if self.coins_collected[i] or self.coins_removed[i]:
+                continue
+            dx = (cx - car_x) / self._track_norm
+            dy = (cy - car_y) / self._track_norm
+            dist_sq = dx * dx + dy * dy
+            entries.append((dist_sq, dx, dy))
+
+        entries.sort(key=lambda x: x[0])
+
+        features = []
+        for _, dx, dy in entries[: self.coin_feature_k]:
+            features.extend([dx, dy, 1.0])
+
+        while len(features) < self.coin_feature_k * 3:
+            features.extend([0.0, 0.0, 0.0])
+
+        total = max(len(self.coins), 1)
+        remaining = total - sum(self.coins_collected) - sum(self.coins_removed)
+        collected_episode = self.coins_collected_episode
+        collected_total = self.coins_collected_total
+
+        features.extend(
+            [
+                remaining / total,
+                collected_episode / total,
+                min(collected_total / total, 1.0),
+            ]
+        )
+
+        return np.array(features, dtype=np.float32)
+
+    def _compose_obs(self, image_obs):
+        if self.car is None:
+            coin_features = np.zeros(self.coin_feature_dim, dtype=np.float32)
+        else:
+            car_x, car_y = self.car.hull.position
+            coin_features = self._build_coin_features(car_x, car_y)
+
+        return {"image": image_obs, "coins": coin_features}
+
     # -------------------------------
     # STEP COM RECOMPENSA EXTRA
     # -------------------------------
     def step(self, action):
+        # Durante reset, CarRacing chama step(None); evitamos compor obs duas vezes
+        if action is None:
+            return super().step(action)
+
         obs, reward, terminated, truncated, info = super().step(action)
 
         if self.car is None or not self.coins:
-            return obs, reward, terminated, truncated, info
+            return self._compose_obs(obs), reward, terminated, truncated, info
 
         car_x, car_y = self.car.hull.position
 
@@ -120,6 +186,10 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
                     self.coins_removed[i] = True
 
         reward += bonus
+        if bonus != 0.0:
+            # Mantém self.reward alinhado com o HUD e evita salto no prÇ=ximo step_reward
+            self.reward += bonus
+            self.prev_reward = self.reward
 
         info["coin_bonus"] = bonus
         info["coins_collected"] = sum(self.coins_collected)
@@ -127,7 +197,7 @@ class CoinsCarRacingEnv(CustomCarRacingEnv):
         info["coins_collected_episode"] = self.coins_collected_episode
         info["coins_removed"] = sum(self.coins_removed)
 
-        return obs, reward, terminated, truncated, info
+        return self._compose_obs(obs), reward, terminated, truncated, info
 
     # -------------------------------
     # DESENHAR MOEDAS NA TELA

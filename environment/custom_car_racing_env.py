@@ -6,12 +6,22 @@ class CustomCarRacingEnv(CarRacing):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.off_track_border = 0.2
-        self.off_track_penalty = 5.0
-        self.max_off_track_steps = 50
+        self.off_track_penalty = 20.0
+        self.max_off_track_steps = 15
         self._off_track_steps = 0
+        # Anti-ociosidade: termina episÇ∫dio se ficar muito tempo quase parado
+        self.idle_min_speed = 1.2
+        self.idle_patience_steps = 20
+        self.idle_penalty = 70.0
+        self._idle_steps = 0
+        # BÇýnus leve por movimentaÇõÇœ para incentivar aceleraÇõÇœ
+        self.speed_reward_scale = 0.15
+        # BÇýnus por permanecer na pista
+        self.on_track_bonus = 0.05
 
     def reset(self, *, seed=None, options=None):
         self._off_track_steps = 0
+        self._idle_steps = 0
         return super().reset(seed=seed, options=options)
 
     def _point_in_poly(self, x, y, poly):
@@ -67,8 +77,30 @@ class CustomCarRacingEnv(CarRacing):
         else:
             self._off_track_steps = 0
             info["off_track"] = False
+            reward += self.on_track_bonus
 
         if self._off_track_steps > self.max_off_track_steps:
+            reward -= self.off_track_penalty * 2  # puniÇõÇœ extra por estourar limite fora da pista
             terminated = True
+
+        # Anti-ociosidade: se ficar muito tempo devagar, termina com penalidade
+        lin_vel = getattr(self.car.hull, "linearVelocity", None)
+        speed = 0.0
+        if lin_vel is not None:
+            speed = (lin_vel[0] ** 2 + lin_vel[1] ** 2) ** 0.5
+
+        # Bônus leve por se mover
+        reward += self.speed_reward_scale * speed
+
+        if lin_vel is not None:
+            if speed < self.idle_min_speed:
+                self._idle_steps += 1
+            else:
+                self._idle_steps = 0
+
+            if self._idle_steps > self.idle_patience_steps:
+                reward -= self.idle_penalty
+                terminated = True
+                info["idle_termination"] = True
 
         return obs, reward, terminated, truncated, info
