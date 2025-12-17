@@ -1,120 +1,149 @@
-import numpy as np
-import pygame.gfxdraw
+"""Extended CarRacing with off-track penalties, idle handling, speed bonus and optional mask channel."""
+
+from gymnasium import spaces
 from gymnasium.envs.box2d.car_racing import CarRacing
-from Box2D.b2 import b2CircleShape, b2FixtureDef, b2BodyDef, b2_staticBody
+import numpy as np
 
 
 class CustomCarRacingEnv(CarRacing):
-    def __init__(self, **kwargs):
+    """CarRacing variant with reward shaping and an optional on-track mask on observations."""
+
+    def __init__(self, include_mask: bool = True, **kwargs):
         super().__init__(**kwargs)
-
-        self.obstacle_radius = 2.0      # raio do cone no mundo Box2D
-        self.obstacle_positions = []
-        self.obstacle_bodies = []
-
-    # -------------------------------  
-    # GERA OBSTÁCULOS NA BORDA DA PISTA
-    # -------------------------------
-    def generate_obstacles_near_edge(self, num_obstacles=10):
-        self.obstacle_positions = []
-
-        for _ in range(num_obstacles):
-            tile = self.track[np.random.randint(0, len(self.track))]
-            _, _, cx, cy = tile  # track item = (alpha, beta, x, y)
-
-            width = 40 / 6.0  # TRACK_WIDTH / SCALE (valor da pista normal)
-
-            edge_dist = np.random.uniform(0.6, 0.9) * width
-            side = np.random.choice([-1, 1])
-
-            ox = cx + side * edge_dist
-            oy = cy
-
-            self.obstacle_positions.append((ox, oy))
-
-    # -------------------------------  
-    # RECRIAR PISTA E CRIAR CORPOS BOX2D
-    # -------------------------------
-    def _recreate_track(self, **args):
-        super()._recreate_track(**args)
-
-        for body in self.obstacle_bodies:
-            self.world.DestroyBody(body)
-        self.obstacle_bodies.clear()
-
-        self.generate_obstacles_near_edge(12)
-
-        for (x, y) in self.obstacle_positions:
-            body_def = b2BodyDef(type=b2_staticBody, position=(x, y))
-            body = self.world.CreateBody(body_def)
-
-            fixture = b2FixtureDef(
-                shape=b2CircleShape(radius=self.obstacle_radius),
-                density=1.0,
-                friction=0.9
+        self.include_mask = include_mask
+        self.off_track_border = 0.2
+        self.off_track_penalty = 60.0
+        self.off_track_penalty_growth = 0.4
+        self.max_off_track_steps = 20
+        self._off_track_steps = 0
+        # Anti-idle: terminate if too slow for too long
+        self.idle_min_speed = 1.2
+        self.idle_patience_steps = 20
+        self.idle_penalty = 70.0
+        self._idle_steps = 0
+        # Bonus proportional to speed to encourage acceleration
+        self.speed_reward_scale = 0.3
+        # Bonus for staying on track
+        self.on_track_bonus = 0.1
+        # Ajusta observation_space se for incluir mask
+        if self.include_mask:
+            h, w, _ = self.observation_space.shape
+            self.observation_space = spaces.Box(
+                low=0.0,
+                high=255.0,
+                shape=(h, w, 4),
+                dtype=self.observation_space.dtype,
             )
-            body.CreateFixture(fixture)
-            self.obstacle_bodies.append(body)
 
-    # -------------------------------  
-    # DESENHAR CONES NA TELA (USANDO A MESMA CAMÊRA DO JOGO)
-    # -------------------------------
-    def _render_cones(self, zoom, translation, angle):
-        for (ox, oy) in self.obstacle_positions:
-            pos = pygame.math.Vector2((ox, oy)).rotate_rad(angle)
+    def reset(self, *, seed=None, options=None):
+        """Reset counters and return the first observation with optional mask appended."""
+        self._off_track_steps = 0
+        self._idle_steps = 0
+        obs, info = super().reset(seed=seed, options=options)
+        on_track = self.car_on_track(border_width=self.off_track_border)
+        obs = self._augment_obs(obs, on_track)
+        return obs, info
 
-            px = pos[0] * zoom + translation[0]
-            py = pos[1] * zoom + translation[1]
+    def _augment_obs(self, obs, on_track):
+        """Normalize to 3-channel RGB and optionally append a binary on-track mask."""
+        if obs.ndim == 2:  # raro, mas garante HxW -> HxWxc
+            obs = np.expand_dims(obs, axis=2)
+        if obs.shape[2] > 3:
+            obs = obs[:, :, :3]
+        elif obs.shape[2] < 3:
+            obs = np.repeat(obs, 3 // max(obs.shape[2], 1), axis=2) if obs.shape[2] > 0 else np.zeros((*obs.shape[:2], 3), dtype=obs.dtype)
+            obs = obs[:, :, :3]
 
-            # tamanho do cone na tela
-            radius_px = int(self.obstacle_radius * zoom)
+        if not self.include_mask:
+            return obs
 
-            # clipping simples
-            if px < -50 or px > 1050 or py < -50 or py > 850:
-                continue
+        mask = np.full((obs.shape[0], obs.shape[1], 1), 1.0 if on_track else 0.0, dtype=obs.dtype)
+        return np.concatenate([obs, mask], axis=2)
 
-            pygame.gfxdraw.filled_circle(self.surf, int(px), int(py), radius_px, (255, 128, 0))
-            pygame.gfxdraw.aacircle(self.surf, int(px), int(py), radius_px, (255, 128, 0))
+    def _point_in_poly(self, x, y, poly):
+        """Return True if point (x, y) lies inside polygon poly."""
+        inside = False
+        n = len(poly)
+        for i in range(n):
+            x1, y1 = poly[i]
+            x2, y2 = poly[(i + 1) % n]
+            cond = ((y1 > y) != (y2 > y))
+            if cond:
+                x_intersect = x1 + (y - y1) * (x2 - x1) / (y2 - y1 + 1e-9)
+                if x_intersect > x:
+                    inside = not inside
+        return inside
 
-    # -------------------------------  
-    # RENDER PRINCIPAL (CHAMADO APÓS DESENHAR O CARRO/PISTA)
-    # -------------------------------
-    def _render(self, mode):
-        result = super()._render(mode)
+    def car_on_track(self, border_width=0.0):
+        """Check whether the car hull is inside any road polygon (with optional widened border)."""
+        if not hasattr(self, "road_poly") or self.car is None:
+            return True
 
-        if mode != "human":
-            return result
+        x, y = self.car.hull.position
 
-        # Extração dos parâmetros da câmera
-        zoom = self.zoom * self.SCALE if hasattr(self, "zoom") else 2.7 * self.SCALE
+        for poly, color in self.road_poly:
+            vertices = poly
 
-        # Valores usados no draw oficial
-        angle = -self.car.hull.angle
-        zoom = 0.1 * self.SCALE * max(1 - self.t, 0) + 2.7 * self.SCALE * min(self.t, 1)
-        scroll_x = -(self.car.hull.position[0]) * zoom
-        scroll_y = -(self.car.hull.position[1]) * zoom
+            if border_width != 0:
+                xs = [vx for vx, vy in vertices]
+                ys = [vy for vx, vy in vertices]
+                cx, cy = np.mean(xs), np.mean(ys)
+                scale = 1.0 + border_width
+                scaled = []
+                for vx, vy in vertices:
+                    sx = cx + (vx - cx) * scale
+                    sy = cy + (vy - cy) * scale
+                    scaled.append((sx, sy))
+                vertices_check = scaled
+            else:
+                vertices_check = vertices
 
-        trans = pygame.math.Vector2((scroll_x, scroll_y)).rotate_rad(angle)
-        translation = (1000 / 2 + trans[0], 800 / 4 + trans[1])
+            if self._point_in_poly(x, y, vertices_check):
+                return True
 
-        # DESENHA OS CONES AQUI
-        self._render_cones(zoom, translation, angle)
+        return False
 
-        return result
-
-    # -------------------------------  
-    # COLISÃO COM OBSTÁCULOS
-    # -------------------------------
     def step(self, action):
+        """Apply reward shaping, penalties and termination logic, then augment observation."""
         obs, reward, terminated, truncated, info = super().step(action)
 
-        car_x, car_y = self.car.hull.position
-        for (ox, oy) in self.obstacle_positions:
-            dist = np.sqrt((car_x - ox) ** 2 + (car_y - oy) ** 2)
-            if dist < self.obstacle_radius + 1.0:
-                print("Collision with obstacle!")
-                reward -= 20
-                terminated = True
-                break
+        on_track = self.car_on_track(border_width=self.off_track_border)
 
+        if not on_track:
+            self._off_track_steps += 1
+            penalty_multiplier = 1.0 + self.off_track_penalty_growth * max(self._off_track_steps - 1, 0)
+            reward -= self.off_track_penalty * penalty_multiplier
+            info["off_track"] = True
+            info["off_track_steps"] = self._off_track_steps
+        else:
+            self._off_track_steps = 0
+            info["off_track"] = False
+            reward += self.on_track_bonus
+
+        if self._off_track_steps > self.max_off_track_steps:
+            reward -= self.off_track_penalty * 2  # extra penalty and terminate if exceeding off-track steps
+            terminated = True
+
+        # Anti-ociosidade: se ficar muito tempo devagar, termina com penalidade
+        lin_vel = getattr(self.car.hull, "linearVelocity", None)
+        speed = 0.0
+        if lin_vel is not None:
+            speed = (lin_vel[0] ** 2 + lin_vel[1] ** 2) ** 0.5
+
+        # Bonus leve por se mover (aplica somente na pista)
+        if on_track:
+            reward += self.speed_reward_scale * speed
+
+        if lin_vel is not None:
+            if speed < self.idle_min_speed:
+                self._idle_steps += 1
+            else:
+                self._idle_steps = 0
+
+            if self._idle_steps > self.idle_patience_steps:
+                reward -= self.idle_penalty
+                terminated = True
+                info["idle_termination"] = True
+
+        obs = self._augment_obs(obs, on_track)
         return obs, reward, terminated, truncated, info
