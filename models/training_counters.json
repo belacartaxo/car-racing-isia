@@ -1,35 +1,22 @@
 {
   "PPO": {
-    "pretrained_old": {
-      "iterations": 0,
-      "total_timesteps": 0
-    },
-    "oficial": {
-      "iterations": 5,
-      "total_timesteps": 250000,
-      "best_reward": 378.4338284688991
-    },
     "hope": {
       "iterations": 68,
       "total_timesteps": 3400000,
       "best_reward": 215426.43511970295
     },
     "aquiles": {
-      "iterations": 44,
-      "total_timesteps": 2200000,
-      "best_reward": 93796.27697671253
+      "iterations": 83,
+      "total_timesteps": 4150000,
+      "best_reward": 121040.65308967257
     }
   },
   "A2C": {
     "final_a2c": {
       "iterations": 6,
       "total_timesteps": 300000,
-      "best_score": -11.3
-    },
-    "a2c_value_50": {
-      "iterations": 6,
-      "total_timesteps": 300000,
-      "best_score": 30.0
+      "best_score": -11.3,
+      "best_reward": -5914.027980071233
     }
   },
   "DDPG": {

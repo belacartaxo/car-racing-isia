@@ -2854,3 +2854,888 @@
 2025-12-16 17:21:41.322 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=6, total_timesteps=300000
 2025-12-16 17:21:41.322 | INFO     | __main__:train_agent:467 - Training run 'final_a2c' for A2C: global iteration 7
 2025-12-16 17:21:41.322 | INFO     | __main__:train_agent:468 - Local iteration 1/50 with 50000 timesteps
+2025-12-17 02:15:00.146 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 02:15:04.300 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 02:15:04.300 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 02:15:04.300 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 02:15:04.300 | INFO     | __main__:see_space:57 - Sample action: [0.19225141 0.7512667  0.12053393]
+2025-12-17 02:15:04.300 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 02:15:04.300 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 02:15:04.300 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 02:15:04.300 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 02:15:04.300 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\aquiles\best_model.zip
+2025-12-17 02:15:06.699 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=44, total_timesteps=2200000
+2025-12-17 02:15:06.700 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 45
+2025-12-17 02:15:06.700 | INFO     | __main__:train_agent:468 - Local iteration 1/50 with 50000 timesteps
+2025-12-17 02:30:24.523 | INFO     | __main__:train_agent:475 - Iteration time: 917.81 seconds (15.30 minutes)
+2025-12-17 02:30:24.761 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 02:30:24.777 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 45
+2025-12-17 02:30:24.777 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 02:30:24.777 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 02:30:28.406 | INFO     | __main__:evaluate_agent:523 - Episode reward: 2129.943153021044
+2025-12-17 02:30:28.420 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 02:30:43.989 | INFO     | __main__:evaluate_agent:523 - Episode reward: 37447.84159180084
+2025-12-17 02:30:43.994 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 02:30:47.305 | INFO     | __main__:evaluate_agent:523 - Episode reward: 1202.4338449710704
+2025-12-17 02:30:47.305 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 13593.40619659765
+2025-12-17 02:30:47.310 | INFO     | __main__:train_agent:495 - Best model kept (current best 93796.27697671253 >= new 13593.40619659765)
+2025-12-17 02:30:47.310 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 46
+2025-12-17 02:30:47.310 | INFO     | __main__:train_agent:468 - Local iteration 2/50 with 50000 timesteps
+2025-12-17 02:46:49.818 | INFO     | __main__:train_agent:475 - Iteration time: 962.50 seconds (16.04 minutes)
+2025-12-17 02:46:49.893 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 02:46:49.895 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 46
+2025-12-17 02:46:49.896 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 02:46:49.896 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 02:46:57.547 | INFO     | __main__:evaluate_agent:523 - Episode reward: 8211.519615720752
+2025-12-17 02:46:57.547 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 02:47:03.194 | INFO     | __main__:evaluate_agent:523 - Episode reward: 7672.6807540881
+2025-12-17 02:47:03.195 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 02:47:09.484 | INFO     | __main__:evaluate_agent:523 - Episode reward: 6941.71242412705
+2025-12-17 02:47:09.485 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 7608.637597978634
+2025-12-17 02:47:09.485 | INFO     | __main__:train_agent:495 - Best model kept (current best 93796.27697671253 >= new 7608.637597978634)
+2025-12-17 02:47:09.485 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 47
+2025-12-17 02:47:09.485 | INFO     | __main__:train_agent:468 - Local iteration 3/50 with 50000 timesteps
+2025-12-17 03:03:39.029 | INFO     | __main__:train_agent:475 - Iteration time: 989.54 seconds (16.49 minutes)
+2025-12-17 03:03:39.062 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 03:03:39.063 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 47
+2025-12-17 03:03:39.064 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 03:03:39.064 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 03:03:43.138 | INFO     | __main__:evaluate_agent:523 - Episode reward: 1843.8691986991948
+2025-12-17 03:03:43.138 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 03:03:49.502 | INFO     | __main__:evaluate_agent:523 - Episode reward: 8298.355708870087
+2025-12-17 03:03:49.502 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 03:03:53.201 | INFO     | __main__:evaluate_agent:523 - Episode reward: 2804.6834289876224
+2025-12-17 03:03:53.202 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 4315.636112185634
+2025-12-17 03:03:53.202 | INFO     | __main__:train_agent:495 - Best model kept (current best 93796.27697671253 >= new 4315.636112185634)
+2025-12-17 03:03:53.202 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 48
+2025-12-17 03:03:53.202 | INFO     | __main__:train_agent:468 - Local iteration 4/50 with 50000 timesteps
+2025-12-17 03:09:25.093 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 03:09:39.565 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 03:09:43.564 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 03:09:43.564 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 03:09:43.564 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 03:09:43.580 | INFO     | __main__:see_space:57 - Sample action: [-0.9152158   0.20881774  0.77291477]
+2025-12-17 03:09:43.586 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 03:09:43.587 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 03:09:43.588 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 03:09:43.588 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 03:09:43.588 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\aquiles\best_model.zip
+2025-12-17 03:09:47.123 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=47, total_timesteps=2350000
+2025-12-17 03:09:47.123 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 48
+2025-12-17 03:09:47.123 | INFO     | __main__:train_agent:468 - Local iteration 1/100 with 50000 timesteps
+2025-12-17 03:32:33.684 | INFO     | __main__:train_agent:475 - Iteration time: 1366.55 seconds (22.78 minutes)
+2025-12-17 03:32:33.926 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 03:32:33.932 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 48
+2025-12-17 03:32:33.932 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 03:32:33.932 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 03:33:04.858 | INFO     | __main__:evaluate_agent:523 - Episode reward: 33334.58855435472
+2025-12-17 03:33:04.862 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 03:33:38.828 | INFO     | __main__:evaluate_agent:523 - Episode reward: 26723.177144029934
+2025-12-17 03:33:38.830 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 03:33:56.438 | INFO     | __main__:evaluate_agent:523 - Episode reward: 14899.908022048758
+2025-12-17 03:33:56.442 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 24985.89124014447
+2025-12-17 03:33:56.476 | INFO     | __main__:train_agent:492 - New best model saved to: models\PPO\aquiles\best_model.zip (avg_reward=24985.89124014447)
+2025-12-17 03:33:56.476 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 49
+2025-12-17 03:33:56.477 | INFO     | __main__:train_agent:468 - Local iteration 2/100 with 50000 timesteps
+2025-12-17 03:47:47.072 | INFO     | __main__:train_agent:475 - Iteration time: 830.59 seconds (13.84 minutes)
+2025-12-17 03:47:47.104 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 03:47:47.106 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 49
+2025-12-17 03:47:47.106 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 03:47:47.107 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 03:47:58.074 | INFO     | __main__:evaluate_agent:523 - Episode reward: 19609.12771204578
+2025-12-17 03:47:58.078 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 03:48:05.593 | INFO     | __main__:evaluate_agent:523 - Episode reward: 13355.461013269998
+2025-12-17 03:48:05.595 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 03:48:18.113 | INFO     | __main__:evaluate_agent:523 - Episode reward: 30035.200448331198
+2025-12-17 03:48:18.115 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 20999.92972454899
+2025-12-17 03:48:18.115 | INFO     | __main__:train_agent:495 - Best model kept (current best 24985.89124014447 >= new 20999.92972454899)
+2025-12-17 03:48:18.115 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 50
+2025-12-17 03:48:18.115 | INFO     | __main__:train_agent:468 - Local iteration 3/100 with 50000 timesteps
+2025-12-17 04:02:01.159 | INFO     | __main__:train_agent:475 - Iteration time: 823.04 seconds (13.72 minutes)
+2025-12-17 04:02:01.186 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 04:02:01.187 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 50
+2025-12-17 04:02:01.188 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 04:02:01.188 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 04:02:13.515 | INFO     | __main__:evaluate_agent:523 - Episode reward: 26757.494645484152
+2025-12-17 04:02:13.518 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 04:02:26.396 | INFO     | __main__:evaluate_agent:523 - Episode reward: 27758.256774925845
+2025-12-17 04:02:26.398 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 04:02:38.987 | INFO     | __main__:evaluate_agent:523 - Episode reward: 25735.682277699092
+2025-12-17 04:02:38.990 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 26750.477899369696
+2025-12-17 04:02:39.017 | INFO     | __main__:train_agent:492 - New best model saved to: models\PPO\aquiles\best_model.zip (avg_reward=26750.477899369696)
+2025-12-17 04:02:39.018 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 51
+2025-12-17 04:02:39.018 | INFO     | __main__:train_agent:468 - Local iteration 4/100 with 50000 timesteps
+2025-12-17 04:16:17.387 | INFO     | __main__:train_agent:475 - Iteration time: 818.37 seconds (13.64 minutes)
+2025-12-17 04:16:17.416 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 04:16:17.418 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 51
+2025-12-17 04:16:17.418 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 04:16:17.418 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 04:16:26.876 | INFO     | __main__:evaluate_agent:523 - Episode reward: 28237.178023583267
+2025-12-17 04:16:26.880 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 04:16:33.863 | INFO     | __main__:evaluate_agent:523 - Episode reward: 11994.70591691881
+2025-12-17 04:16:33.865 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 04:16:41.153 | INFO     | __main__:evaluate_agent:523 - Episode reward: 19331.566667623425
+2025-12-17 04:16:41.155 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 19854.483536041833
+2025-12-17 04:16:41.155 | INFO     | __main__:train_agent:495 - Best model kept (current best 26750.477899369696 >= new 19854.483536041833)
+2025-12-17 04:16:41.155 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 52
+2025-12-17 04:16:41.156 | INFO     | __main__:train_agent:468 - Local iteration 5/100 with 50000 timesteps
+2025-12-17 04:30:32.196 | INFO     | __main__:train_agent:475 - Iteration time: 831.04 seconds (13.85 minutes)
+2025-12-17 04:30:32.230 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 04:30:32.231 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 52
+2025-12-17 04:30:32.231 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 04:30:32.232 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 04:30:36.764 | INFO     | __main__:evaluate_agent:523 - Episode reward: 4178.512114773832
+2025-12-17 04:30:36.768 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 04:30:41.085 | INFO     | __main__:evaluate_agent:523 - Episode reward: 8236.218347829205
+2025-12-17 04:30:41.087 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 04:30:44.831 | INFO     | __main__:evaluate_agent:523 - Episode reward: 6464.334136056084
+2025-12-17 04:30:44.833 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 6293.021532886373
+2025-12-17 04:30:44.833 | INFO     | __main__:train_agent:495 - Best model kept (current best 26750.477899369696 >= new 6293.021532886373)
+2025-12-17 04:30:44.833 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 53
+2025-12-17 04:30:44.833 | INFO     | __main__:train_agent:468 - Local iteration 6/100 with 50000 timesteps
+2025-12-17 04:44:22.030 | INFO     | __main__:train_agent:475 - Iteration time: 817.20 seconds (13.62 minutes)
+2025-12-17 04:44:22.060 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 04:44:22.061 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 53
+2025-12-17 04:44:22.062 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 04:44:22.062 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 04:44:30.251 | INFO     | __main__:evaluate_agent:523 - Episode reward: 8289.075777699949
+2025-12-17 04:44:30.254 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 04:44:36.090 | INFO     | __main__:evaluate_agent:523 - Episode reward: 14030.810015667606
+2025-12-17 04:44:36.091 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 04:44:41.840 | INFO     | __main__:evaluate_agent:523 - Episode reward: 13001.62931626785
+2025-12-17 04:44:41.843 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 11773.838369878467
+2025-12-17 04:44:41.843 | INFO     | __main__:train_agent:495 - Best model kept (current best 26750.477899369696 >= new 11773.838369878467)
+2025-12-17 04:44:41.843 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 54
+2025-12-17 04:44:41.843 | INFO     | __main__:train_agent:468 - Local iteration 7/100 with 50000 timesteps
+2025-12-17 04:57:59.458 | INFO     | __main__:train_agent:475 - Iteration time: 797.61 seconds (13.29 minutes)
+2025-12-17 04:57:59.489 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 04:57:59.490 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 54
+2025-12-17 04:57:59.490 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 04:57:59.490 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 04:58:06.662 | INFO     | __main__:evaluate_agent:523 - Episode reward: -8421.424919651148
+2025-12-17 04:58:06.667 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 04:58:10.994 | INFO     | __main__:evaluate_agent:523 - Episode reward: -2289.7085429534877
+2025-12-17 04:58:10.996 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 04:58:18.595 | INFO     | __main__:evaluate_agent:523 - Episode reward: -3950.3201271677713
+2025-12-17 04:58:18.597 | INFO     | __main__:evaluate_agent:529 - Average eval reward: -4887.151196590802
+2025-12-17 04:58:18.597 | INFO     | __main__:train_agent:495 - Best model kept (current best 26750.477899369696 >= new -4887.151196590802)
+2025-12-17 04:58:18.598 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 55
+2025-12-17 04:58:18.598 | INFO     | __main__:train_agent:468 - Local iteration 8/100 with 50000 timesteps
+2025-12-17 05:12:09.785 | INFO     | __main__:train_agent:475 - Iteration time: 831.19 seconds (13.85 minutes)
+2025-12-17 05:12:09.809 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 05:12:09.811 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 55
+2025-12-17 05:12:09.812 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 05:12:09.812 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 05:12:21.590 | INFO     | __main__:evaluate_agent:523 - Episode reward: 29053.02902456995
+2025-12-17 05:12:21.593 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 05:12:35.760 | INFO     | __main__:evaluate_agent:523 - Episode reward: 41546.39503884896
+2025-12-17 05:12:35.762 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 05:12:47.186 | INFO     | __main__:evaluate_agent:523 - Episode reward: 38688.84506828476
+2025-12-17 05:12:47.188 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 36429.423043901224
+2025-12-17 05:12:47.213 | INFO     | __main__:train_agent:492 - New best model saved to: models\PPO\aquiles\best_model.zip (avg_reward=36429.423043901224)
+2025-12-17 05:12:47.214 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 56
+2025-12-17 05:12:47.214 | INFO     | __main__:train_agent:468 - Local iteration 9/100 with 50000 timesteps
+2025-12-17 05:26:31.582 | INFO     | __main__:train_agent:475 - Iteration time: 824.37 seconds (13.74 minutes)
+2025-12-17 05:26:31.608 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 05:26:31.609 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 56
+2025-12-17 05:26:31.609 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 05:26:31.610 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 05:26:52.490 | INFO     | __main__:evaluate_agent:523 - Episode reward: 37853.658503966486
+2025-12-17 05:26:52.494 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 05:27:06.873 | INFO     | __main__:evaluate_agent:523 - Episode reward: 24773.09733456384
+2025-12-17 05:27:06.875 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 05:27:15.670 | INFO     | __main__:evaluate_agent:523 - Episode reward: 17139.82745313084
+2025-12-17 05:27:15.671 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 26588.86109722039
+2025-12-17 05:27:15.672 | INFO     | __main__:train_agent:495 - Best model kept (current best 36429.423043901224 >= new 26588.86109722039)
+2025-12-17 05:27:15.672 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 57
+2025-12-17 05:27:15.672 | INFO     | __main__:train_agent:468 - Local iteration 10/100 with 50000 timesteps
+2025-12-17 05:41:03.502 | INFO     | __main__:train_agent:475 - Iteration time: 827.83 seconds (13.80 minutes)
+2025-12-17 05:41:03.527 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 05:41:03.528 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 57
+2025-12-17 05:41:03.529 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 05:41:03.529 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 05:41:08.162 | INFO     | __main__:evaluate_agent:523 - Episode reward: 2559.2971179747547
+2025-12-17 05:41:08.166 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 05:41:10.802 | INFO     | __main__:evaluate_agent:523 - Episode reward: -1809.2376284097895
+2025-12-17 05:41:10.804 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 05:41:13.349 | INFO     | __main__:evaluate_agent:523 - Episode reward: -1896.3385308206575
+2025-12-17 05:41:13.353 | INFO     | __main__:evaluate_agent:529 - Average eval reward: -382.09301375189744
+2025-12-17 05:41:13.353 | INFO     | __main__:train_agent:495 - Best model kept (current best 36429.423043901224 >= new -382.09301375189744)
+2025-12-17 05:41:13.354 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 58
+2025-12-17 05:41:13.354 | INFO     | __main__:train_agent:468 - Local iteration 11/100 with 50000 timesteps
+2025-12-17 05:54:50.910 | INFO     | __main__:train_agent:475 - Iteration time: 817.56 seconds (13.63 minutes)
+2025-12-17 05:54:50.934 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 05:54:50.935 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 58
+2025-12-17 05:54:50.935 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 05:54:50.936 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 05:54:53.399 | INFO     | __main__:evaluate_agent:523 - Episode reward: -2664.7132348132336
+2025-12-17 05:54:53.403 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 05:55:00.268 | INFO     | __main__:evaluate_agent:523 - Episode reward: 14612.404809278552
+2025-12-17 05:55:00.270 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 05:55:07.992 | INFO     | __main__:evaluate_agent:523 - Episode reward: 14433.824141789737
+2025-12-17 05:55:07.994 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 8793.838572085018
+2025-12-17 05:55:07.994 | INFO     | __main__:train_agent:495 - Best model kept (current best 36429.423043901224 >= new 8793.838572085018)
+2025-12-17 05:55:07.995 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 59
+2025-12-17 05:55:07.995 | INFO     | __main__:train_agent:468 - Local iteration 12/100 with 50000 timesteps
+2025-12-17 06:08:45.148 | INFO     | __main__:train_agent:475 - Iteration time: 817.15 seconds (13.62 minutes)
+2025-12-17 06:08:45.176 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 06:08:45.178 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 59
+2025-12-17 06:08:45.178 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 06:08:45.179 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 06:08:46.077 | INFO     | __main__:evaluate_agent:523 - Episode reward: -5697.167556361061
+2025-12-17 06:08:46.081 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 06:08:46.926 | INFO     | __main__:evaluate_agent:523 - Episode reward: -5715.764031285078
+2025-12-17 06:08:46.928 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 06:08:47.937 | INFO     | __main__:evaluate_agent:523 - Episode reward: -5704.212625130628
+2025-12-17 06:08:47.939 | INFO     | __main__:evaluate_agent:529 - Average eval reward: -5705.714737592255
+2025-12-17 06:08:47.940 | INFO     | __main__:train_agent:495 - Best model kept (current best 36429.423043901224 >= new -5705.714737592255)
+2025-12-17 06:08:47.940 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 60
+2025-12-17 06:08:47.940 | INFO     | __main__:train_agent:468 - Local iteration 13/100 with 50000 timesteps
+2025-12-17 06:22:24.045 | INFO     | __main__:train_agent:475 - Iteration time: 816.11 seconds (13.60 minutes)
+2025-12-17 06:22:24.068 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 06:22:24.070 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 60
+2025-12-17 06:22:24.070 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 06:22:24.070 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 06:22:28.843 | INFO     | __main__:evaluate_agent:523 - Episode reward: 6002.886793005873
+2025-12-17 06:22:28.847 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 06:22:33.218 | INFO     | __main__:evaluate_agent:523 - Episode reward: 4035.9567754244836
+2025-12-17 06:22:33.220 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 06:22:39.852 | INFO     | __main__:evaluate_agent:523 - Episode reward: 10816.35744222032
+2025-12-17 06:22:39.854 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 6951.733670216893
+2025-12-17 06:22:39.854 | INFO     | __main__:train_agent:495 - Best model kept (current best 36429.423043901224 >= new 6951.733670216893)
+2025-12-17 06:22:39.854 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 61
+2025-12-17 06:22:39.854 | INFO     | __main__:train_agent:468 - Local iteration 14/100 with 50000 timesteps
+2025-12-17 06:36:12.908 | INFO     | __main__:train_agent:475 - Iteration time: 813.05 seconds (13.55 minutes)
+2025-12-17 06:36:12.931 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 06:36:12.932 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 61
+2025-12-17 06:36:12.932 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 06:36:12.932 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 06:36:18.607 | INFO     | __main__:evaluate_agent:523 - Episode reward: 6810.779334998717
+2025-12-17 06:36:18.611 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 06:37:09.644 | INFO     | __main__:evaluate_agent:523 - Episode reward: 188863.1915780666
+2025-12-17 06:37:09.646 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 06:37:17.822 | INFO     | __main__:evaluate_agent:523 - Episode reward: 13554.391232483707
+2025-12-17 06:37:17.824 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 69742.78738184967
+2025-12-17 06:37:17.847 | INFO     | __main__:train_agent:492 - New best model saved to: models\PPO\aquiles\best_model.zip (avg_reward=69742.78738184967)
+2025-12-17 06:37:17.847 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 62
+2025-12-17 06:37:17.847 | INFO     | __main__:train_agent:468 - Local iteration 15/100 with 50000 timesteps
+2025-12-17 06:50:41.037 | INFO     | __main__:train_agent:475 - Iteration time: 803.19 seconds (13.39 minutes)
+2025-12-17 06:50:41.063 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 06:50:41.064 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 62
+2025-12-17 06:50:41.064 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 06:50:41.065 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 06:50:49.933 | INFO     | __main__:evaluate_agent:523 - Episode reward: 19169.52760148169
+2025-12-17 06:50:49.936 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 06:50:59.537 | INFO     | __main__:evaluate_agent:523 - Episode reward: 19295.331125770754
+2025-12-17 06:50:59.539 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 06:51:12.458 | INFO     | __main__:evaluate_agent:523 - Episode reward: 31076.04888623891
+2025-12-17 06:51:12.460 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 23180.30253783045
+2025-12-17 06:51:12.460 | INFO     | __main__:train_agent:495 - Best model kept (current best 69742.78738184967 >= new 23180.30253783045)
+2025-12-17 06:51:12.460 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 63
+2025-12-17 06:51:12.461 | INFO     | __main__:train_agent:468 - Local iteration 16/100 with 50000 timesteps
+2025-12-17 07:04:50.749 | INFO     | __main__:train_agent:475 - Iteration time: 818.29 seconds (13.64 minutes)
+2025-12-17 07:04:50.773 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 07:04:50.774 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 63
+2025-12-17 07:04:50.775 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 07:04:50.775 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 07:05:06.657 | INFO     | __main__:evaluate_agent:523 - Episode reward: 37839.68743549595
+2025-12-17 07:05:06.660 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 07:05:27.460 | INFO     | __main__:evaluate_agent:523 - Episode reward: 56853.694142657514
+2025-12-17 07:05:27.462 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 07:05:39.548 | INFO     | __main__:evaluate_agent:523 - Episode reward: 34464.814852729854
+2025-12-17 07:05:39.552 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 43052.73214362777
+2025-12-17 07:05:39.552 | INFO     | __main__:train_agent:495 - Best model kept (current best 69742.78738184967 >= new 43052.73214362777)
+2025-12-17 07:05:39.552 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 64
+2025-12-17 07:05:39.552 | INFO     | __main__:train_agent:468 - Local iteration 17/100 with 50000 timesteps
+2025-12-17 07:19:13.508 | INFO     | __main__:train_agent:475 - Iteration time: 813.95 seconds (13.57 minutes)
+2025-12-17 07:19:13.535 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 07:19:13.536 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 64
+2025-12-17 07:19:13.537 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 07:19:13.537 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 07:19:16.443 | INFO     | __main__:evaluate_agent:523 - Episode reward: 2723.734307167957
+2025-12-17 07:19:16.447 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 07:19:20.271 | INFO     | __main__:evaluate_agent:523 - Episode reward: 7181.306696119722
+2025-12-17 07:19:20.274 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 07:19:23.461 | INFO     | __main__:evaluate_agent:523 - Episode reward: 3755.2657515851442
+2025-12-17 07:19:23.463 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 4553.435584957608
+2025-12-17 07:19:23.463 | INFO     | __main__:train_agent:495 - Best model kept (current best 69742.78738184967 >= new 4553.435584957608)
+2025-12-17 07:19:23.463 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 65
+2025-12-17 07:19:23.464 | INFO     | __main__:train_agent:468 - Local iteration 18/100 with 50000 timesteps
+2025-12-17 07:32:57.750 | INFO     | __main__:train_agent:475 - Iteration time: 814.29 seconds (13.57 minutes)
+2025-12-17 07:32:57.777 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 07:32:57.778 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 65
+2025-12-17 07:32:57.778 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 07:32:57.778 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 07:33:12.663 | INFO     | __main__:evaluate_agent:523 - Episode reward: 52899.89495368641
+2025-12-17 07:33:12.667 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 07:33:58.478 | INFO     | __main__:evaluate_agent:523 - Episode reward: 151371.57429022886
+2025-12-17 07:33:58.480 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 07:34:48.983 | INFO     | __main__:evaluate_agent:523 - Episode reward: 158850.49002510245
+2025-12-17 07:34:48.985 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 121040.65308967257
+2025-12-17 07:34:49.009 | INFO     | __main__:train_agent:492 - New best model saved to: models\PPO\aquiles\best_model.zip (avg_reward=121040.65308967257)
+2025-12-17 07:34:49.009 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 66
+2025-12-17 07:34:49.010 | INFO     | __main__:train_agent:468 - Local iteration 19/100 with 50000 timesteps
+2025-12-17 07:48:42.666 | INFO     | __main__:train_agent:475 - Iteration time: 833.66 seconds (13.89 minutes)
+2025-12-17 07:48:42.685 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 07:48:42.686 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 66
+2025-12-17 07:48:42.687 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 07:48:42.687 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 07:48:47.215 | INFO     | __main__:evaluate_agent:523 - Episode reward: 9395.409215749698
+2025-12-17 07:48:47.220 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 07:48:55.699 | INFO     | __main__:evaluate_agent:523 - Episode reward: 16510.226829571104
+2025-12-17 07:48:55.701 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 07:48:59.601 | INFO     | __main__:evaluate_agent:523 - Episode reward: 8251.579311904963
+2025-12-17 07:48:59.603 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 11385.738452408588
+2025-12-17 07:48:59.603 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new 11385.738452408588)
+2025-12-17 07:48:59.603 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 67
+2025-12-17 07:48:59.606 | INFO     | __main__:train_agent:468 - Local iteration 20/100 with 50000 timesteps
+2025-12-17 08:02:35.377 | INFO     | __main__:train_agent:475 - Iteration time: 815.77 seconds (13.60 minutes)
+2025-12-17 08:02:35.398 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 08:02:35.399 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 67
+2025-12-17 08:02:35.399 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 08:02:35.399 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 08:02:37.822 | INFO     | __main__:evaluate_agent:523 - Episode reward: -1623.716223519832
+2025-12-17 08:02:37.825 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 08:02:39.788 | INFO     | __main__:evaluate_agent:523 - Episode reward: -2390.27856944658
+2025-12-17 08:02:39.790 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 08:02:41.581 | INFO     | __main__:evaluate_agent:523 - Episode reward: -2740.3123973682345
+2025-12-17 08:02:41.583 | INFO     | __main__:evaluate_agent:529 - Average eval reward: -2251.4357301115488
+2025-12-17 08:02:41.583 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new -2251.4357301115488)
+2025-12-17 08:02:41.584 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 68
+2025-12-17 08:02:41.584 | INFO     | __main__:train_agent:468 - Local iteration 21/100 with 50000 timesteps
+2025-12-17 08:16:30.618 | INFO     | __main__:train_agent:475 - Iteration time: 829.03 seconds (13.82 minutes)
+2025-12-17 08:16:30.641 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 08:16:30.643 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 68
+2025-12-17 08:16:30.643 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 08:16:30.643 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 08:16:36.854 | INFO     | __main__:evaluate_agent:523 - Episode reward: 6532.333060428218
+2025-12-17 08:16:36.857 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 08:16:41.237 | INFO     | __main__:evaluate_agent:523 - Episode reward: 3871.348206560313
+2025-12-17 08:16:41.239 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 08:16:45.442 | INFO     | __main__:evaluate_agent:523 - Episode reward: 4522.349005126662
+2025-12-17 08:16:45.445 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 4975.343424038398
+2025-12-17 08:16:45.445 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new 4975.343424038398)
+2025-12-17 08:16:45.445 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 69
+2025-12-17 08:16:45.445 | INFO     | __main__:train_agent:468 - Local iteration 22/100 with 50000 timesteps
+2025-12-17 08:30:14.417 | INFO     | __main__:train_agent:475 - Iteration time: 808.97 seconds (13.48 minutes)
+2025-12-17 08:30:14.441 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 08:30:14.442 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 69
+2025-12-17 08:30:14.442 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 08:30:14.442 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 08:30:21.598 | INFO     | __main__:evaluate_agent:523 - Episode reward: 13838.98716137964
+2025-12-17 08:30:21.602 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 08:30:25.573 | INFO     | __main__:evaluate_agent:523 - Episode reward: 6646.3211266694325
+2025-12-17 08:30:25.575 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 08:30:30.420 | INFO     | __main__:evaluate_agent:523 - Episode reward: 8594.578267006726
+2025-12-17 08:30:30.422 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 9693.295518351932
+2025-12-17 08:30:30.422 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new 9693.295518351932)
+2025-12-17 08:30:30.422 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 70
+2025-12-17 08:30:30.423 | INFO     | __main__:train_agent:468 - Local iteration 23/100 with 50000 timesteps
+2025-12-17 08:44:05.072 | INFO     | __main__:train_agent:475 - Iteration time: 814.65 seconds (13.58 minutes)
+2025-12-17 08:44:05.102 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 08:44:05.105 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 70
+2025-12-17 08:44:05.106 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 08:44:05.106 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 08:44:16.488 | INFO     | __main__:evaluate_agent:523 - Episode reward: 39293.43967838462
+2025-12-17 08:44:16.492 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 08:44:25.363 | INFO     | __main__:evaluate_agent:523 - Episode reward: 21934.229263017834
+2025-12-17 08:44:25.364 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 08:44:32.973 | INFO     | __main__:evaluate_agent:523 - Episode reward: 12640.684250147304
+2025-12-17 08:44:32.975 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 24622.78439718325
+2025-12-17 08:44:32.975 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new 24622.78439718325)
+2025-12-17 08:44:32.975 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 71
+2025-12-17 08:44:32.976 | INFO     | __main__:train_agent:468 - Local iteration 24/100 with 50000 timesteps
+2025-12-17 08:58:08.512 | INFO     | __main__:train_agent:475 - Iteration time: 815.54 seconds (13.59 minutes)
+2025-12-17 08:58:08.537 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 08:58:08.538 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 71
+2025-12-17 08:58:08.538 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 08:58:08.538 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 08:58:18.963 | INFO     | __main__:evaluate_agent:523 - Episode reward: 23298.775659856794
+2025-12-17 08:58:18.966 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 08:58:48.070 | INFO     | __main__:evaluate_agent:523 - Episode reward: 48258.170004171676
+2025-12-17 08:58:48.073 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 08:59:02.038 | INFO     | __main__:evaluate_agent:523 - Episode reward: 26503.826246312496
+2025-12-17 08:59:02.040 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 32686.923970113654
+2025-12-17 08:59:02.040 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new 32686.923970113654)
+2025-12-17 08:59:02.041 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 72
+2025-12-17 08:59:02.041 | INFO     | __main__:train_agent:468 - Local iteration 25/100 with 50000 timesteps
+2025-12-17 09:12:35.269 | INFO     | __main__:train_agent:475 - Iteration time: 813.23 seconds (13.55 minutes)
+2025-12-17 09:12:35.295 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 09:12:35.296 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 72
+2025-12-17 09:12:35.296 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 09:12:35.297 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 09:12:43.148 | INFO     | __main__:evaluate_agent:523 - Episode reward: 14685.960606209694
+2025-12-17 09:12:43.153 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 09:12:45.584 | INFO     | __main__:evaluate_agent:523 - Episode reward: -844.9291875196013
+2025-12-17 09:12:45.586 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 09:12:50.260 | INFO     | __main__:evaluate_agent:523 - Episode reward: 7625.321286303504
+2025-12-17 09:12:50.262 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 7155.450901664532
+2025-12-17 09:12:50.262 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new 7155.450901664532)
+2025-12-17 09:12:50.262 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 73
+2025-12-17 09:12:50.262 | INFO     | __main__:train_agent:468 - Local iteration 26/100 with 50000 timesteps
+2025-12-17 09:26:35.377 | INFO     | __main__:train_agent:475 - Iteration time: 825.11 seconds (13.75 minutes)
+2025-12-17 09:26:35.401 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 09:26:35.402 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 73
+2025-12-17 09:26:35.403 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 09:26:35.403 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 09:26:51.702 | INFO     | __main__:evaluate_agent:523 - Episode reward: 41681.962534176506
+2025-12-17 09:26:51.706 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 09:27:01.355 | INFO     | __main__:evaluate_agent:523 - Episode reward: 19100.397507062902
+2025-12-17 09:27:01.358 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 09:27:13.160 | INFO     | __main__:evaluate_agent:523 - Episode reward: 33792.93312172457
+2025-12-17 09:27:13.162 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 31525.097720987993
+2025-12-17 09:27:13.162 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new 31525.097720987993)
+2025-12-17 09:27:13.162 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 74
+2025-12-17 09:27:13.163 | INFO     | __main__:train_agent:468 - Local iteration 27/100 with 50000 timesteps
+2025-12-17 09:40:58.119 | INFO     | __main__:train_agent:475 - Iteration time: 824.96 seconds (13.75 minutes)
+2025-12-17 09:40:58.148 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 09:40:58.149 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 74
+2025-12-17 09:40:58.149 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 09:40:58.149 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 09:40:59.928 | INFO     | __main__:evaluate_agent:523 - Episode reward: -2334.608473164739
+2025-12-17 09:40:59.931 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 09:41:03.658 | INFO     | __main__:evaluate_agent:523 - Episode reward: 996.4799942214045
+2025-12-17 09:41:03.659 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 09:41:05.971 | INFO     | __main__:evaluate_agent:523 - Episode reward: -2789.763333072823
+2025-12-17 09:41:05.973 | INFO     | __main__:evaluate_agent:529 - Average eval reward: -1375.9639373387192
+2025-12-17 09:41:05.973 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new -1375.9639373387192)
+2025-12-17 09:41:05.973 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 75
+2025-12-17 09:41:05.973 | INFO     | __main__:train_agent:468 - Local iteration 28/100 with 50000 timesteps
+2025-12-17 09:55:01.751 | INFO     | __main__:train_agent:475 - Iteration time: 835.78 seconds (13.93 minutes)
+2025-12-17 09:55:01.779 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 09:55:01.780 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 75
+2025-12-17 09:55:01.780 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 09:55:01.781 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 09:55:04.000 | INFO     | __main__:evaluate_agent:523 - Episode reward: -1554.9613537280625
+2025-12-17 09:55:04.004 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 09:55:06.649 | INFO     | __main__:evaluate_agent:523 - Episode reward: 125.75972058272089
+2025-12-17 09:55:06.651 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 09:55:09.258 | INFO     | __main__:evaluate_agent:523 - Episode reward: -888.8839500518552
+2025-12-17 09:55:09.259 | INFO     | __main__:evaluate_agent:529 - Average eval reward: -772.6951943990656
+2025-12-17 09:55:09.260 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new -772.6951943990656)
+2025-12-17 09:55:09.260 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 76
+2025-12-17 09:55:09.260 | INFO     | __main__:train_agent:468 - Local iteration 29/100 with 50000 timesteps
+2025-12-17 10:08:51.115 | INFO     | __main__:train_agent:475 - Iteration time: 821.85 seconds (13.70 minutes)
+2025-12-17 10:08:51.140 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 10:08:51.141 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 76
+2025-12-17 10:08:51.142 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 10:08:51.142 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 10:08:55.723 | INFO     | __main__:evaluate_agent:523 - Episode reward: 11584.723326304163
+2025-12-17 10:08:55.727 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 10:09:00.096 | INFO     | __main__:evaluate_agent:523 - Episode reward: 9130.502071254794
+2025-12-17 10:09:00.098 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 10:09:04.626 | INFO     | __main__:evaluate_agent:523 - Episode reward: 10884.135181193518
+2025-12-17 10:09:04.629 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 10533.120192917491
+2025-12-17 10:09:04.629 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new 10533.120192917491)
+2025-12-17 10:09:04.629 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 77
+2025-12-17 10:09:04.629 | INFO     | __main__:train_agent:468 - Local iteration 30/100 with 50000 timesteps
+2025-12-17 10:22:53.770 | INFO     | __main__:train_agent:475 - Iteration time: 829.14 seconds (13.82 minutes)
+2025-12-17 10:22:53.793 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 10:22:53.794 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 77
+2025-12-17 10:22:53.795 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 10:22:53.795 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 10:22:55.558 | INFO     | __main__:evaluate_agent:523 - Episode reward: -1306.1247382621777
+2025-12-17 10:22:55.563 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 10:22:57.488 | INFO     | __main__:evaluate_agent:523 - Episode reward: -668.1849137815279
+2025-12-17 10:22:57.490 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 10:23:00.502 | INFO     | __main__:evaluate_agent:523 - Episode reward: -54.76753306932835
+2025-12-17 10:23:00.504 | INFO     | __main__:evaluate_agent:529 - Average eval reward: -676.3590617043446
+2025-12-17 10:23:00.504 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new -676.3590617043446)
+2025-12-17 10:23:00.504 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 78
+2025-12-17 10:23:00.504 | INFO     | __main__:train_agent:468 - Local iteration 31/100 with 50000 timesteps
+2025-12-17 10:36:36.829 | INFO     | __main__:train_agent:475 - Iteration time: 816.32 seconds (13.61 minutes)
+2025-12-17 10:36:36.864 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 10:36:36.865 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 78
+2025-12-17 10:36:36.865 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 10:36:36.866 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 10:36:39.063 | INFO     | __main__:evaluate_agent:523 - Episode reward: -1249.0353190104424
+2025-12-17 10:36:39.066 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 10:36:41.049 | INFO     | __main__:evaluate_agent:523 - Episode reward: -1472.559517957567
+2025-12-17 10:36:41.050 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 10:36:43.866 | INFO     | __main__:evaluate_agent:523 - Episode reward: 2346.07332848479
+2025-12-17 10:36:43.868 | INFO     | __main__:evaluate_agent:529 - Average eval reward: -125.17383616107311
+2025-12-17 10:36:43.868 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new -125.17383616107311)
+2025-12-17 10:36:43.868 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 79
+2025-12-17 10:36:43.868 | INFO     | __main__:train_agent:468 - Local iteration 32/100 with 50000 timesteps
+2025-12-17 10:50:11.827 | INFO     | __main__:train_agent:475 - Iteration time: 807.96 seconds (13.47 minutes)
+2025-12-17 10:50:11.853 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 10:50:11.854 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 79
+2025-12-17 10:50:11.854 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 10:50:11.854 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 10:50:17.150 | INFO     | __main__:evaluate_agent:523 - Episode reward: 7787.5939327446995
+2025-12-17 10:50:17.155 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 10:50:19.203 | INFO     | __main__:evaluate_agent:523 - Episode reward: 180.83236910996527
+2025-12-17 10:50:19.205 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 10:50:22.598 | INFO     | __main__:evaluate_agent:523 - Episode reward: 3999.285730999345
+2025-12-17 10:50:22.600 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 3989.2373442846697
+2025-12-17 10:50:22.601 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new 3989.2373442846697)
+2025-12-17 10:50:22.601 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 80
+2025-12-17 10:50:22.601 | INFO     | __main__:train_agent:468 - Local iteration 33/100 with 50000 timesteps
+2025-12-17 11:04:21.950 | INFO     | __main__:train_agent:475 - Iteration time: 839.35 seconds (13.99 minutes)
+2025-12-17 11:04:21.974 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 11:04:21.975 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 80
+2025-12-17 11:04:21.976 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 11:04:21.976 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 11:04:27.279 | INFO     | __main__:evaluate_agent:523 - Episode reward: 13061.478868283086
+2025-12-17 11:04:27.284 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 11:04:31.344 | INFO     | __main__:evaluate_agent:523 - Episode reward: 9490.348209750035
+2025-12-17 11:04:31.345 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 11:04:35.302 | INFO     | __main__:evaluate_agent:523 - Episode reward: 6040.115937142367
+2025-12-17 11:04:35.304 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 9530.647671725163
+2025-12-17 11:04:35.304 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new 9530.647671725163)
+2025-12-17 11:04:35.304 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 81
+2025-12-17 11:04:35.305 | INFO     | __main__:train_agent:468 - Local iteration 34/100 with 50000 timesteps
+2025-12-17 11:18:35.738 | INFO     | __main__:train_agent:475 - Iteration time: 840.43 seconds (14.01 minutes)
+2025-12-17 11:18:35.767 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 11:18:35.768 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 81
+2025-12-17 11:18:35.769 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 11:18:35.769 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 11:18:37.274 | INFO     | __main__:evaluate_agent:523 - Episode reward: -3685.2325521772723
+2025-12-17 11:18:37.277 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 11:18:39.813 | INFO     | __main__:evaluate_agent:523 - Episode reward: -1195.069480424244
+2025-12-17 11:18:39.815 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 11:18:41.277 | INFO     | __main__:evaluate_agent:523 - Episode reward: -3498.982481445857
+2025-12-17 11:18:41.279 | INFO     | __main__:evaluate_agent:529 - Average eval reward: -2793.094838015791
+2025-12-17 11:18:41.279 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new -2793.094838015791)
+2025-12-17 11:18:41.279 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 82
+2025-12-17 11:18:41.280 | INFO     | __main__:train_agent:468 - Local iteration 35/100 with 50000 timesteps
+2025-12-17 11:32:28.019 | INFO     | __main__:train_agent:475 - Iteration time: 826.74 seconds (13.78 minutes)
+2025-12-17 11:32:28.054 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 11:32:28.055 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 82
+2025-12-17 11:32:28.056 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 11:32:28.056 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 11:32:32.575 | INFO     | __main__:evaluate_agent:523 - Episode reward: 10994.778008955742
+2025-12-17 11:32:32.579 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 11:32:39.611 | INFO     | __main__:evaluate_agent:523 - Episode reward: 23294.541926187343
+2025-12-17 11:32:39.613 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 11:32:41.933 | INFO     | __main__:evaluate_agent:523 - Episode reward: -787.5803836085615
+2025-12-17 11:32:41.934 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 11167.246517178173
+2025-12-17 11:32:41.935 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new 11167.246517178173)
+2025-12-17 11:32:41.935 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 83
+2025-12-17 11:32:41.935 | INFO     | __main__:train_agent:468 - Local iteration 36/100 with 50000 timesteps
+2025-12-17 11:46:11.358 | INFO     | __main__:train_agent:475 - Iteration time: 809.42 seconds (13.49 minutes)
+2025-12-17 11:46:11.383 | INFO     | __main__:train_agent:479 - Saved updated model to: models\PPO\aquiles\latest_model.zip
+2025-12-17 11:46:11.384 | INFO     | __main__:train_agent:483 - Saved training progress for PPO run 'aquiles': iteration 83
+2025-12-17 11:46:11.384 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 11:46:11.385 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 11:46:14.545 | INFO     | __main__:evaluate_agent:523 - Episode reward: 3535.8677376688975
+2025-12-17 11:46:14.550 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 11:46:21.206 | INFO     | __main__:evaluate_agent:523 - Episode reward: 2108.6247004938996
+2025-12-17 11:46:21.208 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 11:46:24.843 | INFO     | __main__:evaluate_agent:523 - Episode reward: 6797.2090830364705
+2025-12-17 11:46:24.845 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 4147.2338403997555
+2025-12-17 11:46:24.845 | INFO     | __main__:train_agent:495 - Best model kept (current best 121040.65308967257 >= new 4147.2338403997555)
+2025-12-17 11:46:24.846 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 84
+2025-12-17 11:46:24.846 | INFO     | __main__:train_agent:468 - Local iteration 37/100 with 50000 timesteps
+2025-12-17 11:56:49.323 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 11:56:53.927 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 11:56:53.927 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 11:56:53.927 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 11:56:53.933 | INFO     | __main__:see_space:57 - Sample action: [-0.99288875  0.6250689   0.00622982]
+2025-12-17 11:56:53.933 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 11:56:53.933 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 11:56:53.933 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 11:56:53.933 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 11:56:53.940 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\aquiles\best_model.zip
+2025-12-17 11:56:57.338 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=83, total_timesteps=4150000
+2025-12-17 11:56:57.338 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 11:56:57.340 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 11:57:13.724 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 11:57:16.672 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 11:57:16.672 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 11:57:16.672 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 11:57:16.672 | INFO     | __main__:see_space:57 - Sample action: [-0.99953395  0.9779005   0.46990928]
+2025-12-17 11:57:16.672 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 11:57:16.672 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 11:57:16.672 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 11:57:16.672 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 11:57:29.122 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 11:57:32.785 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 11:57:32.785 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 11:57:32.785 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 11:57:32.785 | INFO     | __main__:see_space:57 - Sample action: [0.82384056 0.6580775  0.7810754 ]
+2025-12-17 11:57:32.785 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 11:57:32.785 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 11:57:32.785 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 11:57:32.785 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 11:57:43.980 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 11:57:50.328 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 11:57:50.328 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 11:57:50.328 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 11:57:50.336 | INFO     | __main__:see_space:57 - Sample action: [0.8961027  0.46633646 0.7263097 ]
+2025-12-17 11:57:50.336 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 11:57:50.336 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 11:57:50.336 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 11:57:50.336 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 11:57:50.336 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\aquiles\best_model.zip
+2025-12-17 11:57:52.565 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=83, total_timesteps=4150000
+2025-12-17 11:57:52.565 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 11:57:52.565 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 12:01:19.021 | INFO     | __main__:evaluate_agent:523 - Episode reward: 159904.8282111822
+2025-12-17 12:01:19.025 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 12:01:36.831 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 12:01:41.561 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 12:01:41.561 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 12:01:41.561 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 3), uint8))
+2025-12-17 12:01:41.561 | INFO     | __main__:see_space:57 - Sample action: [-0.18942769  0.2506997   0.06530158]
+2025-12-17 12:01:41.561 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 12:01:41.561 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 12:01:41.561 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 3), dtype: uint8
+2025-12-17 12:01:41.575 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 12:01:41.575 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\hope\best_model.zip
+2025-12-17 12:01:44.065 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=68, total_timesteps=3400000
+2025-12-17 12:01:44.065 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 12:01:44.066 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 12:02:31.494 | INFO     | __main__:evaluate_agent:523 - Episode reward: 39064.90017547349
+2025-12-17 12:02:31.497 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 12:02:42.621 | INFO     | __main__:evaluate_agent:523 - Episode reward: -8.826653429598196
+2025-12-17 12:02:42.624 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 14:29:00.403 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 14:29:08.817 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 14:29:08.819 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 14:29:08.819 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 3), uint8))
+2025-12-17 14:29:08.819 | INFO     | __main__:see_space:57 - Sample action: [-0.68001366  0.11115366  0.88822687]
+2025-12-17 14:29:08.819 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 14:29:08.819 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 14:29:08.819 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 3), dtype: uint8
+2025-12-17 14:29:08.828 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 14:29:08.828 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\hope\best_model.zip
+2025-12-17 14:29:10.659 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=68, total_timesteps=3400000
+2025-12-17 14:29:10.659 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 14:29:10.660 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 14:29:45.864 | INFO     | __main__:evaluate_agent:523 - Episode reward: 36037.26365441614
+2025-12-17 14:29:45.866 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 14:29:55.013 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 14:30:13.543 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 14:30:13.543 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 14:30:13.543 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 14:30:13.543 | INFO     | __main__:see_space:57 - Sample action: [0.27667248 0.8237467  0.01514079]
+2025-12-17 14:30:13.551 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 14:30:13.551 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 14:30:13.551 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 14:30:13.551 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 14:30:13.551 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\aquiles\best_model.zip
+2025-12-17 14:30:14.929 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=83, total_timesteps=4150000
+2025-12-17 14:30:14.930 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 84
+2025-12-17 14:30:14.930 | INFO     | __main__:train_agent:468 - Local iteration 1/100 with 50000 timesteps
+2025-12-17 14:39:17.691 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 14:39:22.402 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 14:39:22.402 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 14:39:22.402 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 14:39:22.404 | INFO     | __main__:see_space:57 - Sample action: [-0.8685293   0.64821935  0.5815357 ]
+2025-12-17 14:39:22.405 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 14:39:22.406 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 14:39:22.406 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 14:39:22.406 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 14:39:22.406 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\aquiles\best_model.zip
+2025-12-17 14:39:24.185 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=83, total_timesteps=4150000
+2025-12-17 14:39:24.185 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 14:39:24.185 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 14:39:35.985 | INFO     | __main__:evaluate_agent:523 - Episode reward: 3054.849766329935
+2025-12-17 14:39:35.987 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 14:39:52.813 | INFO     | __main__:evaluate_agent:523 - Episode reward: 9695.2224830038
+2025-12-17 14:39:52.816 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 14:40:08.945 | INFO     | __main__:evaluate_agent:523 - Episode reward: 8931.950299484999
+2025-12-17 14:40:08.948 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 7227.340849606245
+2025-12-17 14:41:38.052 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 14:41:44.404 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 14:41:44.405 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 14:41:44.405 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 14:41:44.407 | INFO     | __main__:see_space:57 - Sample action: [-0.35004824  0.01733767  0.11050269]
+2025-12-17 14:41:44.409 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 14:41:44.409 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 14:41:44.410 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 14:41:44.410 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 14:41:44.411 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\aquiles\best_model.zip
+2025-12-17 14:41:45.805 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=83, total_timesteps=4150000
+2025-12-17 14:41:45.805 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 14:41:45.805 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 14:58:37.404 | INFO     | __main__:<module>:558 - Selected algorithm: Human
+2025-12-17 14:59:05.265 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 14:59:42.635 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 14:59:42.635 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 14:59:42.636 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 14:59:42.639 | INFO     | __main__:see_space:57 - Sample action: [-0.9438714  0.8476641  0.5780287]
+2025-12-17 14:59:42.641 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 14:59:42.642 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 14:59:42.642 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 14:59:42.642 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 14:59:58.896 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 15:00:04.439 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 15:00:04.439 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 15:00:04.440 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 15:00:04.440 | INFO     | __main__:see_space:57 - Sample action: [-0.26825327  0.38756192  0.21817617]
+2025-12-17 15:00:04.442 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 15:00:04.442 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 15:00:04.442 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 15:00:04.443 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 15:00:04.443 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\aquiles\best_model.zip
+2025-12-17 15:00:06.389 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=83, total_timesteps=4150000
+2025-12-17 15:00:06.389 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 15:00:06.389 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 15:01:00.787 | INFO     | __main__:evaluate_agent:523 - Episode reward: 36491.76682136774
+2025-12-17 15:01:00.789 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 15:01:49.267 | INFO     | __main__:evaluate_agent:523 - Episode reward: 34769.68960433648
+2025-12-17 15:01:49.269 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 15:02:41.922 | INFO     | __main__:evaluate_agent:523 - Episode reward: 35332.88977758946
+2025-12-17 15:02:41.925 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 35531.44873443123
+2025-12-17 17:26:03.049 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 17:26:27.828 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 17:26:27.829 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 17:26:27.829 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 3), uint8))
+2025-12-17 17:26:27.832 | INFO     | __main__:see_space:57 - Sample action: [-0.65297574  0.7030801   0.27174708]
+2025-12-17 17:26:27.834 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 17:26:27.835 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 17:26:27.835 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 3), dtype: uint8
+2025-12-17 17:26:27.835 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 17:26:27.836 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\hope\best_model.zip
+2025-12-17 17:26:51.319 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 17:27:07.135 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 17:27:07.135 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 17:27:07.135 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 17:27:07.136 | INFO     | __main__:see_space:57 - Sample action: [-0.60331595  0.8193644   0.77905947]
+2025-12-17 17:27:07.138 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 17:27:07.138 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 17:27:07.138 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 17:27:07.138 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 17:27:07.138 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\aquiles\best_model.zip
+2025-12-17 17:27:08.833 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=83, total_timesteps=4150000
+2025-12-17 17:27:08.833 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 17:27:08.834 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 17:28:05.003 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 17:28:23.364 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 17:28:23.365 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 17:28:23.365 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 17:28:23.368 | INFO     | __main__:see_space:57 - Sample action: [-0.13387613  0.71525574  0.41345316]
+2025-12-17 17:28:23.369 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 17:28:23.370 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 17:28:23.370 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 17:28:23.370 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 17:28:23.370 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\aquiles\best_model.zip
+2025-12-17 17:28:24.683 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=83, total_timesteps=4150000
+2025-12-17 17:28:24.683 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 17:28:24.684 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 17:29:38.698 | INFO     | __main__:evaluate_agent:523 - Episode reward: 49757.01474097473
+2025-12-17 17:29:38.700 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 17:30:26.913 | INFO     | __main__:evaluate_agent:523 - Episode reward: 37570.89806233866
+2025-12-17 17:30:26.915 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 17:31:12.791 | INFO     | __main__:evaluate_agent:523 - Episode reward: 37928.55292384111
+2025-12-17 17:31:12.795 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 41752.15524238483
+2025-12-17 17:32:19.666 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 17:32:50.011 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 17:32:50.011 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 17:32:50.012 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 17:32:50.012 | INFO     | __main__:see_space:57 - Sample action: [-0.12875663  0.698065    0.08858742]
+2025-12-17 17:32:50.014 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 17:32:50.014 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 17:32:50.014 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 17:32:50.014 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 17:32:50.015 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\aquiles\best_model.zip
+2025-12-17 17:32:51.296 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=83, total_timesteps=4150000
+2025-12-17 17:32:51.297 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 17:32:51.297 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 17:33:36.659 | INFO     | __main__:evaluate_agent:523 - Episode reward: 34797.56126230793
+2025-12-17 17:33:36.662 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 17:33:57.915 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 17:34:14.139 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 17:34:14.139 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 17:34:14.139 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 17:34:14.140 | INFO     | __main__:see_space:57 - Sample action: [0.01653058 0.7889404  0.13823967]
+2025-12-17 17:34:14.143 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 17:34:14.143 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 17:34:14.143 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 17:34:14.143 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 17:34:14.144 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\aquiles\best_model.zip
+2025-12-17 17:34:15.336 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=83, total_timesteps=4150000
+2025-12-17 17:34:15.337 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 17:34:15.337 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 17:35:14.954 | INFO     | __main__:evaluate_agent:523 - Episode reward: 45120.771654348675
+2025-12-17 17:35:14.968 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 17:36:40.648 | INFO     | __main__:evaluate_agent:523 - Episode reward: 58797.35921156754
+2025-12-17 17:36:40.658 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 17:37:28.543 | INFO     | __main__:evaluate_agent:523 - Episode reward: 38471.44260004109
+2025-12-17 17:37:28.549 | INFO     | __main__:evaluate_agent:529 - Average eval reward: 47463.1911553191
+2025-12-17 17:55:15.352 | INFO     | __main__:<module>:558 - Selected algorithm: A2C
+2025-12-17 17:55:17.965 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 17:55:17.966 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 17:55:17.966 | INFO     | __main__:see_space:56 - Observation space: Box(0, 255, (96, 96, 4), uint8)
+2025-12-17 17:55:17.968 | INFO     | __main__:see_space:57 - Sample action: [-0.20776239  0.18178087  0.25425422]
+2025-12-17 17:55:17.970 | INFO     | __main__:see_space:66 - Sample observation shape: (96, 96, 4)
+2025-12-17 17:55:17.970 | INFO     | __main__:<module>:618 - Selected policy: CnnPolicy
+2025-12-17 17:55:17.970 | INFO     | __main__:<module>:680 - Loading existing A2C model from models\A2C\final_a2c\best_model.zip
+2025-12-17 17:55:19.625 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=6, total_timesteps=300000
+2025-12-17 17:55:19.625 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 17:55:19.625 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 17:55:22.491 | INFO     | __main__:evaluate_agent:523 - Episode reward: -5912.8736644002765
+2025-12-17 17:55:22.495 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 17:55:25.145 | INFO     | __main__:evaluate_agent:523 - Episode reward: -5915.099364738936
+2025-12-17 17:55:25.146 | INFO     | __main__:evaluate_agent:507 - Episode 3/3
+2025-12-17 17:55:27.785 | INFO     | __main__:evaluate_agent:523 - Episode reward: -5914.110911074486
+2025-12-17 17:55:27.787 | INFO     | __main__:evaluate_agent:529 - Average eval reward: -5914.027980071233
+2025-12-17 17:57:36.508 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 17:57:43.573 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 17:57:43.574 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 17:57:43.574 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 3), uint8))
+2025-12-17 17:57:43.576 | INFO     | __main__:see_space:57 - Sample action: [-0.82689977  0.35313317  0.73052585]
+2025-12-17 17:57:43.579 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 17:57:43.579 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 17:57:43.579 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 3), dtype: uint8
+2025-12-17 17:57:43.579 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 17:57:43.579 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\hope\best_model.zip
+2025-12-17 17:57:44.907 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=68, total_timesteps=3400000
+2025-12-17 17:57:44.907 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 17:57:44.907 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 17:58:02.359 | INFO     | __main__:evaluate_agent:523 - Episode reward: 8082.057087041903
+2025-12-17 17:58:02.360 | INFO     | __main__:evaluate_agent:507 - Episode 2/3
+2025-12-17 17:58:21.458 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 17:59:05.334 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 17:59:05.335 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 17:59:05.335 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 17:59:05.335 | INFO     | __main__:see_space:57 - Sample action: [-0.9237664   0.32365817  0.89306927]
+2025-12-17 17:59:05.338 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 17:59:05.338 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 17:59:05.338 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 17:59:05.338 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 17:59:05.338 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\aquiles\best_model.zip
+2025-12-17 17:59:06.282 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=83, total_timesteps=4150000
+2025-12-17 17:59:06.282 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 17:59:06.282 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
+2025-12-17 17:59:33.328 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 17:59:37.301 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 17:59:37.301 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 17:59:37.301 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 4), uint8))
+2025-12-17 17:59:37.301 | INFO     | __main__:see_space:57 - Sample action: [0.5515909  0.33272356 0.5688019 ]
+2025-12-17 17:59:37.303 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 17:59:37.303 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 17:59:37.303 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 4), dtype: uint8
+2025-12-17 17:59:37.303 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 17:59:37.304 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\aquiles\best_model.zip
+2025-12-17 17:59:38.250 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=83, total_timesteps=4150000
+2025-12-17 17:59:38.250 | INFO     | __main__:train_agent:467 - Training run 'aquiles' for PPO: global iteration 84
+2025-12-17 17:59:38.251 | INFO     | __main__:train_agent:468 - Local iteration 1/100 with 50000 timesteps
+2025-12-17 18:00:08.285 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 18:00:11.672 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 18:00:11.673 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 18:00:11.673 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 3), uint8))
+2025-12-17 18:00:11.673 | INFO     | __main__:see_space:57 - Sample action: [-0.19799305  0.18031168  0.80537504]
+2025-12-17 18:00:11.674 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 18:00:11.675 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 18:00:11.675 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 3), dtype: uint8
+2025-12-17 18:00:11.675 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 18:00:11.675 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\hope\best_model.zip
+2025-12-17 18:00:12.628 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=68, total_timesteps=3400000
+2025-12-17 18:00:12.636 | INFO     | __main__:train_agent:467 - Training run 'hope' for PPO: global iteration 69
+2025-12-17 18:00:12.636 | INFO     | __main__:train_agent:468 - Local iteration 1/50 with 50000 timesteps
+2025-12-17 18:07:00.624 | INFO     | __main__:<module>:558 - Selected algorithm: PPO
+2025-12-17 18:07:03.416 | INFO     | __main__:see_space:54 - Inspecting environment spaces
+2025-12-17 18:07:03.416 | INFO     | __main__:see_space:55 - Action space: Box([-1.  0.  0.], 1.0, (3,), float32)
+2025-12-17 18:07:03.416 | INFO     | __main__:see_space:56 - Observation space: Dict('coins': Box(-inf, inf, (18,), float32), 'image': Box(0, 255, (96, 96, 3), uint8))
+2025-12-17 18:07:03.417 | INFO     | __main__:see_space:57 - Sample action: [-0.5622831   0.712618    0.21424024]
+2025-12-17 18:07:03.419 | INFO     | __main__:see_space:60 - Sample observation keys: ['coins', 'image']
+2025-12-17 18:07:03.419 | INFO     | __main__:see_space:64 - Sample 'coins' shape: (18,), dtype: float32
+2025-12-17 18:07:03.420 | INFO     | __main__:see_space:64 - Sample 'image' shape: (96, 96, 3), dtype: uint8
+2025-12-17 18:07:03.420 | INFO     | __main__:<module>:618 - Selected policy: MultiInputPolicy
+2025-12-17 18:07:03.420 | INFO     | __main__:<module>:680 - Loading existing PPO model from models\PPO\hope\best_model.zip
+2025-12-17 18:07:05.066 | INFO     | __main__:<module>:685 - Loaded training progress: iterations=68, total_timesteps=3400000
+2025-12-17 18:07:05.067 | INFO     | __main__:evaluate_agent:503 - Starting evaluation
+2025-12-17 18:07:05.067 | INFO     | __main__:evaluate_agent:507 - Episode 1/3
